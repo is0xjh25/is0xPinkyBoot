@@ -23,6 +23,8 @@ class App extends Component {
   render() {
     return (
       <Router>
+          <Header />
+          <NavBar />
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/add-post' element={<AddPost />} />
@@ -30,11 +32,7 @@ class App extends Component {
           <Route path='/sell' element={<Sell />} />
           <Route exact path='/account' element={<Account />} />
         </Routes>
-        <Fragment>
-          <Header />
-          <NavBar />
-          <Footer />
-        </Fragment>
+        <Footer />
       </Router>
     );
   }
