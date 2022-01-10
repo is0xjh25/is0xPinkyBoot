@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Faster One
+- Font Author: Copyright (c) 2012, Eduardo Tunni (http://www.tipo.net.ar edu@tipo.net.ar), with Reserved Font Name 'Faster'
+- Font Source: http://fonts.gstatic.com/s/fasterone/v12/H4ciBXCHmdfClFb-vWhfyLuShq63czE.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

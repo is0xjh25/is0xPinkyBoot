@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+/* Font */
+@import url(https://fonts.googleapis.com/css?family=Teko);
+
+body {
+  font-size: 3vh !important;
+  font-family: "Teko", sans-serif !important;
+}
+
+.highlight {
+  font-size: 3.5vh !important;
+  font-family: "Impact", sans-serif !important;
+}
