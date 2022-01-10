@@ -6,27 +6,17 @@ import Buy from './Buy';
 import Sell from './Sell';
 import Account from './Account';
 import NavBar from '../components/NavBar';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './App.css';
 
 class App extends Component {
-
-  state = {
-    movies: {
-      1: { id: 1, title: 'A River Runs Through It' },
-      2: { id: 2, title: 'Se7en' },
-      3: { id: 3, title: 'Inception' }
-    }
-  }
   
   render() {
     return (
       <Router>
-          <Header />
-          <NavBar />
+        <NavBar />
         <Routes>
-          <Route exact path='/' element={<Home />} />
+          <Route exact path='/' element={<Home/>} />
           <Route exact path='/add-post' element={<AddPost />} />
           <Route path='/buy' element={<Buy />} />
           <Route path='/sell' element={<Sell />} />

@@ -24,7 +24,7 @@
 					"id": 0,
 					"owner": "pinkyboot@gmail.com",
 					"type": "sell",
-					"status": "new",
+					"status": "brand-new",
 					"brand": "nike",
 					"model": "kobe 5",
 					"price": 200,
@@ -44,7 +44,7 @@
 					"id": 3,
 					"owner": "footlocker",
 					"type": "sell",
-					"status": "new/second-hand",
+					"status": "brand-new/second-hand",
 					"brand": "nike",
 					"model": "Kyrie 3",
 					"price": 250,
@@ -61,6 +61,7 @@
 			"password": "1234",
 			"first name": "Jim",
 			"last name": "Hsiao",
+			"location": "Melbourne",
 			"contact": {
 				"email": "jim@gmail.com",
 				"phone": "01234567890"
@@ -74,6 +75,7 @@
 			"password": "1234",
 			"first name": "Harry",
 			"last name": "Qin",
+			"location": "Sydney",
 			"contact": {
 				"email": "harry@gmail.com",
 				"phone": "01234567890"
