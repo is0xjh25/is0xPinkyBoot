@@ -15,27 +15,41 @@ body {
   height: 100%;
   font-size: 25px !important;
   font-family: "Teko", sans-serif !important;
+  background-color: aqua;
+
 }
 
 #nav {
-  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;
+  height: 64px;
   width: 100vw;
   left: 0px;
+  min-height: 64px;
+  max-height: 64px;
 }
 
 #footer {
-  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
   width: 100vw;
+  bottom: 0;
+  min-height: 64px;
+  max-height: 64px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 12px;
+  color: var(--bs-secondary);
+  overflow: hidden;
 }
 
 .main {
-  top: 10vh;
   position: relative;
-  height: 80vh;
   width: 100vw;
-  min-width: 500px;
+  top: 64px;
   overflow-y: scroll;
 }
 
@@ -47,6 +61,7 @@ body {
 /* Link */
 a {
   text-decoration: none !important;
+  color: var(--bs-secondary) !important;
 }
 
 #nav a:hover{

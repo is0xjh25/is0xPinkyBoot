@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useLayoutEffect} from 'react';
 import Favicon from '../favicon_io/logo.png';
 import { MdOutlinePostAdd } from 'react-icons/md';
-import { useWindowSize } from '../Utilities/Utilities';
+import { useWindowSize } from '../Utilities.js/Utilities';
 
 const NavBar = () => {
 
@@ -15,14 +15,14 @@ const NavBar = () => {
     } else if (str === "account") {
       setMarqueeText("#ACCOUNT INFO# Suit yourself.")
     } else {
-      setMarqueeText("You are browsing #PinkyBOOT# !!!")
+      setMarqueeText("You are visiting #PinkyBOOT# !!!")
     }
   }
 
   function handleWindowSize() {
     let e = document.querySelector('#rightNav');
     let img = document.querySelector('#navFavicon');
-    if (width < 1280) {
+    if (width < 1080) {
       e.style.display = "none";
       img.style.display = "none";
     } else {
@@ -46,16 +46,12 @@ const NavBar = () => {
   // Style Sheet
   const ss = {
     right: {
-      display: "inline-block",
       width: "50%",
       height: "100%",
-      paddingTop: "15px",
     },
     left: {
-      display: "inline-block",
       width: "50%",
       height: "100%",
-      paddingTop: "15px"      
     },
     ul: {
       width: "100%",
@@ -69,7 +65,9 @@ const NavBar = () => {
       marginLeft: "3px",
     },
     favicon: {
+      position: "relative",
       height: "50%",
+      top: "-2.5px",
       marginRight: "5px",
       borderRadius: "5px",
     },
@@ -80,7 +78,7 @@ const NavBar = () => {
     marquee: {
       width:"90%",
       marginRight: "10%",
-      color: "red",
+      color: "var(--bs-danger)",
     },
     marqueeHalf: {
       width:"50%",
@@ -89,6 +87,7 @@ const NavBar = () => {
     },
     form: {
       width: "50%",
+      textAlign: "center !important"
     },
     input: {
       width: "25%",
@@ -97,10 +96,14 @@ const NavBar = () => {
       borderRadius: "5px",
     },
     button: {
+      position: "relative",
       display: "inline-flex",
-      width: "7%",
-      marginLeft: "5px",
-      alignItems: "center" 
+      width: "40px",
+      height: "40px",
+      top:"-5px",
+      left: "2.5px",
+      justifyContent: "center",
+      textAlign: "center",
     }
   }
 
@@ -113,16 +116,16 @@ const NavBar = () => {
               <a className="text-warning" href="/"><img src={Favicon} alt="Favicon" style={ss.favicon} id="navFavicon"></img>PinkyBOOT</a>
             </li>
             <li style={ss.li}>
-              <a className="text-secondary" href="/account">Account</a>
+              <a href="/account">Account</a>
             </li>
             <li style={ss.li}>
-              <a className="text-secondary" href="/buy">BUY</a>
+              <a href="/buy">BUY</a>
             </li>
             <li style={ss.li}>
-              <a className="text-secondary" href="/sell">SELL</a>
+              <a href="/sell">SELL</a>
             </li>
             <li style={ss.li}>
-              <a className="text-secondary" href="/add-post">POST<MdOutlinePostAdd style={ss.icon}/></a>
+              <a href="/add-post">POST<MdOutlinePostAdd style={ss.icon}/></a>
             </li>
           </ul>
         </div>
@@ -131,7 +134,7 @@ const NavBar = () => {
             <div>
               <marquee style={ss.marqueeHalf}>{marqueeText}</marquee>
               <input type="search" placeholder="Find Boots..." aria-label="Search" style={ss.input}></input>
-              <button className="btn btn-outline-warning" type="submit" style={ss.button}>GO</button>
+              <button className="btn btn-outline-warning shadow-none" type="submit" style={ss.button}>GO</button>
             </div>
             :
             <marquee style={ss.marquee}>{marqueeText}</marquee>
