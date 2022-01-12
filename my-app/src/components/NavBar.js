@@ -1,23 +1,7 @@
 import React, { Fragment, useState, useEffect, useLayoutEffect} from 'react';
 import Favicon from '../favicon_io/logo.png';
 import { MdOutlinePostAdd } from 'react-icons/md';
-
-
-function useWindowSize() {
-  
-  const [size, setSize] = useState([0, 0]);
-  
-  useLayoutEffect(() => {
-    function updateSize() {
-      setSize([window.innerWidth, window.innerHeight]);
-    }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-
-  return size;
-}
+import { useWindowSize } from '../Utilities/Utilities';
 
 const NavBar = () => {
 
@@ -45,7 +29,6 @@ const NavBar = () => {
       e.style.display = "inline-block";
       img.style.display = "inline-block";
     }
-    console.log(e);
   }
 
   const [width, height] = useWindowSize();
@@ -63,31 +46,31 @@ const NavBar = () => {
   // Style Sheet
   const ss = {
     right: {
+      display: "inline-block",
       width: "50%",
       height: "100%",
-      display: "inline-block",
       paddingTop: "15px",
     },
     left: {
+      display: "inline-block",
       width: "50%",
       height: "100%",
-      display: "inline-block",
       paddingTop: "15px"      
     },
     ul: {
-      listStyleType: "none",
       width: "100%",
       height: "100%",
       paddingLeft: "15px",
+      listStyleType: "none",
     },
     li: {
+      display: "inline",
       marginRight: "15px",
       marginLeft: "3px",
-      display: "inline",
     },
-    logo: {
-      marginRight: "5px",
+    favicon: {
       height: "50%",
+      marginRight: "5px",
       borderRadius: "5px",
     },
     icon: {
@@ -98,12 +81,11 @@ const NavBar = () => {
       width:"90%",
       marginRight: "10%",
       color: "red",
-      dataDuplicate: "true"
     },
     marqueeHalf: {
       width:"50%",
       marginRight: "10%",
-      color: "red",
+      color: "var(--bs-danger)",
     },
     form: {
       width: "50%",
@@ -115,20 +97,20 @@ const NavBar = () => {
       borderRadius: "5px",
     },
     button: {
+      display: "inline-flex",
       width: "7%",
       marginLeft: "5px",
-      display: "inline-flex",
       alignItems: "center" 
     }
   }
 
   return (
     <Fragment>
-      <div className="nav fixed-top highlight bg-dark">
+      <div id= "nav" className="fixed-top highlight bg-dark">
         <div id="leftNav" style={ss.left}>
           <ul style={ss.ul}>
             <li style={ss.li}>
-              <a className="text-warning" href="/"><img src={Favicon} alt="Favicon" style={ss.logo} id="navFavicon"></img>PinkyBOOT</a>
+              <a className="text-warning" href="/"><img src={Favicon} alt="Favicon" style={ss.favicon} id="navFavicon"></img>PinkyBOOT</a>
             </li>
             <li style={ss.li}>
               <a className="text-secondary" href="/account">Account</a>

@@ -1,19 +1,75 @@
-import React, { Fragment } from "react";
+import React, { useEffect } from "react";
 import Favicon from "../favicon_io/favicon.png";
+import { useWindowSize } from '../Utilities/Utilities';
 
 const Footer = () => {
 
+  function handleWindowSize() {
+    let i = document.querySelector('#rightFooter');
+    let c = document.querySelector('#leftFooter');
+    if (width < 1080) {
+      i.style.width = "100%";
+      c.style.display = "none";
+    } else {
+      i.style.width = "20%";
+      c.style.display = "flex";
+    }
+  }
+  
+  const [width, height] = useWindowSize();
+
+  useEffect(() => {
+    handleWindowSize();
+    console.log(width);
+  }, [width]);
+
   const ss = {
     footer: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
       color: "white",
+      overflow: "hidden"
     },
-
+    contact: {
+      display: "flex",
+      flexDirection: "column",
+      width: "20%",
+      height: "100%",
+      alignItems: "start",
+      justifyContent: "center",
+    },
+    info: {
+      display: "flex",
+      flexDirection: "column",
+      width: "20%",
+      height: "100%",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    favicon: {
+      width: "35px",
+    },
+    copyright: {
+      margin: "0 auto",
+      position: "relative",
+      textAlign: "center"
+    }
   }
 
   return (
     <>
-      <footer className="footer fixed-bottom bg-dark" style={ss.footer}>
-        111dasnjklqhneijuh1ui2hyquiwhjasn,dmnsjkndiouzx89c897asekjnqwlknelkqwneiojasoidu89a7sd8uqywejknqwjkebjkbn
+      <footer id="footer" className="fixed-bottom bg-dark" style={ss.footer}>
+        <div id="leftFooter" style={ss.contact}>
+          <a className="text-secondary" href="https://github.com/is0xjh25" target="_blank">GitHub: is0xjh25</a>
+          <a className="text-secondary" href="mailto: is0.jimhsiao@gmail.com">Email: is0.jimhsiao@gmail.com</a>
+					<a className="text-secondary" href="https://linkedin.com/in/yunchi-hsiao/" target="_blank">Linkedin: Yun-Chi Hsiao</a>
+        </div>
+        <div id="rightFooter" style={ss.info}>
+          <img src={Favicon} alt="Favicon"style={ss.favicon}></img><br/>
+          <a className="text-secondary" href="https://is0xjh25.github.io" target="_blank" style={ss.copyright}>Copyright © 2022 PinkCoders, is0xjh25</a>
+        </div>
       </footer>
     </>
   );

@@ -17,17 +17,17 @@ body {
   font-family: "Teko", sans-serif !important;
 }
 
-.nav {
+#nav {
   height: 10vh;
   width: 100vw;
   left: 0px;
 }
 
-.footer {
+#footer {
   height: 10vh;
   width: 100vw;
-  min-width: 500px !important;
-  overflow-x: scroll !important;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 12px;
 }
 
 .main {
@@ -49,8 +49,13 @@ a {
   text-decoration: none !important;
 }
 
-a:hover{
-  color: red !important;
+#nav a:hover{
+  color: var(--bs-danger) !important;
+}
+
+#footer a:hover{
+  font-size: larger;
+  color: var(--bs-danger) !important;
 }
 
 /* Table */
