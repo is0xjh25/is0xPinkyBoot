@@ -1,11 +1,25 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useLayoutEffect} from 'react';
 import Favicon from '../favicon_io/logo.png';
 import { MdOutlinePostAdd } from 'react-icons/md';
 
-const NavBar = () => {
 
-  const [status, setStatus] = useState("");
-  const [marqueeText, setMarqueeText] = useState("");
+function useWindowSize() {
+  
+  const [size, setSize] = useState([0, 0]);
+  
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
+  return size;
+}
+
+const NavBar = () => {
 
   function GetStatus() {
     let str = window.location.pathname.replace('/', '');
@@ -21,83 +35,127 @@ const NavBar = () => {
     }
   }
 
+  function handleWindowSize() {
+    let e = document.querySelector('#rightNav');
+    let img = document.querySelector('#navFavicon');
+    if (width < 1280) {
+      e.style.display = "none";
+      img.style.display = "none";
+    } else {
+      e.style.display = "inline-block";
+      img.style.display = "inline-block";
+    }
+    console.log(e);
+  }
+
+  const [width, height] = useWindowSize();
+  const [status, setStatus] = useState("");
+  const [marqueeText, setMarqueeText] = useState("");
+
   useEffect(() => {
     GetStatus();
   }, []);
 
+  useEffect(() => {
+    handleWindowSize()
+  }, [width]);
+
   // Style Sheet
   const ss = {
-		brand: {
-      marginLeft: "1em",
-      color: "red"
+    right: {
+      width: "50%",
+      height: "100%",
+      display: "inline-block",
+      paddingTop: "15px",
     },
-    brandImg: {
-      height: "1.5em",
-      marginRight: "0.5em",
+    left: {
+      width: "50%",
+      height: "100%",
+      display: "inline-block",
+      paddingTop: "15px"      
+    },
+    ul: {
+      listStyleType: "none",
+      width: "100%",
+      height: "100%",
+      paddingLeft: "15px",
+    },
+    li: {
+      marginRight: "15px",
+      marginLeft: "3px",
+      display: "inline",
+    },
+    logo: {
+      marginRight: "5px",
+      height: "50%",
       borderRadius: "5px",
     },
+    icon: {
+      position:"absolute",
+      top: "23px"
+    },
     marquee: {
-      paddingTop:"10px",
+      width:"90%",
+      marginRight: "10%",
       color: "red",
-      marginLeft: "1em",
+      dataDuplicate: "true"
+    },
+    marqueeHalf: {
+      width:"50%",
+      marginRight: "10%",
+      color: "red",
     },
     form: {
-      paddingTop:"5px",
-      marginLeft:"1em"
+      width: "50%",
     },
     input: {
-      marginRight: "0.5em",
-      border: "7px solid dark",
-      borderRadius: "7px",
-      justifyContent: "center"
+      width: "25%",
+      height: "30px",
+      border: "2px solid black",
+      borderRadius: "5px",
     },
-    status: {
-      color: "#F08",
+    button: {
+      width: "7%",
+      marginLeft: "5px",
+      display: "inline-flex",
+      alignItems: "center" 
     }
   }
 
   return (
     <Fragment>
-      <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark justify-content-between highlight">
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item" style={ss.brand}>
-              <a className="nav-link text-warning" href="/"><img src={Favicon} alt="Favicon" style={ss.brandImg}></img>PinkyBOOT</a>
+      <div className="nav fixed-top highlight bg-dark">
+        <div id="leftNav" style={ss.left}>
+          <ul style={ss.ul}>
+            <li style={ss.li}>
+              <a className="text-warning" href="/"><img src={Favicon} alt="Favicon" style={ss.logo} id="navFavicon"></img>PinkyBOOT</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="account">Account</a>
+            <li style={ss.li}>
+              <a className="text-secondary" href="/account">Account</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="buy">BUY</a>
+            <li style={ss.li}>
+              <a className="text-secondary" href="/buy">BUY</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="sell">SELL</a>
+            <li style={ss.li}>
+              <a className="text-secondary" href="/sell">SELL</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/add-post">POST<MdOutlinePostAdd/></a>
+            <li style={ss.li}>
+              <a className="text-secondary" href="/add-post">POST<MdOutlinePostAdd style={ss.icon}/></a>
             </li>
-            <div className="news">
-              <marquee className="news-content" style={ss.marquee}>{marqueeText}</marquee>
+          </ul>
+        </div>
+        <div id="rightNav" style={ss.right}>
+          {(status === "buy" || status === "sell") ?
+            <div>
+              <marquee style={ss.marqueeHalf}>{marqueeText}</marquee>
+              <input type="search" placeholder="Find Boots..." aria-label="Search" style={ss.input}></input>
+              <button className="btn btn-outline-warning" type="submit" style={ss.button}>GO</button>
             </div>
-            {(status === "buy" || status === "sell") ?
-            <li>
-            <form className="form-inline" style={ss.form}>
-              <input className="form" type="search" placeholder="Find Boots..." aria-label="Search" style={ss.input}></input>
-              <button className="btn btn-outline-warning" type="submit">Check it out</button>
-            </form>
-            </li>
             :
-            null
+            <marquee style={ss.marquee}>{marqueeText}</marquee>
             }
-          </ul>     
         </div>
-        <div>
-          {status}
-        </div>
-      </nav>
+      </div>
     </Fragment>
   );
 }

@@ -13,17 +13,21 @@ class App extends Component {
   
   render() {
     return (
+      <>
+      <NavBar/>
       <Router>
-        <NavBar />
-        <Routes>
-          <Route exact path='/' element={<Home/>} />
-          <Route exact path='/add-post' element={<AddPost />} />
-          <Route path='/buy' element={<Buy />} />
-          <Route path='/sell' element={<Sell />} />
-          <Route exact path='/account' element={<Account />} />
-        </Routes>
-        <Footer />
+      <div className='main'>
+          <Routes>
+            <Route exact path='/' element={<Home/>} />
+            <Route exact path='/add-post' element={<AddPost />} />
+            <Route path='/buy' element={<Buy />} />
+            <Route path='/sell' element={<Sell />} />
+            <Route exact path='/account' element={<Account />} />
+          </Routes>
+          </div>
       </Router>
+      <Footer/>
+      </>
     );
   }
 }

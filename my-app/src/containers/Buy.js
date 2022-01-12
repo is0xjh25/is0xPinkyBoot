@@ -1,12 +1,10 @@
 import React, { Fragment } from "react";
-import Table from 'react-bootstrap/Table';
-
 
 const Buy = () => {
   return (
     <Fragment>
-      <Table className="table">
-        <thead className="thead-dark">
+      <table className="tableFixHead">
+        <thead className="">
           <tr>
             <th scope="col">Brand</th>
             <th scope="col">Model</th>
@@ -140,7 +138,7 @@ const Buy = () => {
             <td>jim@gmail.com</td>
           </tr>
         </tbody>
-      </Table>
+      </table>
     </Fragment>
   );
 };

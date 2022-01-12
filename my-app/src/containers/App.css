@@ -1,51 +1,79 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Font */
+/* Import Font */
 @import url(https://fonts.googleapis.com/css?family=Teko);
 
+/* Custom CSS */
+
+html { 
+  width: 100% !important; 
+  height: 100% !important; 
+  margin:0 !important;
+  padding:0 !important;
+}
+
 body {
-  font-size: 3vh !important;
+  width: 100%;
+  height: 100%;
+  font-size: 25px !important;
   font-family: "Teko", sans-serif !important;
 }
 
+.nav {
+  height: 10vh;
+  width: 100vw;
+  left: 0px;
+}
+
+.footer {
+  height: 10vh;
+  width: 100vw;
+  min-width: 500px !important;
+  overflow-x: scroll !important;
+}
+
+.main {
+  top: 10vh;
+  position: relative;
+  height: 80vh;
+  width: 100vw;
+  min-width: 500px;
+  overflow-y: scroll;
+}
+
 .highlight {
-  font-size: 3.5vh !important;
+  font-size: 25px !important;
   font-family: "Impact", sans-serif !important;
+}
+
+/* Link */
+a {
+  text-decoration: none !important;
+}
+
+a:hover{
+  color: red !important;
+}
+
+/* Table */
+.tableFixHead { 
+  overflow: auto; 
+  height: 100px; 
+}
+
+.tableFixHead thead th { 
+  position: sticky; 
+  top: 0; 
+  z-index: 1; 
+}
+
+table { 
+  border-collapse: collapse; 
+  width: 100%; 
+}
+
+th, td { 
+  padding: 8px 16px; 
+}
+
+th { 
+  background:#eee; 
 }
