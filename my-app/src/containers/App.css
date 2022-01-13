@@ -149,3 +149,20 @@ th, td {
 th { 
   background:#eee; 
 }
+
+/* Form */
+label {
+  font-size: 30px;
+}
+
+
+textarea {
+  border-radius: 10px;
+}
+
+.add-post-box, label {
+  display: flex !important;
+  text-align: center !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

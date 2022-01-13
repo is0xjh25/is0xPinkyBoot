@@ -62,8 +62,6 @@ const Home = () => {
     }
   }
 
-
-
   const navigate = useNavigate();
   const [width, height] = useWindowSize();
 
