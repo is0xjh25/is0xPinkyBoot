@@ -22,9 +22,11 @@ body {
 #nav {
   display: flex;
   flex-direction: row;
+  align-items: start;
+  justify-content: start;
   padding-top: 15px;
-  height: 64px;
   width: 100vw;
+  height: 64px;
   left: 0px;
   min-height: 64px;
   max-height: 64px;
@@ -35,8 +37,8 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 64px;
   width: 100vw;
+  height: 64px;
   bottom: 0;
   min-height: 64px;
   max-height: 64px;
@@ -48,13 +50,14 @@ body {
 
 .main {
   position: relative;
+  height: 80vh;
   width: 100vw;
-  top: 64px;
+  top: 68px;
   overflow-y: scroll;
 }
 
 .highlight {
-  font-size: 25px !important;
+  font-size: 25px;
   font-family: "Impact", sans-serif !important;
 }
 
@@ -64,13 +67,62 @@ a {
   color: var(--bs-secondary) !important;
 }
 
-#nav a:hover{
+a:hover{
   color: var(--bs-danger) !important;
 }
 
 #footer a:hover{
+  color: white !important;
   font-size: larger;
-  color: var(--bs-danger) !important;
+}
+
+/* Marquee */
+.marquee {
+  height: 100%;
+  right: 10%;	
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee h2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0;
+  line-height: 32px;
+  text-align: center;
+
+  /* Starting position */
+  -moz-transform:translateX(100%);
+  -webkit-transform:translateX(100%);	
+  transform:translateX(100%);
+
+  /* Apply animation to this element */	
+  -moz-animation: marquee 10s linear infinite;
+  -webkit-animation: marquee 10s linear infinite;
+  animation: marquee 10s linear infinite;
+}
+
+/* Move it (define the animation) */
+@-moz-keyframes marquee {
+  0%   { -moz-transform: translateX(100%); }
+  100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes marquee {
+  0%   { -webkit-transform: translateX(100%); }
+  100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes marquee {
+  0%   { 
+  -moz-transform: translateX(100%); /* Firefox bug fix */
+  -webkit-transform: translateX(100%); /* Firefox bug fix */
+  transform: translateX(100%); 		
+  }
+  100% { 
+  -moz-transform: translateX(-100%); /* Firefox bug fix */
+  -webkit-transform: translateX(-100%); /* Firefox bug fix */
+  transform: translateX(-100%); 
+  }
 }
 
 /* Table */

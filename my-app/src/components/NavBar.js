@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useLayoutEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Favicon from '../favicon_io/logo.png';
 import { MdOutlinePostAdd } from 'react-icons/md';
 import { useWindowSize } from '../Utilities.js/Utilities';
@@ -20,13 +20,16 @@ const NavBar = () => {
   }
 
   function handleWindowSize() {
-    let e = document.querySelector('#rightNav');
+    let r = document.querySelector('#rightNav');
+    let m = document.querySelector('.midNav');
     let img = document.querySelector('#navFavicon');
     if (width < 1080) {
-      e.style.display = "none";
+      r.style.display = "none";
+      m.style.display = "none";
       img.style.display = "none";
     } else {
-      e.style.display = "inline-block";
+      r.style.display = "inline-block";
+      m.style.display = "inline-block";
       img.style.display = "inline-block";
     }
   }
@@ -45,30 +48,40 @@ const NavBar = () => {
 
   // Style Sheet
   const ss = {
-    right: {
+    left: {
+      width: "45%",
+      height: "100%",
+    },
+    mid: {
+      width: "35%",
+      height: "100%",
+    },
+    fullMid: {
       width: "50%",
       height: "100%",
     },
-    left: {
-      width: "50%",
+    right: {
+      width: "20%",
       height: "100%",
+    },
+    fullRight: {
+      display: "none"
+
     },
     ul: {
+      display: "inline",
       width: "100%",
       height: "100%",
-      paddingLeft: "15px",
       listStyleType: "none",
     },
     li: {
       display: "inline",
       marginRight: "15px",
-      marginLeft: "3px",
     },
     favicon: {
       position: "relative",
       height: "50%",
-      top: "-2.5px",
-      marginRight: "5px",
+      right:"5px",
       borderRadius: "5px",
     },
     icon: {
@@ -76,13 +89,9 @@ const NavBar = () => {
       top: "23px"
     },
     marquee: {
-      width:"90%",
-      marginRight: "10%",
       color: "var(--bs-danger)",
     },
     marqueeHalf: {
-      width:"50%",
-      marginRight: "10%",
       color: "var(--bs-danger)",
     },
     form: {
@@ -90,7 +99,7 @@ const NavBar = () => {
       textAlign: "center !important"
     },
     input: {
-      width: "25%",
+      width: "70%",
       height: "30px",
       border: "2px solid black",
       borderRadius: "5px",
@@ -101,19 +110,18 @@ const NavBar = () => {
       width: "40px",
       height: "40px",
       top:"-5px",
-      left: "2.5px",
       justifyContent: "center",
       textAlign: "center",
     }
   }
 
   return (
-    <Fragment>
+    <>
       <div id= "nav" className="fixed-top highlight bg-dark">
         <div id="leftNav" style={ss.left}>
           <ul style={ss.ul}>
             <li style={ss.li}>
-              <a className="text-warning" href="/"><img src={Favicon} alt="Favicon" style={ss.favicon} id="navFavicon"></img>PinkyBOOT</a>
+              <a className="text-warning" href="/"><img  id="navFavicon" src={Favicon} alt="Favicon" style={ss.favicon}></img>PinkyBOOT</a>
             </li>
             <li style={ss.li}>
               <a href="/account">Account</a>
@@ -129,20 +137,28 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div id="rightNav" style={ss.right}>
-          {(status === "buy" || status === "sell") ?
-            <div>
-              <marquee style={ss.marqueeHalf}>{marqueeText}</marquee>
-              <input type="search" placeholder="Find Boots..." aria-label="Search" style={ss.input}></input>
-              <button className="btn btn-outline-warning shadow-none" type="submit" style={ss.button}>GO</button>
-            </div>
-            :
-            <marquee style={ss.marquee}>{marqueeText}</marquee>
-            }
-        </div>
+        {(status === "buy" || status === "sell") ?
+        <>
+          <div className="midNav" style={ss.mid}>
+            <div className="marquee" style={ss.marquee}><h2>{marqueeText}</h2></div>  
+          </div>
+          <div id="rightNav" style={ss.right}>
+            <input type="search" placeholder="Find Boots..." aria-label="Search" style={ss.input}></input>
+            <button className="btn btn-outline-warning shadow-none" type="submit" style={ss.button}>GO</button>
+          </div>
+        </>
+        :
+        <>
+          <div className="midNav" style={ss.fullMid}>
+            <div className="marquee" style={ss.marquee}><h2>{marqueeText}</h2></div>  
+          </div>
+          <div id="rightNav" style={ss.fullRight}></div>
+        </>
+        }
       </div>
-    </Fragment>
+    </>
   );
 }
 
 export default NavBar;
+
