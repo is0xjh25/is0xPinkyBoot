@@ -1,24 +1,44 @@
 {
   "buy-post": [
     {
-      "id": 1,
       "trade": "buy",
       "status": "brand-new",
+      "brand": "adidas",
+      "model": "asd",
+      "price": "123",
+      "negotiable": "false",
+      "description": "",
+      "id": 1
+    },
+    {
+      "trade": "buy",
+      "status": "second-hand",
       "brand": "jordan",
-      "model": "34",
-      "price": 200,
-      "negotiable": "true",
-      "description": ""
+      "model": "35",
+      "price": "123",
+      "negotiable": "false",
+      "description": "",
+      "id": 2
     },
     {
       "trade": "buy",
       "status": "second-hand",
       "brand": "adidas",
       "model": "hhh",
-      "price": "12",
+      "price": "123",
       "negotiable": "false",
       "description": "",
-      "id": 2
+      "id": 3
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "asics",
+      "model": "jjj",
+      "price": "1234",
+      "negotiable": "false",
+      "description": "",
+      "id": 4
     }
   ],
   "sell-post": [
@@ -79,8 +99,7 @@
       ],
       "starred post": [
         1
-      ],
-      "credit": 10
+      ]
     },
     {
       "email": "footlocker@gmail.com",
@@ -99,8 +118,7 @@
       ],
       "starred": [
         0
-      ],
-      "credit": 10
+      ]
     }
   ]
 }

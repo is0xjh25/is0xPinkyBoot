@@ -39,6 +39,7 @@ const AddPost = () => {
     e.preventDefault();
     storePost(state.trade, state)
     .then(_ => {
+      alert("success");
     }).catch(err => {
         alert(err);
     });

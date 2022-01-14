@@ -1,5 +1,5 @@
 /* Base URL */
-const DATABASE_URL = "http://localhost:3000"
+const DATABASE_URL = "http://localhost:4000"
 
 
 function getBuyPosts() {
