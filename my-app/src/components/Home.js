@@ -27,8 +27,11 @@ const ss = {
   },
   mid: {
     display: "flex",
-    alignItems: "end",
+    display: "-webkit-flex",
     justifyContent: "center",
+    WebkitJustifyContent: "center",
+    alignItems: "end",
+    WebkitAlignItems: "flex-end",
     width: "10%",
     height: "100%",
   },

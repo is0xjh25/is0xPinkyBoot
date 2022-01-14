@@ -3,6 +3,7 @@
 
 /* Custom CSS */
 
+
 html { 
   width: 100% !important; 
   height: 100% !important; 
@@ -15,8 +16,7 @@ body {
   height: 100%;
   font-size: 25px !important;
   font-family: "Teko", sans-serif !important;
-  background-color: aqua;
-
+  min-height: 320px;
 }
 
 #nav {
@@ -49,11 +49,11 @@ body {
 }
 
 .main {
+  display: block;
   position: relative;
   height: 80vh;
   width: 100vw;
   top: 68px;
-  overflow-y: scroll;
 }
 
 .highlight {
@@ -155,8 +155,8 @@ label {
   font-size: 30px;
 }
 
-
 textarea {
+  resize: none !important;
   border-radius: 10px;
 }
 

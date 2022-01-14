@@ -23,14 +23,17 @@ const NavBar = () => {
     let r = document.querySelector('#rightNav');
     let m = document.querySelector('.midNav');
     let img = document.querySelector('#navFavicon');
+    let icon = document.querySelector('#navIcon');
     if (width < 1080) {
       r.style.display = "none";
       m.style.display = "none";
       img.style.display = "none";
+      icon.style.display = "none";
     } else {
       r.style.display = "inline-block";
       m.style.display = "inline-block";
       img.style.display = "inline-block";
+      icon.style.display = "inline-block";
     }
   }
 
@@ -66,7 +69,6 @@ const NavBar = () => {
     },
     fullRight: {
       display: "none"
-
     },
     ul: {
       display: "inline",
@@ -133,7 +135,7 @@ const NavBar = () => {
               <a href="/sell">SELL</a>
             </li>
             <li style={ss.li}>
-              <a href="/add-post">POST<MdOutlinePostAdd style={ss.icon}/></a>
+              <a href="/add-post">POST<MdOutlinePostAdd id="navIcon" style={ss.icon}/></a>
             </li>
           </ul>
         </div>
