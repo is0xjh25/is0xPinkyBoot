@@ -38,8 +38,7 @@ const AddPost = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    storePost(state.trade, state)
-    .then(_ => {
+    storePost(state.trade, state).then(_ => {
       enqueueSnackbar("Posted Successfully",{variant:'success'});
     }).catch(err => {
       enqueueSnackbar(`${err}`,{variant:'error'});

@@ -1,11 +1,17 @@
-import React, { Fragment } from "react";
+import React, { useState} from "react";
+import Popup from 'reactjs-popup';
 
 const Account = () => {
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
   return (
-    <Fragment>
-      <div className="marquee"><h3>qklwjelkqweoijoaisjdma,nmcnzxjknxvcihjioasjoidjqwkeqwnem,asnm,njkmasnk</h3></div>
-    </Fragment>
+    <>
+    <Popup trigger={<button className="button"> Open Modal </button>} modal>
+      <span className="popup"> Modal content </span>
+    </Popup>
+    </>
   );
 };
 
 export default Account;
+

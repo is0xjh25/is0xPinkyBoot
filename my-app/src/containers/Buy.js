@@ -1,10 +1,26 @@
-import React, { Fragment } from "react";
+import React, { useState, useEffect} from 'react';
+import { useSnackbar } from 'notistack';
+import { getBuyPosts } from '../Utilities.js/API';
+import Post from '../components/Post';
 
 const Buy = () => {
+
+  const {enqueueSnackbar}  = useSnackbar();
+  const [posts, setPosts] = useState([]);
+  
+  useEffect(() => {
+    getBuyPosts().then(res => {
+      setPosts(res);
+      console.log(res);
+    }).catch(err => {
+      enqueueSnackbar(`${err}`,{variant:'error'});
+    })
+  }, []);
+
   return (
-    <Fragment>
+    <>
       <table className="tableFixHead">
-        <thead className="">
+        <thead>
           <tr>
             <th scope="col">Brand</th>
             <th scope="col">Model</th>
@@ -14,132 +30,16 @@ const Buy = () => {
             <th scope="col">Contact</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>
-          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>
-          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>          <tr>
-            <th scope="row">Nike</th>
-            <td>KD 13</td>
-            <td>Brand New</td>
-            <td>200</td>
-            <td>Melbourne</td>
-            <td>jim@gmail.com</td>
-          </tr>
-        </tbody>
+        {posts.map(p => 
+          { return (
+            <tbody>
+              <Post brand={p.brand} model={p.model} status={p.status} price={p.price}/>
+            </tbody>
+            )
+          }
+        )}
       </table>
-    </Fragment>
+    </>
   );
 };
 
