@@ -1,6 +1,5 @@
 /* Base URL */
-const DATABASE_URL = "http://localhost:4000"
-
+const DATABASE_URL = process.env.DATABASE_LOCAL
 
 function getBuyPosts() {
 	return fetch(`${DATABASE_URL}/buy-post`)
@@ -21,7 +20,6 @@ function getSellPosts() {
 }
 
 function storePost(trade, info) {
-	console.log("success");
 	return fetch(`${DATABASE_URL}/${trade}-post`, {
 		method: 'POST',
 		headers: {
