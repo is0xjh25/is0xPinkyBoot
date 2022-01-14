@@ -18,7 +18,7 @@ class App extends Component {
       <Router>
       <div className='main'>
           <Routes>
-            <Route exact path='/' element={<Home/>} />
+            <Route path='/' element={<Home/>} />
             <Route exact path='/add-post' element={<AddPost />} />
             <Route path='/buy' element={<Buy />} />
             <Route path='/sell' element={<Sell />} />

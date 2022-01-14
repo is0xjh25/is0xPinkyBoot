@@ -1,88 +1,106 @@
-{	
-	"post": 
-	[	
-		{"counter": 3},
-		{
-		"buy": 
-			[
-				{
-					"id": 1,
-					"owner": "footlocker",
-					"type": "buy",
-					"status": "new/second-hand",
-					"brand": "jordan",
-					"model": "34",
-					"price": 200,
-					"description": ""
-				}
-			]
-		},
-		{
-		"sell":
-			[
-				{
-					"id": 0,
-					"owner": "pinkyboot@gmail.com",
-					"type": "sell",
-					"status": "brand-new",
-					"brand": "nike",
-					"model": "kobe 5",
-					"price": 200,
-					"description": ""
-				},
-				{
-					"id": 2,
-					"owner": "footlocker",
-					"type": "sell",
-					"status": "second-hand",
-					"brand": "nike",
-					"model": "KD 13",
-					"price": 300,
-					"description": ""
-				},
-				{
-					"id": 3,
-					"owner": "footlocker",
-					"type": "sell",
-					"status": "brand-new/second-hand",
-					"brand": "nike",
-					"model": "Kyrie 3",
-					"price": 250,
-					"description": ""
-				}
-			]
-		}
-	],
-
-	"user": 
-	[
-		{	
-			"email": "pinkyboot@gmail.com",
-			"password": "1234",
-			"first name": "Jim",
-			"last name": "Hsiao",
-			"location": "Melbourne",
-			"contact": {
-				"email": "jim@gmail.com",
-				"phone": "01234567890"
-			},
-			"own post": [0],
-			"starred post": [1],
-			"credit": 10
-		},
-		{	
-			"email": "footlocker@gmail.com",
-			"password": "1234",
-			"first name": "Harry",
-			"last name": "Qin",
-			"location": "Sydney",
-			"contact": {
-				"email": "harry@gmail.com",
-				"phone": "01234567890"
-			},
-			"post": [1, 2, 3],
-			"starred": [0],
-			"credit": 10
-		}
-	]
+{
+  "buy-post": [
+    {
+      "id": 1,
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "jordan",
+      "model": "34",
+      "price": 200,
+      "negotiable": "true",
+      "description": ""
+    },
+    {
+      "trade": "buy",
+      "status": "second-hand",
+      "brand": "adidas",
+      "model": "hhh",
+      "price": "12",
+      "negotiable": "false",
+      "description": "",
+      "id": 2
+    }
+  ],
+  "sell-post": [
+    {
+      "id": 0,
+      "trade": "sell",
+      "status": "brand-new",
+      "brand": "nike",
+      "model": "kobe 5",
+      "price": 200,
+      "negotiable": "true",
+      "description": ""
+    },
+    {
+      "id": 1,
+      "trade": "sell",
+      "status": "second-hand",
+      "brand": "nike",
+      "model": "KD 13",
+      "price": 300,
+      "negotiable": "true",
+      "description": ""
+    },
+    {
+      "id": 2,
+      "trade": "sell",
+      "status": "brand-new",
+      "brand": "nike",
+      "model": "Kyrie 3",
+      "price": 250,
+      "negotiable": "false",
+      "description": ""
+    },
+    {
+      "trade": "sell",
+      "status": "brand-new",
+      "brand": "adidas",
+      "model": "hhh",
+      "price": "12",
+      "negotiable": "false",
+      "description": "",
+      "id": 3
+    }
+  ],
+  "user": [
+    {
+      "email": "pinkyboot@gmail.com",
+      "password": "1234",
+      "first name": "Jim",
+      "last name": "Hsiao",
+      "location": "Melbourne",
+      "contact": {
+        "email": "jim@gmail.com",
+        "phone": "01234567890"
+      },
+      "own post": [
+        0
+      ],
+      "starred post": [
+        1
+      ],
+      "credit": 10
+    },
+    {
+      "email": "footlocker@gmail.com",
+      "password": "1234",
+      "first name": "Harry",
+      "last name": "Qin",
+      "location": "Sydney",
+      "contact": {
+        "email": "harry@gmail.com",
+        "phone": "01234567890"
+      },
+      "post": [
+        1,
+        2,
+        3
+      ],
+      "starred": [
+        0
+      ],
+      "credit": 10
+    }
+  ]
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BsTrash, BsUpload } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';
 import { useWindowSize } from '../Utilities.js/Utilities';
+import { storePost } from '../Utilities.js/API';
 
 const AddPost = () => {
 
@@ -16,11 +17,35 @@ const AddPost = () => {
   }
 
   const handleOnChange = (e) => {
+    if (e.target.name === "negotiable" && e.target.checked) {
+      setState({
+        ...state,
+        [e.target.name]: "true"
+      });
+    } else if (e.target.name === "negotiable" && !e.target.checked) {
+      setState({
+        ...state,
+        [e.target.name]: "false"
+      });
+    } else {
       setState({
         ...state,
         [e.target.name]: e.target.value
-    });
+      });
+    }
   };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    storePost(state.trade, state)
+    .then(_ => {
+    }).catch(err => {
+        alert(err);
+    });
+
+    // clean up
+    document.forms["add-post-form"].reset();
+  }
   
   const navigate = useNavigate();
   const [width, height] = useWindowSize();
@@ -30,13 +55,12 @@ const AddPost = () => {
     brand: "",
     model: "",
     price: "",
-    negotiable: "",
+    negotiable: "false",
     description: ""
   })
 
   useEffect(() => {
     handleWindowSize()
-    console.log(width);
   }, [width, height]);
 
   const ss = {
@@ -73,7 +97,7 @@ const AddPost = () => {
   return (
     <>
       <div style={ss.main}>
-        <form style={ss.form} onChange={handleOnChange}>
+        <form id="add-post-form" name="add-post-form" style={ss.form} onChange={handleOnChange} onSubmit={handleSubmit}>
           <div className="row" style={ss.rowGap}>
             <div className="col">
                 <label htmlFor="add-post-trade">BUY / SELL</label>
@@ -123,7 +147,7 @@ const AddPost = () => {
               <label htmlFor="add-post-price">PRICE</label>
               <div className="add-post-box">
                 <input id="add-post-price" name="price" type="number" min="0" placeholder="Expected this number!" required style={ss.input}/>
-                <input id="addPostNegotiable" name="negotiable" type="checkbox"  style={ss.clickBox}/>
+                <input id="addPostNegotiable" name="negotiable" type="checkbox" style={ss.clickBox}/>
                 <span >NEGOTIABLE</span>
               </div>
             </div>
@@ -138,13 +162,13 @@ const AddPost = () => {
           </div>
           <div className="row add-post-box" style={ss.rowGap}>
             <div className="col">
-              <button className="btn btn-outline-light shadow" onClick={()=>{navigate(-1)}}><BsTrash/></button>
+              <button className="btn btn-outline-light shadow" onClick={()=>{navigate("/")}}><BsTrash/></button>
             </div>
             <div className="col">
               <button className="btn btn-outline-light shadow" type="reset"><BiRefresh/></button>
             </div>
-            <div className="col">
-              <button className="btn btn-outline-warning shadow"><BsUpload/></button>
+            <div className="col form-group">
+              <button className="btn btn-outline-warning shadow" form="add-post-form" type="submit"><BsUpload/></button>
             </div>
           </div>
         </form>
