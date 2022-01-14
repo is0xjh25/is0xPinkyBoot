@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from '../components/Home';
 import AddPost from '../components/AddPost';
@@ -14,19 +14,19 @@ class App extends Component {
   render() {
     return (
       <>
-      <NavBar/>
-      <Router>
-      <div className='main'>
-          <Routes>
-            <Route path='/' element={<Home/>} />
-            <Route exact path='/add-post' element={<AddPost />} />
-            <Route path='/buy' element={<Buy />} />
-            <Route path='/sell' element={<Sell />} />
-            <Route exact path='/account' element={<Account />} />
-          </Routes>
-          </div>
-      </Router>
-      <Footer/>
+        <NavBar/>
+        <Router>
+        <div className='main'>
+            <Routes>
+              <Route path='/' element={<Home/>} />
+              <Route exact path='/add-post' element={<AddPost />} />
+              <Route path='/buy' element={<Buy />} />
+              <Route path='/sell' element={<Sell />} />
+              <Route exact path='/account' element={<Account />} />
+            </Routes>
+            </div>
+        </Router>
+        <Footer/>
       </>
     );
   }

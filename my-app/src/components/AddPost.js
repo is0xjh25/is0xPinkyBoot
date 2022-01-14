@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { BsTrash, BsUpload } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';
 import { useWindowSize } from '../Utilities.js/Utilities';
@@ -39,9 +40,9 @@ const AddPost = () => {
     e.preventDefault();
     storePost(state.trade, state)
     .then(_ => {
-      alert("success");
+      enqueueSnackbar("Posted Successfully",{variant:'success'});
     }).catch(err => {
-        alert(err);
+      enqueueSnackbar(`${err}`,{variant:'error'});
     });
 
     // clean up
@@ -49,6 +50,7 @@ const AddPost = () => {
   }
   
   const navigate = useNavigate();
+  const {enqueueSnackbar}  = useSnackbar();
   const [width, height] = useWindowSize();
   const [state, setState] = useState({
     trade: "",

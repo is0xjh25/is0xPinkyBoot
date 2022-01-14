@@ -39,6 +39,56 @@
       "negotiable": "false",
       "description": "",
       "id": 4
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "asics",
+      "model": "ggg",
+      "price": "123",
+      "negotiable": "false",
+      "description": "",
+      "id": 5
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "asics",
+      "model": "yyy",
+      "price": "1234",
+      "negotiable": "false",
+      "description": "",
+      "id": 6
+    },
+    {
+      "trade": "buy",
+      "status": "second-hand",
+      "brand": "asics",
+      "model": "jjj",
+      "price": "123",
+      "negotiable": "true",
+      "description": "",
+      "id": 7
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "asics",
+      "model": "hhh",
+      "price": "123",
+      "negotiable": "false",
+      "description": "",
+      "id": 8
+    },
+    {
+      "trade": "buy",
+      "status": "second-hand",
+      "brand": "converse",
+      "model": "yyy",
+      "price": "123",
+      "negotiable": "false",
+      "description": "",
+      "id": 9
     }
   ],
   "sell-post": [
@@ -81,6 +131,26 @@
       "negotiable": "false",
       "description": "",
       "id": 3
+    },
+    {
+      "trade": "sell",
+      "status": "brand-new",
+      "brand": "adidas",
+      "model": "jjj",
+      "price": "666",
+      "negotiable": "false",
+      "description": "",
+      "id": 4
+    },
+    {
+      "trade": "sell",
+      "status": "second-hand",
+      "brand": "converse",
+      "model": "ttt",
+      "price": "555",
+      "negotiable": "false",
+      "description": "",
+      "id": 5
     }
   ],
   "user": [
