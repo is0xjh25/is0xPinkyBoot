@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from 'notistack';
-import { useWindowSize, capitalize, setCookie, checkAuthorized, getCookie } from "../Utilities.js/Utilities";
+import { useWindowSize, capitalize, getCookie } from "../Utilities.js/Utilities";
 import Favicon from '../favicon_io/android-chrome-512x512.png';
 import { BsCashCoin } from 'react-icons/bs';
 import { AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';

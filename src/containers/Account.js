@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { capitalize, setCookie, getCookie, deleteCookie, checkAuthorized } from "../Utilities.js/Utilities";
+import { capitalize, setCookie, getCookie, deleteCookie } from "../Utilities.js/Utilities";
 
 const ss = {
   main: {
@@ -23,25 +23,11 @@ const ss = {
     width: "100%",
     height: "50%",
   },
-  right: {
+  buttonBox: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: "33.33%",
-    height: "100%",
-  },
-  mid: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "33.33%",
-    height: "100%",
-  },
-  left: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "33.33%",
+    width: "25%",
     height: "100%",
   },
   button: {
@@ -49,7 +35,7 @@ const ss = {
     height: "80%",
     border: "5px solid",
     borderRadius: "5%",
-    fontSize: "40px",
+    fontSize: "35px",
   }
 }
 
@@ -63,9 +49,20 @@ const Account = () => {
     navigate("/");
   }
 
+  function logOff() {
+    deleteCookie("token");
+    navigate("/");
+  }
+
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
   const [user, setUser] = useState();
+
+  useEffect(() => {
+    if (!getCookie('token')) {
+      enqueueSnackbar("Pick a user.",{variant:'info'});
+    }
+  }, [])
 
   useEffect(() => {
     setUser(getCookie('token'));
@@ -75,16 +72,19 @@ const Account = () => {
     <>
       <div style={ss.main}>
         <h1 style={{fontSize: "100px"}}>Mock Users</h1>
-        <h3>You are {user ? capitalize(user) : "No One" } now !</h3>
+        <h3>You are <span className="text-warning">{user ? capitalize(user): "No One" }</span>  now !</h3>
         <div style={ss.buttonGroup}>
-          <div style={ss.left}>
-            <button className="btn btn-outline-primary shadow" value="admin" style={ss.button} onClick={switchUser}>Admin</button>
+          <div style={ss.buttonBox}>
+            <button className="btn btn-outline-success shadow" value="admin" style={ss.button} onClick={switchUser}>Admin</button>
           </div>
-          <div style={ss.mid}>
+          <div style={ss.buttonBox}>
             <button className="btn btn-outline-primary shadow" value="guest0" style={ss.button} onClick={switchUser}>Guest 0</button>
           </div>
-          <div style={ss.right}>
+          <div style={ss.buttonBox}>
             <button className="btn btn-outline-primary shadow" value="guest1" style={ss.button} onClick={switchUser}>Guest 1</button>
+          </div>
+          <div style={ss.buttonBox}>
+            <button className="btn btn-outline-danger shadow" value="guest1" style={ss.button} onClick={logOff}>Log Off</button>
           </div>
         </div>
         <h1 style={{fontSize: "50px"}}>Personal Account is coming...</h1>
