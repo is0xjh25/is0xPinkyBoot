@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { capitalize } from "../Utilities.js/Utilities";
+import { useSnackbar } from 'notistack';
+import { useWindowSize, capitalize, setCookie, checkAuthorized, getCookie } from "../Utilities.js/Utilities";
 import Favicon from '../favicon_io/android-chrome-512x512.png';
 import { BsCashCoin } from 'react-icons/bs';
 import { AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';
-import { useWindowSize } from '../Utilities.js/Utilities';
 
 const ss = {
   top: {
@@ -64,7 +64,7 @@ const ss = {
   }
 }
 
-const Home = (props) => {
+const Home = () => {
 
   function handleWindowSize() {
     let i = document.querySelector('#accountFavicon');
@@ -76,7 +76,19 @@ const Home = (props) => {
   }
 
   const navigate = useNavigate();
+  const {enqueueSnackbar}  = useSnackbar();
+  const [user, setUser] = useState("");
   const [width, height] = useWindowSize();
+  
+  useEffect(() => {
+    const cookie= getCookie('token');
+    if (cookie === "") {
+      enqueueSnackbar("Please Login First.",{variant:'warning'});
+      setUser("");
+    }  else {
+      setUser(cookie);
+    }
+  }, [])
 
   useEffect(() => {
     handleWindowSize()
@@ -100,8 +112,10 @@ const Home = (props) => {
       </div>
     </div>
     <div className="bg-dark highlight" style={ss.bot}>
-      <a href="/account"><AiOutlineLogin/> LOGIN </a>
-      <div style={ss.info}>as {capitalize(props.user)}</div>
+      <a href="/account"><AiOutlineLogin/> {user ? " SWITCH": " LOGIN"} </a>
+      <div style={ss.info}>
+        {user ? `Now is ${capitalize(user)}`: null}
+      </div>
     </div>
     </>
   );

@@ -12,7 +12,7 @@ render(
     horizontal: 'right',
     TransitionComponent: {Zoom},
   }}
->
+  >
     <App />
   </SnackbarProvider>,
   document.getElementById('root')

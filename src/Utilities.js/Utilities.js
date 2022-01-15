@@ -1,4 +1,5 @@
 import { useState, useLayoutEffect} from 'react';
+import Cookies from 'js-cookie';
 
 function useWindowSize() {
   
@@ -20,7 +21,40 @@ function capitalize(str) {
 	return str[0].toUpperCase() + str.slice(1);
 }
 
+// // Set cookie when login
+function setCookie(name, value, days) {
+	Cookies.set(`${name}`, `${value}`, { expires: days }, { secure: true }, { sameSite: 'none' })
+	return name;
+}
+
+function getCookie(name) {
+	const cookie = Cookies.get(`${name}`);
+	if (cookie) return cookie;
+    return "";
+}
+
+// Deletes the token of the user
+function deleteCookie(name) {
+    Cookies.remove(`${name}`);
+}
+
+// // Check if a user is not logged in, and redirects to login page
+function checkAuthorized() {
+    
+	const user = getCookie('token');
+   
+	if (user) {
+      return user;
+    } else {
+      return "";
+    }
+}
+
 export {
 	useWindowSize,
-	capitalize
+	capitalize,
+	setCookie,
+	getCookie,
+	deleteCookie,
+	checkAuthorized
 }

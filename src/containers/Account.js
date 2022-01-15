@@ -1,7 +1,7 @@
-import React, {} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { capitalize } from "../Utilities.js/Utilities";
+import { capitalize, setCookie, getCookie, deleteCookie, checkAuthorized } from "../Utilities.js/Utilities";
 
 const ss = {
   main: {
@@ -53,22 +53,29 @@ const ss = {
   }
 }
 
-const Account = (props) => {
+const Account = () => {
 
   function switchUser(e) {
-    props.setUser(e.target.value);
-    enqueueSnackbar(`You are now ${capitalize(e.target.value)} !`,{variant:'success'});
+    let user = e.target.value;
+    setCookie('token', user, 7)
+    setUser(user);
+    enqueueSnackbar(`Switch to ${capitalize(user)}.`,{variant:'success'});
     navigate("/");
   }
 
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
+  const [user, setUser] = useState();
 
+  useEffect(() => {
+    setUser(getCookie('token'));
+  }, [switchUser]);
+  
   return (
     <>
       <div style={ss.main}>
         <h1 style={{fontSize: "100px"}}>Mock Users</h1>
-        <h3>You are {capitalize(props.user)} now !</h3>
+        <h3>You are {user ? capitalize(user) : "No One" } now !</h3>
         <div style={ss.buttonGroup}>
           <div style={ss.left}>
             <button className="btn btn-outline-primary shadow" value="admin" style={ss.button} onClick={switchUser}>Admin</button>
