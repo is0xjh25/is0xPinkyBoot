@@ -64,6 +64,7 @@ const AddPost = (props) => {
 
   useEffect(() => {
     if (!checkAuthorized()) navigate("/account");
+    enqueueSnackbar("Please login first.",{variant:'warning'});
   }, []);
 
   useEffect(() => {

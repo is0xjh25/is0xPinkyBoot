@@ -195,28 +195,40 @@
       "id": "admin",
       "email": "pinkyboot@gmail.com",
       "password": "1234",
-      "first name": "Jim",
-      "last name": "Hsiao",
+      "firstName": "Jim",
+      "lastName": "Hsiao",
       "location": "Melbourne",
-      "contact": "jim@gmail.com"
+      "authority" : 0,
+      "ownedBuyPost": ["1", "2", "3"],
+      "ownedSellPost": ["1", "2", "3"],
+      "starredBuyPost": ["1", "2", "3"],
+      "starredSellPost": ["1", "2", "3"]
     },
     {
       "id": "guest0",
       "email": "footlocker@gmail.com",
       "password": "1234",
-      "first name": "Harry",
-      "last name": "Qin",
+      "firstName": "Harry",
+      "lastName": "Qin",
       "location": "Sydney",
-      "contact": "harry@gmail.com"
+      "authority" : 1,
+      "ownedBuyPost": ["1", "2", "3"],
+      "ownedSellPost": ["1", "2", "3"],
+      "starredBuyPost": ["1", "2", "3"],
+      "starredSellPost": ["1", "2", "3"]
     },
     {
       "id": "guest1",
       "email": "spiderman@gmail.com",
       "password": "1234",
-      "first name": "Tony",
-      "last name": "Allen",
+      "firstName": "Tony",
+      "lastName": "Allen",
       "location": "Perth",
-      "contact": "nba@gmail.com"
+      "authority" : 1,
+      "ownedBuyPost": ["1", "2", "3"],
+      "ownedSellPost": ["1", "2", "3"],
+      "starredBuyPost": ["1", "2", "3"],
+      "starredSellPost": ["1", "2", "3"]
     }
   ]
 }

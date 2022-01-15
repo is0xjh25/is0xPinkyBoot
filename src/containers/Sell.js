@@ -12,7 +12,10 @@ const Sell = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    if (!checkAuthorized()) navigate("/account");
+    if (!checkAuthorized()) {
+      navigate("/account");
+      enqueueSnackbar("Please login first.",{variant:'warning'});
+    } 
     getSellPosts().then(res => {
       setPosts(res);
     }).catch(err => {

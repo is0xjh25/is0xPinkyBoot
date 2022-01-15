@@ -83,7 +83,7 @@ const Home = () => {
   useEffect(() => {
     const cookie= getCookie('token');
     if (cookie === "") {
-      enqueueSnackbar("Please Login First.",{variant:'warning'});
+      enqueueSnackbar("Please login first.",{variant:'warning'});
       setUser("");
     }  else {
       setUser(cookie);

@@ -12,7 +12,10 @@ const Buy = () => {
   const [posts, setPosts] = useState([]);
   
   useEffect(() => {
-    if (!checkAuthorized()) navigate("/account");
+    if (!checkAuthorized()) {
+      navigate("/account");
+      enqueueSnackbar("Please login first.",{variant:'warning'});
+    } 
     getBuyPosts().then(res => {
       setPosts(res);
     }).catch(err => {

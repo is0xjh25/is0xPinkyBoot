@@ -224,3 +224,8 @@ textarea {
   border-radius: 18px !important;
   border: 1px solid #cfcece !important;
 }
+
+/* Others */
+b {
+  color: var(--bs-warning);
+}

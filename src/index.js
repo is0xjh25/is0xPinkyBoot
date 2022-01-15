@@ -6,7 +6,7 @@ import App from './containers/App';
 import 'bootstrap/dist/css/bootstrap.css';
 
 render(
-  <SnackbarProvider maxSnack={3} 
+  <SnackbarProvider maxSnack={5} 
   anchorOrigin={{
     vertical: 'bottom',
     horizontal: 'right',

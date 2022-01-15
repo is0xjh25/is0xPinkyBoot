@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { capitalize, setCookie, getCookie, deleteCookie } from "../Utilities.js/Utilities";
+import { getUserInfo } from '../Utilities.js/API';
 
 const ss = {
   main: {
@@ -36,6 +37,9 @@ const ss = {
     border: "5px solid",
     borderRadius: "5%",
     fontSize: "35px",
+  },
+  info: {
+    fontSize: "25px"
   }
 }
 
@@ -49,19 +53,61 @@ const Account = () => {
     navigate("/");
   }
 
-  function logOff() {
+  function logOut() {
     deleteCookie("token");
+    enqueueSnackbar("You are now successfully logged out.",{variant:'success'});
     navigate("/");
   }
 
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
   const [user, setUser] = useState();
+  const [hover, setHover] = useState("");
+  const [info, setInfo] = useState([]);
+  const accounts = ["admin", "guest0", "guest1"];
+  
+  function Info(props) {
+    const target = info.find(item => item.id === props.user);
+    if (!target) {
+      return (<h1 style={{fontSize: "100px"}}>Mock Users</h1>);
+    } else {
+      console.log(target);
+      return (
+        <>
+        <div className="row" style={ss.info}>
+          <div className="col"><b>User ID:</b> {target.id}</div>
+          <div className="col"><b>Name:</b> {target.firstName} {target.lastName}</div>
+        </div>
+        <div className="row" style={ss.info}>
+          <div className="col"><b>Authority Level:</b> {target.authority}</div>
+          <div className="col"><b>Email:</b> {target.email}</div>
+          <div className="col"><b>Location:</b> {target.location}</div>
+        </div>
+        <div className="row" style={ss.info}>
+          <div className="col"><b>Owned Buy Posts:</b> {target.ownedBuyPost.join(", ")}</div>
+          <div className="col"><b>Owned Sell Posts:</b> {target.ownedSellPost.join(", ")}</div>
+        </div>
+        <div className="row" style={ss.info}>
+          <div className="col"><b>Starred Buy Posts:</b> {target.starredBuyPost.join(", ")}</div>
+          <div className="col"><b>Starred Sell Posts:</b> {target.starredSellPost.join(", ")}</div>
+        </div>
+        </>     
+      )
+    }
+  }
 
   useEffect(() => {
     if (!getCookie('token')) {
       enqueueSnackbar("Pick a user.",{variant:'info'});
     }
+    accounts.map(a => {
+      getUserInfo(a).then(res => {
+        setInfo(info => [...info, res]);
+      }).catch(err => {
+        enqueueSnackbar(err ,{variant:'error'});
+      })
+    })
+    enqueueSnackbar("Accounts have been setup." ,{variant:'success'});
   }, [])
 
   useEffect(() => {
@@ -71,20 +117,26 @@ const Account = () => {
   return (
     <>
       <div style={ss.main}>
-        <h1 style={{fontSize: "100px"}}>Mock Users</h1>
-        <h3>You are <span className="text-warning">{user ? capitalize(user): "No One" }</span>  now !</h3>
+        <Info user={hover} />
+        <h3>You are <b>{user ? capitalize(user): "No One" }</b> now !</h3>
         <div style={ss.buttonGroup}>
           <div style={ss.buttonBox}>
-            <button className="btn btn-outline-success shadow" value="admin" style={ss.button} onClick={switchUser}>Admin</button>
+            <button className="btn btn-outline-success shadow" value="admin" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
+              Admin
+            </button>
           </div>
           <div style={ss.buttonBox}>
-            <button className="btn btn-outline-primary shadow" value="guest0" style={ss.button} onClick={switchUser}>Guest 0</button>
+            <button className="btn btn-outline-primary shadow" value="guest0" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
+              Guest 0
+            </button>
           </div>
           <div style={ss.buttonBox}>
-            <button className="btn btn-outline-primary shadow" value="guest1" style={ss.button} onClick={switchUser}>Guest 1</button>
+            <button className="btn btn-outline-primary shadow" value="guest1" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
+              Guest 1
+            </button>
           </div>
           <div style={ss.buttonBox}>
-            <button className="btn btn-outline-danger shadow" value="guest1" style={ss.button} onClick={logOff}>Log Off</button>
+            <button className="btn btn-outline-danger shadow" style={ss.button} onClick={logOut}>Log out</button>
           </div>
         </div>
         <h1 style={{fontSize: "50px"}}>Personal Account is coming...</h1>
