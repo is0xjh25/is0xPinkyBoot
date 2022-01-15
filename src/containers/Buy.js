@@ -11,7 +11,6 @@ const Buy = () => {
   useEffect(() => {
     getBuyPosts().then(res => {
       setPosts(res);
-      console.log(res);
     }).catch(err => {
       enqueueSnackbar(`${err}`,{variant:'error'});
     })

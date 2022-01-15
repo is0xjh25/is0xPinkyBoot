@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { capitalize } from "../Utilities.js/Utilities";
 import Favicon from '../favicon_io/android-chrome-512x512.png';
 import { BsCashCoin } from 'react-icons/bs';
 import { AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';
@@ -51,10 +52,19 @@ const ss = {
     border: "5px solid",
     borderRadius: "5%",
     fontSize: "80px",
+  },
+  info: {
+    display: "flex",
+    position: "relative",
+    left: "10px",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "30px",
+    color: "white"
   }
 }
 
-const Home = () => {
+const Home = (props) => {
 
   function handleWindowSize() {
     let i = document.querySelector('#accountFavicon');
@@ -90,7 +100,8 @@ const Home = () => {
       </div>
     </div>
     <div className="bg-dark highlight" style={ss.bot}>
-      <a href="/account"><AiOutlineLogin/> LOGIN</a>
+      <a href="/account"><AiOutlineLogin/> LOGIN </a>
+      <div style={ss.info}>as {capitalize(props.user)}</div>
     </div>
     </>
   );

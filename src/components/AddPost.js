@@ -6,7 +6,7 @@ import { BiRefresh } from 'react-icons/bi';
 import { useWindowSize } from '../Utilities.js/Utilities';
 import { storePost } from '../Utilities.js/API';
 
-const AddPost = () => {
+const AddPost = (props) => {
 
   function handleWindowSize() {
     let d = document.querySelector('#add-post-hidden');
@@ -58,7 +58,8 @@ const AddPost = () => {
     model: "",
     price: "",
     negotiable: "false",
-    description: ""
+    description: "",
+    poster: `${props.user}`
   })
 
   useEffect(() => {

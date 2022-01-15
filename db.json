@@ -98,6 +98,17 @@
       "description": "",
       "poster": "admin",
       "id": 9
+    },
+    {
+      "trade": "buy",
+      "status": "second-hand",
+      "brand": "puma",
+      "model": "rty",
+      "price": "888",
+      "negotiable": "true",
+      "description": "",
+      "poster": "admin",
+      "id": 10
     }
   ],
   "sell-post": [
@@ -175,6 +186,7 @@
       "price": "666",
       "negotiable": "true",
       "description": "",
+      "poster": "admin",
       "id": 6
     }
   ],
