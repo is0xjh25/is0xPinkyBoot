@@ -9,7 +9,7 @@ const Buy = () => {
   
   function handleDeletePost (post) {
     deletePost(post).then(res => {
-      if (res.status === 200) {
+      if (res.status===200) {
         enqueueSnackbar(`Post ${post.id} is successfully deleted.`,{variant:'success'});
         setPage("none");
       } else {
@@ -39,8 +39,6 @@ const Buy = () => {
     }
     getBuyPosts().then(res => {
       setPosts(res);
-    }).catch(err => {
-      enqueueSnackbar(`${err}`,{variant:'error'});
     })
   }, [refreshCount]);
 
