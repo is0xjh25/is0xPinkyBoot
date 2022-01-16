@@ -76,6 +76,17 @@
       "description": "",
       "posterId": "admin",
       "id": 10
+    },
+    {
+      "trade": "buy",
+      "status": "second-hand",
+      "brand": "nike",
+      "model": "tyt",
+      "price": "666",
+      "negotiable": "false",
+      "description": "",
+      "poster": "guest0",
+      "id": 11
     }
   ],
   "sell-post": [
@@ -155,6 +166,50 @@
       "description": "",
       "posterId": "admin",
       "id": 6
+    },
+    {
+      "trade": "sell",
+      "status": "second-hand",
+      "brand": "adidas",
+      "model": "tyt",
+      "price": "1234",
+      "negotiable": "false",
+      "description": "",
+      "poster": "guest0",
+      "id": 7
+    },
+    {
+      "trade": "sell",
+      "status": "second-hand",
+      "brand": "converse",
+      "model": "hjh",
+      "price": "666",
+      "negotiable": "true",
+      "description": "",
+      "poster": "guest0",
+      "id": 8
+    },
+    {
+      "trade": "sell",
+      "status": "second-hand",
+      "brand": "asics",
+      "model": "uiu",
+      "price": "888",
+      "negotiable": "false",
+      "description": "",
+      "poster": "guest0",
+      "id": 9
+    },
+    {
+      "trade": "sell",
+      "status": "second-hand",
+      "brand": "adidas",
+      "model": "ert",
+      "price": "666",
+      "negotiable": "true",
+      "description": "",
+      "poster": "guest0",
+      "id": 10
     }
   ],
   "user": [

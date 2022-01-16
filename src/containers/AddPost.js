@@ -6,7 +6,7 @@ import { BiRefresh } from 'react-icons/bi';
 import { useWindowSize, checkAuthorized } from '../Utilities.js/Utilities';
 import { storePost } from '../Utilities.js/API';
 
-const AddPost = (props) => {
+const AddPost = () => {
 
   function handleWindowSize() {
     let d = document.querySelector('#add-post-hidden');
@@ -38,12 +38,13 @@ const AddPost = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    storePost(state.trade, state).then(_ => {
-      enqueueSnackbar("Posted Successfully",{variant:'success'});
-    }).catch(err => {
-      enqueueSnackbar(`${err}`,{variant:'error'});
-    });
-
+    storePost(state).then(res => {
+      if (res.status === 200 || res.status === 201) {
+        enqueueSnackbar("It had been posted successfully.",{variant:'success'});
+      } else {
+        enqueueSnackbar("Post failed. Please try again.", {variant:'error'});
+      }
+    })
     // clean up
     document.forms["add-post-form"].reset();
   }
@@ -52,16 +53,7 @@ const AddPost = (props) => {
   const {enqueueSnackbar}  = useSnackbar();
   const [width, height] = useWindowSize();
   const [user, setUser] = useState();
-  const [state, setState] = useState({
-    trade: "",
-    status: "",
-    brand: "",
-    model: "",
-    price: "",
-    negotiable: "false",
-    description: "",
-    poster: `${props.user}`
-  })
+  const [state, setState] = useState({})
 
   useEffect(() => {
     const checkUser = checkAuthorized();
@@ -70,6 +62,16 @@ const AddPost = (props) => {
       enqueueSnackbar("Please login first.",{variant:'warning'});
     } else {
       setUser(checkUser);
+      setState({
+        trade: "",
+        status: "",
+        brand: "",
+        model: "",
+        price: "",
+        negotiable: "false",
+        description: "",
+        poster: `${checkUser}`,
+      })
     }
   }, []);
 

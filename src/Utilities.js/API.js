@@ -37,14 +37,14 @@ function deletePost(post) {
 	})
 }
 
-function storePost(trade, info) {
-	return fetch(`${BASE_URL}/${trade}-post`, {
+function storePost(post) {
+	return fetch(`${BASE_URL}/${post.trade}-post`, {
 		method: 'POST',
 		headers: {
 			"Content-Type": "application/json",
 			"Accept": "application/json",
 		},
-		body: JSON.stringify(info)
+		body: JSON.stringify(post)
 	})
 }
 
