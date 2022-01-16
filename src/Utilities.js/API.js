@@ -28,6 +28,12 @@ function getSellPosts() {
 	});
 }
 
+function deletePost(post) {
+	return fetch(`${BASE_URL}/${post.trade}-post/${post.id}`, {
+		method: 'DELETE'
+	})
+}
+
 function storePost(trade, info) {
 	return fetch(`${BASE_URL}/${trade}-post`, {
 		method: 'POST',
@@ -43,5 +49,6 @@ export {
 	getUserInfo,
 	getBuyPosts,
 	getSellPosts,
+	deletePost,
 	storePost
 }

@@ -106,7 +106,7 @@ const Account = () => {
         enqueueSnackbar(err ,{variant:'error'});
       })
     })
-    enqueueSnackbar("Accounts have been setup." ,{variant:'success'});
+    enqueueSnackbar("Accounts have been setup." ,{variant:'info'});
   }, [])
 
   useEffect(() => {

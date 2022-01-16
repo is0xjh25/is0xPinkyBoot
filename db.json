@@ -13,39 +13,6 @@
     },
     {
       "trade": "buy",
-      "status": "second-hand",
-      "brand": "jordan",
-      "model": "35",
-      "price": "123",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "guest0",
-      "id": 2
-    },
-    {
-      "trade": "buy",
-      "status": "second-hand",
-      "brand": "adidas",
-      "model": "hhh",
-      "price": "123",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin",
-      "id": 3
-    },
-    {
-      "trade": "buy",
-      "status": "brand-new",
-      "brand": "asics",
-      "model": "jjj",
-      "price": "1234",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin",
-      "id": 4
-    },
-    {
-      "trade": "buy",
       "status": "brand-new",
       "brand": "asics",
       "model": "ggg",
@@ -198,11 +165,27 @@
       "firstName": "Jim",
       "lastName": "Hsiao",
       "location": "Melbourne",
-      "authority" : 0,
-      "ownedBuyPost": ["1", "2", "3"],
-      "ownedSellPost": ["1", "2", "3"],
-      "starredBuyPost": ["1", "2", "3"],
-      "starredSellPost": ["1", "2", "3"]
+      "authority": 0,
+      "ownedBuyPost": [
+        "1",
+        "2",
+        "3"
+      ],
+      "ownedSellPost": [
+        "1",
+        "2",
+        "3"
+      ],
+      "starredBuyPost": [
+        "1",
+        "2",
+        "3"
+      ],
+      "starredSellPost": [
+        "1",
+        "2",
+        "3"
+      ]
     },
     {
       "id": "guest0",
@@ -211,11 +194,27 @@
       "firstName": "Harry",
       "lastName": "Qin",
       "location": "Sydney",
-      "authority" : 1,
-      "ownedBuyPost": ["1", "2", "3"],
-      "ownedSellPost": ["1", "2", "3"],
-      "starredBuyPost": ["1", "2", "3"],
-      "starredSellPost": ["1", "2", "3"]
+      "authority": 1,
+      "ownedBuyPost": [
+        "1",
+        "2",
+        "3"
+      ],
+      "ownedSellPost": [
+        "1",
+        "2",
+        "3"
+      ],
+      "starredBuyPost": [
+        "1",
+        "2",
+        "3"
+      ],
+      "starredSellPost": [
+        "1",
+        "2",
+        "3"
+      ]
     },
     {
       "id": "guest1",
@@ -224,11 +223,27 @@
       "firstName": "Tony",
       "lastName": "Allen",
       "location": "Perth",
-      "authority" : 1,
-      "ownedBuyPost": ["1", "2", "3"],
-      "ownedSellPost": ["1", "2", "3"],
-      "starredBuyPost": ["1", "2", "3"],
-      "starredSellPost": ["1", "2", "3"]
+      "authority": 1,
+      "ownedBuyPost": [
+        "1",
+        "2",
+        "3"
+      ],
+      "ownedSellPost": [
+        "1",
+        "2",
+        "3"
+      ],
+      "starredBuyPost": [
+        "1",
+        "2",
+        "3"
+      ],
+      "starredSellPost": [
+        "1",
+        "2",
+        "3"
+      ]
     }
   ]
 }

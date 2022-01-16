@@ -45,7 +45,7 @@ const ss = {
 }
 
 function Edit(props) {
-	const {post, poster, switchPage} = props;
+	const {post, poster, setPage, handleDeletePost} = props;
 	return(
 		<>
 			<div style={ss.infoGroup}>
@@ -73,10 +73,10 @@ function Edit(props) {
 			</div>
 			<div style={ss.buttonGroup}>
 				<div style={ss.buttonBox}>
-					<button className="btn btn-outline-light shadow" onClick={()=>switchPage("display")} style={ss.button}><BsBack/></button>
+					<button className="btn btn-outline-light shadow" onClick={()=>setPage("display")} style={ss.button}><BsBack/></button>
 				</div>
 				<div style={ss.buttonBox}>
-					<button className="btn btn-outline-danger shadow" style={ss.button}><BsTrash/></button>
+					<button className="btn btn-outline-danger shadow" onClick={()=>handleDeletePost(post)}style={ss.button}><BsTrash/></button>
 				</div>
 				<div style={ss.buttonBox}>
 					<button className="btn btn-outline-warning shadow" style={ss.button}><BsUpload/></button>
@@ -87,7 +87,7 @@ function Edit(props) {
 }
 
 function Display(props) {
-	const {post, poster, authority, close, switchPage} = props;
+	const {post, poster, authority, close, setPage} = props;
 	return(
 		<>
 			<div style={ss.infoGroup}>
@@ -120,7 +120,7 @@ function Display(props) {
 				{
 					authority === 0 ?
 					<div style={ss.buttonBox}>
-						<button className="btn btn-outline-primary shadow" onClick={()=>switchPage("edit")} style={ss.button}><BiEdit/></button>
+						<button className="btn btn-outline-primary shadow" onClick={()=>setPage("edit")} style={ss.button}><BiEdit/></button>
 					</div>
 					:
 					<div style={ss.buttonBox}></div>
@@ -135,24 +135,14 @@ function Display(props) {
 
 const Post = (props) => {
 	
-	function switchPage(p) {
-		setPage(p);
-	}
-
-	const {post, user} = props;
-  const {enqueueSnackbar}  = useSnackbar();
+	const {post, user, page, setPage, handleDeletePost} = props;
 	const [poster, setPoster] = useState({});
 	const [authority, setAuthority] = useState(1);
-	const [page, setPage] = useState("display"); 
 
 	useEffect(() => {
 		getUserInfo(post.posterId).then(pr => {
 			// set authority
-			if (user === "admin" || user === pr.id) {
-				setAuthority(0);
-			} else {
-				setAuthority(1);
-			}
+			(user === "admin" || user === pr.id) ? setAuthority(0) : setAuthority(1);
 			setPoster(pr);
 		})
 	},[]);
@@ -173,10 +163,16 @@ const Post = (props) => {
 				{close => (
       	<div className="popup"> 
 				{ 
-					page === "display" ?
-		  		<Display post={post} poster={poster} authority={authority} close={close} switchPage={switchPage}/> 
+					page === "none" ? 
+					<div onClick={close()}></div>
 					:
-		  		<Edit post={post} poster={poster} close={close} switchPage={switchPage}/> 
+					page === "display" ?
+		  		<Display post={post} poster={poster} authority={authority} close={close} setPage={setPage}/> 
+					:
+					page === "edit" ?
+		  		<Edit post={post} poster={poster} close={close} setPage={setPage} handleDeletePost={handleDeletePost}/>
+					: 
+					null 
 				}
 		 		</div>)}
 			</Popup>
