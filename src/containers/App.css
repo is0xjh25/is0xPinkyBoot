@@ -174,43 +174,20 @@ textarea {
 }
 
 /* Popup */
-.popup-main {
-  position: relative;
-  display: flex !important;
-  text-align: center !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 80% !important;
-  height: 80% !important;
-  left: 10% !important;
-  background-color: red;
-}
 .popup {
-  display: flex;
+  display: inline-block;
+  position: relative;
   align-items: center !important;
   justify-content: center !important;
-  width: 1000px !important;
+  width: 800px !important;
   height: 500px !important;
+  min-width: 800px !important;
+
+  border-radius: 10%;
   color: var(--bs-light);
   background-color: var(--bs-dark);
 }
-/* .popup > .header {
-  width: 100% !important;
-  border-bottom: 1px solid gray !important;
-  font-size: 18px !important;
-  text-align: center !important;
-  padding: 5px !important;
-}
-.popup > .content {
-  width: 100%;
-  padding: 10px 5px;
-}
-.popup > .actions {
-  width: 100% !important;
-  padding: 10px 5px !important;
-  margin: auto !important;
-  text-align: center !important;
-} */
+
 .popup > .close {
   cursor: pointer !important;
   position: absolute !important;

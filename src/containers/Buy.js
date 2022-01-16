@@ -37,6 +37,7 @@ const Buy = () => {
             <th scope="col">Status</th>
             <th scope="col">Price</th>
             <th scope="col">Location</th>
+            <th scope="col">Poster</th>
             <th scope="col">Contact</th>
           </tr>
         </thead>

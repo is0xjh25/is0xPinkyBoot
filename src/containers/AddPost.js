@@ -51,6 +51,7 @@ const AddPost = (props) => {
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
   const [width, height] = useWindowSize();
+  const [user, setUser] = useState();
   const [state, setState] = useState({
     trade: "",
     status: "",
@@ -63,8 +64,13 @@ const AddPost = (props) => {
   })
 
   useEffect(() => {
-    if (!checkAuthorized()) navigate("/account");
-    enqueueSnackbar("Please login first.",{variant:'warning'});
+    const checkUser = checkAuthorized();
+    if (!checkUser) {
+      navigate("/account");
+      enqueueSnackbar("Please login first.",{variant:'warning'});
+    } else {
+      setUser(checkUser);
+    }
   }, []);
 
   useEffect(() => {
@@ -92,14 +98,21 @@ const AddPost = (props) => {
       textAlign: "center",
     },
     rowGap: {
-      paddingTop: "15px"
+      paddingTop: "15px",
     },
     clickBox: {
       width: "25px",
       height: "25px",
       marginLeft: "25px",
       marginRight: "5px",
-    }
+    },
+    button: {
+      width: "50px",
+      height: "40px",
+      border: "2px solid ",
+      borderRadius: "10%",
+      fontSize: "15px",
+    },
   }
 
   return (
@@ -170,13 +183,13 @@ const AddPost = (props) => {
           </div>
           <div className="row add-post-box" style={ss.rowGap}>
             <div className="col">
-              <button className="btn btn-outline-light shadow" onClick={()=>{navigate("/")}}><BsTrash/></button>
+              <button className="btn btn-outline-light shadow" onClick={()=>{navigate("/")}} style={ss.button}><BsTrash/></button>
             </div>
             <div className="col">
-              <button className="btn btn-outline-light shadow" type="reset"><BiRefresh/></button>
+              <button className="btn btn-outline-light shadow" type="reset" style={ss.button}><BiRefresh/></button>
             </div>
             <div className="col form-group">
-              <button className="btn btn-outline-warning shadow" form="add-post-form" type="submit"><BsUpload/></button>
+              <button className="btn btn-outline-warning shadow" form="add-post-form" type="submit" style={ss.button}><BsUpload/></button>
             </div>
           </div>
         </form>
