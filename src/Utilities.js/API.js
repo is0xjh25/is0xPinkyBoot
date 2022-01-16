@@ -10,15 +10,6 @@ function getUserInfo(id) {
 	});
 }
 
-function getUserAuthority(id) {
-	return fetch(`${BASE_URL}/user/${id}`)
-	.then(res => {
-		return res.json();
-	}).then(json => {
-		return json.authority;
-	});
-}
-
 function getBuyPosts() {
 	return fetch(`${BASE_URL}/buy-post`)
 	.then(res => {
@@ -50,7 +41,6 @@ function storePost(trade, info) {
 
 export {
 	getUserInfo,
-	getUserAuthority,
 	getBuyPosts,
 	getSellPosts,
 	storePost

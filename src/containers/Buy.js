@@ -7,15 +7,19 @@ import Post from '../components/Post';
 
 const Buy = () => {
 
-  const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState();
   
   useEffect(() => {
-    if (!checkAuthorized()) {
+    const checkUser = checkAuthorized();
+    if (!checkUser) {
       navigate("/account");
       enqueueSnackbar("Please login first.",{variant:'warning'});
-    } 
+    } else {
+      setUser(checkUser);
+    }
     getBuyPosts().then(res => {
       setPosts(res);
     }).catch(err => {
@@ -36,14 +40,14 @@ const Buy = () => {
             <th scope="col">Contact</th>
           </tr>
         </thead>
+        <tbody>
         {posts.map(p => 
           { return (
-            <tbody>
-              <Post brand={p.brand} model={p.model} status={p.status} price={p.price}/>
-            </tbody>
+              <Post post={p} user={user}/>
             )
           }
         )}
+        </tbody>
       </table>
     </>
   );

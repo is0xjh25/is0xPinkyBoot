@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 
 const ACCOUNT = "token";
 
+// get current window size
 function useWindowSize() {
   
 	const [size, setSize] = useState([0, 0]);
@@ -19,11 +20,12 @@ function useWindowSize() {
 	return size;
 }
 
+// capitalize first letter
 function capitalize(str) {
 	return str[0].toUpperCase() + str.slice(1);
 }
 
-// Set cookie when login
+// set cookie when login
 function setCookie(name, value, days) {
 	Cookies.set(`${name}`, `${value}`, { expires: days }, { secure: true }, { sameSite: 'none' })
 	return name;
@@ -35,12 +37,12 @@ function getCookie(name) {
     return "";
 }
 
-// Deletes the token of the user
+// deletes the token of the user
 function deleteCookie(name) {
     Cookies.remove(`${name}`);
 }
 
-// Check if a user is not logged in, and redirects to login page
+// check if a user is not logged in, and redirects to login page
 function checkAuthorized() {
     
 	const user = getCookie(ACCOUNT);

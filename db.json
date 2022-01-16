@@ -8,7 +8,7 @@
       "price": "123",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "guest1",
       "id": 1
     },
     {
@@ -19,7 +19,7 @@
       "price": "123",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "guest0",
       "id": 2
     },
     {
@@ -30,7 +30,7 @@
       "price": "123",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 3
     },
     {
@@ -41,7 +41,7 @@
       "price": "1234",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 4
     },
     {
@@ -52,7 +52,7 @@
       "price": "123",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 5
     },
     {
@@ -63,7 +63,7 @@
       "price": "1234",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 6
     },
     {
@@ -74,7 +74,7 @@
       "price": "123",
       "negotiable": "true",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 7
     },
     {
@@ -85,7 +85,7 @@
       "price": "123",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 8
     },
     {
@@ -96,7 +96,7 @@
       "price": "123",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 9
     },
     {
@@ -107,7 +107,7 @@
       "price": "888",
       "negotiable": "true",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 10
     }
   ],
@@ -121,7 +121,7 @@
       "price": 200,
       "negotiable": "true",
       "description": "",
-      "poster": "admin"
+      "posterId": "admin"
     },
     {
       "id": 1,
@@ -132,7 +132,7 @@
       "price": 300,
       "negotiable": "true",
       "description": "",
-      "poster": "admin"
+      "posterId": "admin"
     },
     {
       "id": 2,
@@ -143,7 +143,7 @@
       "price": 250,
       "negotiable": "false",
       "description": "",
-      "poster": "admin"
+      "posterId": "admin"
     },
     {
       "trade": "sell",
@@ -153,7 +153,7 @@
       "price": "12",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 3
     },
     {
@@ -164,7 +164,7 @@
       "price": "666",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 4
     },
     {
@@ -175,7 +175,7 @@
       "price": "555",
       "negotiable": "false",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 5
     },
     {
@@ -186,7 +186,7 @@
       "price": "666",
       "negotiable": "true",
       "description": "",
-      "poster": "admin",
+      "posterId": "admin",
       "id": 6
     }
   ],
