@@ -97,14 +97,14 @@ function removePost(userId, post, opt) {
 }
 
 // check a post wether is owned or starred by the user
-function checkPost(userId, post, opt) {
+async function checkPost(userId, post, opt) {
 	
 	const target = `${opt}${capitalize(post.trade)}Posts`;
 	
 	return getUserInfo(userId).then(user => {
 		return user[target];
 	}).then(arr => {
-		return exist(arr, post.id);
+		return exist(arr, String(post.id));
 	})
 }
 
@@ -121,7 +121,7 @@ function remove(arr, e) {
 }
 
 function exist(arr, e) {
-	if (!arr.includes(e)) return true;
+	if (arr.includes(e)) return true;
 	return false
 }
 

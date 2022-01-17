@@ -62,12 +62,12 @@ function Info(props) {
           <div className="col"><b>Location:</b> {target.location}</div>
         </div>
         <div className="row" style={ss.info}>
-          <div className="col"><b>Owned Buy Posts:</b> {target.ownedBuyPost.join(", ")}</div>
-          <div className="col"><b>Owned Sell Posts:</b> {target.ownedSellPost.join(", ")}</div>
+          <div className="col"><b>Owned Buy Posts:</b> {target.ownedBuyPosts.join(", ")}</div>
+          <div className="col"><b>Owned Sell Posts:</b> {target.ownedSellPosts.join(", ")}</div>
         </div>
         <div className="row" style={ss.info}>
-          <div className="col"><b>Starred Buy Posts:</b> {target.starredBuyPost.join(", ")}</div>
-          <div className="col"><b>Starred Sell Posts:</b> {target.starredSellPost.join(", ")}</div>
+          <div className="col"><b>Starred Buy Posts:</b> {target.starredBuyPosts.join(", ")}</div>
+          <div className="col"><b>Starred Sell Posts:</b> {target.starredSellPosts.join(", ")}</div>
         </div>
       </div>     
     );

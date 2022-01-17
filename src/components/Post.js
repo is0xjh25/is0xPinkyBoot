@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import { capitalize } from '../Utilities/Utilities';
-import { getUserInfo, checkPost } from '../Utilities/API';
-import { BsBack, BsTrash, BsUpload, BsBookmarkStar, BsBookmarkStarFill } from 'react-icons/bs';
-import { BiStar, BiEdit} from 'react-icons/bi';
+import { getUserInfo, checkPost } from '../Utilities/APIs';
+import { BsBack, BsTrash, BsUpload } from 'react-icons/bs';
+import { BiEdit} from 'react-icons/bi';
+import { FaHeartBroken, FaHeart} from 'react-icons/fa';
+
 
 const ss = {
   infoGroup: {
@@ -46,6 +48,12 @@ const ss = {
 
 function Display(props) {
 	const {post, poster, user, authority, close, setPage, handleStarPost, handleUnStarPost} = props;
+	const [postStarred, setPostStarred] = useState();
+
+	useEffect(() => {
+		checkPost(user, post, "starred").then(res => setPostStarred(res));
+	}, [])
+
 	return(
 		<>
 			<div style={ss.infoGroup}>
@@ -92,13 +100,13 @@ function Display(props) {
 					<div style={ss.buttonBox}></div>
 				}
 				{
-					checkPost(user, post, "starred") ?
+					postStarred ?
 					<div style={ss.buttonBox}>
-						<button className="btn btn-outline-warning shadow" onClick={()=>handleUnStarPost(user, post)}style={ss.button}><BiStar/></button>
+						<button className="btn btn-outline-warning shadow" onClick={()=>handleUnStarPost(user, post)}style={ss.button}><FaHeartBroken/></button>
 					</div>
 					:
 					<div style={ss.buttonBox}>
-						<button className="btn btn-outline-warning shadow" onClick={()=>handleStarPost(user, post)}style={ss.button}><BsBookmarkStarFill /></button>
+						<button className="btn btn-outline-warning shadow" onClick={()=>handleStarPost(user, post)}style={ss.button}><FaHeart/></button>
 					</div>
 				}
 			</div>

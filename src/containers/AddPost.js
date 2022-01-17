@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack';
 import { BsTrash, BsUpload } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';
 import { useWindowSize, checkAuthorized } from '../Utilities/Utilities';
-import { storePost } from '../Utilities.js/APIs';
+import { storePost } from '../Utilities/APIs';
 
 const AddPost = () => {
 
