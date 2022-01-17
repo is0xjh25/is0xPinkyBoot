@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { BsTrash, BsUpload } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';
-import { useWindowSize, checkAuthorized } from '../Utilities.js/Utilities';
+import { useWindowSize, checkAuthorized } from '../Utilities/Utilities';
 import { storePost } from '../Utilities.js/API';
 
 const AddPost = () => {

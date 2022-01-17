@@ -1,8 +1,8 @@
 import React, {useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { capitalize, setCookie, getCookie, deleteCookie } from "../Utilities.js/Utilities";
-import { getUserInfo } from '../Utilities.js/API';
+import { capitalize, setCookie, getCookie, deleteCookie } from "../Utilities/Utilities";
+import { getUserInfo } from '../Utilities/API';
 
 const ss = {
   main: {

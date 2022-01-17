@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { checkAuthorized } from '../Utilities.js/Utilities';
-import { getSellPosts } from '../Utilities.js/API';
+import { checkAuthorized } from '../Utilities/Utilities';
+import { getSellPosts } from '../Utilities/API';
 import Post from '../components/Post';
 
 const Sell = () => {

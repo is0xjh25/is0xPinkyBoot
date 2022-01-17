@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
-import { capitalize } from '../Utilities.js/Utilities';
-import { getUserInfo } from '../Utilities.js/API';
+import { capitalize } from '../Utilities/Utilities';
+import { getUserInfo } from '../Utilities/API';
 import { BsBack, BsTrash, BsUpload } from 'react-icons/bs';
 import { BiStar, BiEdit} from 'react-icons/bi';
 

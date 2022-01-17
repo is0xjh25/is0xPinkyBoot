@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Favicon from "../favicon_io/favicon.png";
-import { useWindowSize } from '../Utilities.js/Utilities';
+import { useWindowSize } from '../Utilities/Utilities';
 
 const Footer = () => {
 

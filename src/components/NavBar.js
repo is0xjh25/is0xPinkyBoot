@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Favicon from '../favicon_io/logo.png';
 import { MdOutlinePostAdd } from 'react-icons/md';
-import { useWindowSize } from '../Utilities.js/Utilities';
+import { useWindowSize } from '../Utilities/Utilities';
 
 const NavBar = () => {
 
