@@ -1,8 +1,18 @@
 {
   "buy-post": [
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "nike",
+      "model": "KD13",
+      "price": "320",
+      "negotiable": "true",
+      "description": "Good Shoes!",
+      "posterId": "admin",
+      "id": 1
+    }
   ],
-  "sell-post": [
-  ],
+  "sell-post": [],
   "user": [
     {
       "id": "admin",
@@ -13,13 +23,13 @@
       "location": "Melbourne",
       "authority": 0,
       "ownedBuyPost": [
+        "1"
       ],
-      "ownedSellPost": [
-      ],
+      "ownedSellPost": [],
       "starredBuyPost": [
+        "1"
       ],
-      "starredSellPost": [
-      ]
+      "starredSellPost": []
     },
     {
       "id": "guest0",
@@ -29,14 +39,12 @@
       "lastName": "Qin",
       "location": "Sydney",
       "authority": 1,
-      "ownedBuyPost": [
-      ],
-      "ownedSellPost": [
-      ],
+      "ownedBuyPost": [],
+      "ownedSellPost": [],
       "starredBuyPost": [
+        "1"
       ],
-      "starredSellPost": [
-      ]
+      "starredSellPost": []
     },
     {
       "id": "guest1",
@@ -47,12 +55,9 @@
       "location": "Perth",
       "authority": 1,
       "ownedBuyPost": [],
-      "ownedSellPost": [
-      ],
-      "starredBuyPost": [
-      ],
-      "starredSellPost": [
-      ]
+      "ownedSellPost": [],
+      "starredBuyPost": [],
+      "starredSellPost": []
     }
   ]
 }

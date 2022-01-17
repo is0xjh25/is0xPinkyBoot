@@ -48,15 +48,8 @@ const ss = {
 }
 
 function Info(props) {
-  const target = props.info.find(item => item.id === props.user);
-  if (!target) {
-    return (
-      <div style={ss.infoGroup}>
-        <h1 style={{fontSize: "100px"}}>Mock Users</h1>
-        <h3>You are <b>{props.user ? capitalize(props.user): "No One" }</b> now !</h3>
-      </div>
-    );
-  } else {
+  const target = props.info.find(item => item.id === props.hover);
+  if (target && props.hover) {
     return (
       <div style={ss.infoGroup}>
         <div className="row" style={ss.info}>
@@ -77,7 +70,14 @@ function Info(props) {
           <div className="col"><b>Starred Sell Posts:</b> {target.starredSellPost.join(", ")}</div>
         </div>
       </div>     
-    )
+    );
+  } else {
+    return (
+      <div style={ss.infoGroup}>
+        <h1 style={{fontSize: "100px"}}>Mock Users</h1>
+        <h3>You are <b>{props.user ? capitalize(props.user): "No One" }</b> now !</h3>
+      </div>
+    );
   }
 }
 
@@ -125,7 +125,7 @@ const Account = () => {
   return (
     <>
       <div style={ss.main}>
-        <Info info={info} user={hover} />
+        <Info info={info} user={user} hover={hover} />
         <div style={ss.buttonGroup}>
           <div style={ss.buttonBox}>
             <button className="btn btn-outline-success shadow" value="admin" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
