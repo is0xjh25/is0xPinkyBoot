@@ -16,6 +16,10 @@ const ss = {
     color: "var(--bs-light)",
     backgroundColor: "var(--bs-dark)"
   },
+  infoGroup: {
+    width: "100%",
+    height: "35%",
+  },
   buttonGroup: {
     display: "flex",
     position: "relative",
@@ -46,28 +50,33 @@ const ss = {
 function Info(props) {
   const target = props.info.find(item => item.id === props.user);
   if (!target) {
-    return (<h1 style={{fontSize: "100px"}}>Mock Users</h1>);
+    return (
+      <div style={ss.infoGroup}>
+        <h1 style={{fontSize: "100px"}}>Mock Users</h1>
+        <h3>You are <b>{props.user ? capitalize(props.user): "No One" }</b> now !</h3>
+      </div>
+    );
   } else {
     return (
-      <>
-      <div className="row" style={ss.info}>
-        <div className="col"><b>User ID:</b> {target.id}</div>
-        <div className="col"><b>Name:</b> {target.firstName} {target.lastName}</div>
-      </div>
-      <div className="row" style={ss.info}>
-        <div className="col"><b>Authority Level:</b> {target.authority}</div>
-        <div className="col"><b>Email:</b> {target.email}</div>
-        <div className="col"><b>Location:</b> {target.location}</div>
-      </div>
-      <div className="row" style={ss.info}>
-        <div className="col"><b>Owned Buy Posts:</b> {target.ownedBuyPost.join(", ")}</div>
-        <div className="col"><b>Owned Sell Posts:</b> {target.ownedSellPost.join(", ")}</div>
-      </div>
-      <div className="row" style={ss.info}>
-        <div className="col"><b>Starred Buy Posts:</b> {target.starredBuyPost.join(", ")}</div>
-        <div className="col"><b>Starred Sell Posts:</b> {target.starredSellPost.join(", ")}</div>
-      </div>
-      </>     
+      <div style={ss.infoGroup}>
+        <div className="row" style={ss.info}>
+          <div className="col"><b>User ID:</b> {target.id}</div>
+          <div className="col"><b>Name:</b> {target.firstName} {target.lastName}</div>
+        </div>
+        <div className="row" style={ss.info}>
+          <div className="col"><b>Authority Level:</b> {target.authority}</div>
+          <div className="col"><b>Email:</b> {target.email}</div>
+          <div className="col"><b>Location:</b> {target.location}</div>
+        </div>
+        <div className="row" style={ss.info}>
+          <div className="col"><b>Owned Buy Posts:</b> {target.ownedBuyPost.join(", ")}</div>
+          <div className="col"><b>Owned Sell Posts:</b> {target.ownedSellPost.join(", ")}</div>
+        </div>
+        <div className="row" style={ss.info}>
+          <div className="col"><b>Starred Buy Posts:</b> {target.starredBuyPost.join(", ")}</div>
+          <div className="col"><b>Starred Sell Posts:</b> {target.starredSellPost.join(", ")}</div>
+        </div>
+      </div>     
     )
   }
 }
@@ -117,7 +126,6 @@ const Account = () => {
     <>
       <div style={ss.main}>
         <Info info={info} user={hover} />
-        <h3>You are <b>{user ? capitalize(user): "No One" }</b> now !</h3>
         <div style={ss.buttonGroup}>
           <div style={ss.buttonBox}>
             <button className="btn btn-outline-success shadow" value="admin" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
