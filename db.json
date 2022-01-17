@@ -3,13 +3,35 @@
     {
       "trade": "buy",
       "status": "brand-new",
-      "brand": "nike",
-      "model": "KD13",
-      "price": "320",
+      "brand": "jordan",
+      "model": "35",
+      "price": "500",
       "negotiable": "true",
-      "description": "Good Shoes!",
+      "description": "",
+      "posterId": "guest1",
+      "id": 2
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "nike",
+      "model": "PG3",
+      "price": "90",
+      "negotiable": "false",
+      "description": "",
       "posterId": "admin",
-      "id": 1
+      "id": 3
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "nike",
+      "model": "Kyrie1",
+      "price": "399",
+      "negotiable": "false",
+      "description": "",
+      "posterId": "admin",
+      "id": 4
     }
   ],
   "sell-post": [],
@@ -23,7 +45,8 @@
       "location": "Melbourne",
       "authority": 0,
       "ownedBuyPosts": [
-        "1"
+        "3",
+        "4"
       ],
       "ownedSellPosts": [],
       "starredBuyPosts": [],
@@ -39,7 +62,10 @@
       "authority": 1,
       "ownedBuyPosts": [],
       "ownedSellPosts": [],
-      "starredBuyPosts": [],
+      "starredBuyPosts": [
+        "1",
+        "2"
+      ],
       "starredSellPosts": []
     },
     {
@@ -50,9 +76,13 @@
       "lastName": "Allen",
       "location": "Perth",
       "authority": 1,
-      "ownedBuyPosts": [],
+      "ownedBuyPosts": [
+        "2"
+      ],
       "ownedSellPosts": [],
-      "starredBuyPosts": [],
+      "starredBuyPosts": [
+        "2"
+      ],
       "starredSellPosts": []
     }
   ]

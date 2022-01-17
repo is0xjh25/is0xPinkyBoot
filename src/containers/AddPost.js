@@ -52,7 +52,6 @@ const AddPost = () => {
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
   const [width, height] = useWindowSize();
-  const [user, setUser] = useState();
   const [state, setState] = useState({})
 
   useEffect(() => {
@@ -61,7 +60,6 @@ const AddPost = () => {
       navigate("/account");
       enqueueSnackbar("Please login first.",{variant:'warning'});
     } else {
-      setUser(checkUser);
       setState({
         trade: "",
         status: "",

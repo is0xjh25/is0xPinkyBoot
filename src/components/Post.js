@@ -161,19 +161,22 @@ const Post = (props) => {
 	const {post, user, page, setPage, handleDeletePost, handleStarPost, handleUnStarPost} = props;
 	const [poster, setPoster] = useState({});
 	const [authority, setAuthority] = useState(1);
+	const [owned, setOwned] = useState(false);
 
 	useEffect(() => {
 		getUserInfo(post.posterId).then(pr => {
-			// set authority
-			(user === "admin" || user === pr.id) ? setAuthority(0) : setAuthority(1);
 			setPoster(pr);
-		})
+		});
+
+		// set authority
+		(user === "admin" || user === post.posterId) ? setAuthority(0) : setAuthority(1);
+		user === post.posterId ? setOwned(true) : setOwned(false);
 	},[]);
 
 	return (
 		<>
 		  <Popup trigger={			
-				<tr className='trade-row'>
+				<tr className={owned ? "trade-row-own" : "trade-row"}>
 					<td>{capitalize(post.brand)}</td>
 					<td>{post.model.toUpperCase()}</td>
 					<td>{capitalize(post.status)}</td>

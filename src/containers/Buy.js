@@ -83,7 +83,7 @@ const Buy = () => {
         <tbody>
         {posts.map(p => 
           { return (
-              <Post post={p} user={user} page={page} setPage={setPage} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/>
+              <Post key={p.id} post={p} user={user} page={page} setPage={setPage} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/>
             )
           }
         )}

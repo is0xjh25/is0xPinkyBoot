@@ -151,6 +151,10 @@ th {
   border: 5px solid var(--bs-secondary) !important;
 }
 
+.trade-row-own:hover {
+  background-color: var(--bs-success);
+}
+
 .trade-row:hover {
   background-color: var(--bs-warning);
 }
