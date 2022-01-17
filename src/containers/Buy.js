@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { checkAuthorized } from '../Utilities/Utilities';
-import { getBuyPosts, deletePost, savePost } from '../Utilities/API';
+import { getBuyPosts, deletePost, savePost, removePost } from '../Utilities/APIs';
 import Post from '../components/Post';
 
 const Buy = () => {
@@ -23,6 +23,18 @@ const Buy = () => {
     savePost(userId, post, "starred").then(res => {
       if (res.status === 200) {
         enqueueSnackbar(`Post ${post.id} has been successfully Starred.`,{variant:'success'});
+        setPage("none");
+      } else {
+        enqueueSnackbar(res.statusText, {variant:'error'});
+      }
+    })
+    refresh();
+  }
+
+  function handleUnStarPost (userId, post) {
+    removePost(userId, post, "starred").then(res => {
+      if (res.status === 200) {
+        enqueueSnackbar(`Post ${post.id} has been successfully Unstarred.`,{variant:'success'});
         setPage("none");
       } else {
         enqueueSnackbar(res.statusText, {variant:'error'});
@@ -71,7 +83,7 @@ const Buy = () => {
         <tbody>
         {posts.map(p => 
           { return (
-              <Post post={p} user={user} page={page} setPage={setPage} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost}/>
+              <Post post={p} user={user} page={page} setPage={setPage} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/>
             )
           }
         )}

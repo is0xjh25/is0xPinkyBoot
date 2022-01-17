@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { checkAuthorized } from '../Utilities/Utilities';
-import { getSellPosts } from '../Utilities/API';
+import { getSellPosts } from '../Utilities/APIs';
 import Post from '../components/Post';
 
 const Sell = () => {

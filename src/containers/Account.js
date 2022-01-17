@@ -2,7 +2,7 @@ import React, {useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { capitalize, setCookie, getCookie, deleteCookie } from "../Utilities/Utilities";
-import { getUserInfo } from '../Utilities/API';
+import { getUserInfo } from '../Utilities/APIs';
 
 const ss = {
   main: {

@@ -22,14 +22,12 @@
       "lastName": "Hsiao",
       "location": "Melbourne",
       "authority": 0,
-      "ownedBuyPost": [
+      "ownedBuyPosts": [
         "1"
       ],
-      "ownedSellPost": [],
-      "starredBuyPost": [
-        "1"
-      ],
-      "starredSellPost": []
+      "ownedSellPosts": [],
+      "starredBuyPosts": [],
+      "starredSellPosts": []
     },
     {
       "id": "guest0",
@@ -39,12 +37,10 @@
       "lastName": "Qin",
       "location": "Sydney",
       "authority": 1,
-      "ownedBuyPost": [],
-      "ownedSellPost": [],
-      "starredBuyPost": [
-        "1"
-      ],
-      "starredSellPost": []
+      "ownedBuyPosts": [],
+      "ownedSellPosts": [],
+      "starredBuyPosts": [],
+      "starredSellPosts": []
     },
     {
       "id": "guest1",
@@ -54,10 +50,10 @@
       "lastName": "Allen",
       "location": "Perth",
       "authority": 1,
-      "ownedBuyPost": [],
-      "ownedSellPost": [],
-      "starredBuyPost": [],
-      "starredSellPost": []
+      "ownedBuyPosts": [],
+      "ownedSellPosts": [],
+      "starredBuyPosts": [],
+      "starredSellPosts": []
     }
   ]
 }

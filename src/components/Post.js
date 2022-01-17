@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import { capitalize } from '../Utilities/Utilities';
-import { getUserInfo } from '../Utilities/API';
-import { BsBack, BsTrash, BsUpload } from 'react-icons/bs';
+import { getUserInfo, checkPost } from '../Utilities/API';
+import { BsBack, BsTrash, BsUpload, BsBookmarkStar, BsBookmarkStarFill } from 'react-icons/bs';
 import { BiStar, BiEdit} from 'react-icons/bi';
 
 const ss = {
@@ -45,7 +45,7 @@ const ss = {
 }
 
 function Display(props) {
-	const {post, poster, user, authority, close, setPage, handleStarPost} = props;
+	const {post, poster, user, authority, close, setPage, handleStarPost, handleUnStarPost} = props;
 	return(
 		<>
 			<div style={ss.infoGroup}>
@@ -91,9 +91,16 @@ function Display(props) {
 					:
 					<div style={ss.buttonBox}></div>
 				}
-				<div style={ss.buttonBox}>
-					<button className="btn btn-outline-warning shadow" onClick={()=>handleStarPost(user, post)}style={ss.button}><BiStar/></button>
-				</div>
+				{
+					checkPost(user, post, "starred") ?
+					<div style={ss.buttonBox}>
+						<button className="btn btn-outline-warning shadow" onClick={()=>handleUnStarPost(user, post)}style={ss.button}><BiStar/></button>
+					</div>
+					:
+					<div style={ss.buttonBox}>
+						<button className="btn btn-outline-warning shadow" onClick={()=>handleStarPost(user, post)}style={ss.button}><BsBookmarkStarFill /></button>
+					</div>
+				}
 			</div>
 		</>
 	)
@@ -143,7 +150,7 @@ function Edit(props) {
 
 const Post = (props) => {
 	
-	const {post, user, page, setPage, handleDeletePost, handleStarPost} = props;
+	const {post, user, page, setPage, handleDeletePost, handleStarPost, handleUnStarPost} = props;
 	const [poster, setPoster] = useState({});
 	const [authority, setAuthority] = useState(1);
 
@@ -175,7 +182,7 @@ const Post = (props) => {
 					<div onClick={close()}></div>
 					:
 					page === "display" ?
-		  		<Display post={post} poster={poster} user={user} authority={authority} close={close} setPage={setPage} handleStarPost={handleStarPost}/> 
+		  		<Display post={post} poster={poster} user={user} authority={authority} close={close} setPage={setPage} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/> 
 					:
 					page === "edit" ?
 		  		<Edit post={post} poster={poster} close={close} setPage={setPage} handleDeletePost={handleDeletePost}/>

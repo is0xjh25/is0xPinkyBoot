@@ -59,7 +59,7 @@ function deletePost(post) {
 // for owning and staring posts
 function savePost(userId, post, opt) {
 	
-	const target = `${opt}${capitalize(post.trade)}Post`;
+	const target = `${opt}${capitalize(post.trade)}Posts`;
 	
 	return getUserInfo(userId).then(user => {
 		return user[target];
@@ -79,14 +79,12 @@ function savePost(userId, post, opt) {
 // remove a post form owned or starred posts
 function removePost(userId, post, opt) {
 	
-	const target = `${opt}${capitalize(post.trade)}Post`;
+	const target = `${opt}${capitalize(post.trade)}Posts`;
 	
 	return getUserInfo(userId).then(user => {
 		return user[target];
 	}).then(arr => {
 		const newArr = remove(arr, String(post.id));
-		console.log(target);
-		console.log(newArr);
 		return fetch(`${BASE_URL}/user/${userId}`, {
 			method: 'PATCH',
 			headers: {
@@ -95,6 +93,18 @@ function removePost(userId, post, opt) {
 			},
 			body: JSON.stringify({[target]: newArr})
 		})
+	})
+}
+
+// check a post wether is owned or starred by the user
+function checkPost(userId, post, opt) {
+	
+	const target = `${opt}${capitalize(post.trade)}Posts`;
+	
+	return getUserInfo(userId).then(user => {
+		return user[target];
+	}).then(arr => {
+		return exist(arr, post.id);
 	})
 }
 
@@ -110,6 +120,11 @@ function remove(arr, e) {
 	return arr;
 }
 
+function exist(arr, e) {
+	if (!arr.includes(e)) return true;
+	return false
+}
+
 export {
 	getUserInfo,
 	getBuyPosts,
@@ -117,5 +132,6 @@ export {
 	storePost,
 	deletePost,
 	savePost,
-	removePost
+	removePost,
+	checkPost
 }
