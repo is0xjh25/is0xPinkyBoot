@@ -64,6 +64,7 @@ const Buy = () => {
     getBuyPosts().then(res => {
       setPosts(res);
     })
+    setPage("display");
   }, [refreshCount]);
 
   return (
