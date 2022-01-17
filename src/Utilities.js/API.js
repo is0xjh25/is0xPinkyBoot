@@ -2,6 +2,7 @@
 import { capitalize } from "./Utilities";
 const BASE_URL = "http://localhost:4000";
 
+/* Main APIs */
 function getUserInfo(id) {
 	return fetch(`${BASE_URL}/user/${id}`)
 	.then(res => {
@@ -40,23 +41,30 @@ function storePost(post) {
 			"Accept": "application/json",
 		},
 		body: JSON.stringify(post)
+	}).then(res => {
+		return res.json();
+	}).then(post => {
+		return savePost(post.posterId, post, "owned");
 	})
 }
 
 function deletePost(post) {
 	return fetch(`${BASE_URL}/${post.trade}-post/${post.id}`, {
 		method: 'DELETE'
+	}).then(_ => {
+		return removePost(post.posterId, post, "owned");
 	})
 }
 
-function starPost(userId, post) {
+// for owning and staring posts
+function savePost(userId, post, opt) {
 	
-	const target = `starred${capitalize(post.trade)}Post`;
+	const target = `${opt}${capitalize(post.trade)}Post`;
 	
 	return getUserInfo(userId).then(user => {
 		return user[target];
 	}).then(arr => {
-		const newArr = addNew(arr, String(post.id));
+		const newArr = save(arr, String(post.id));
 		return fetch(`${BASE_URL}/user/${userId}`, {
 			method: 'PATCH',
 			headers: {
@@ -65,13 +73,40 @@ function starPost(userId, post) {
 			},
 			body: JSON.stringify({[target]: newArr})
 		})
-	}).then(res => {
-		return res;
 	})
 }
 
-function addNew(arr, e) {
+// remove a post form owned or starred posts
+function removePost(userId, post, opt) {
+	
+	const target = `${opt}${capitalize(post.trade)}Post`;
+	
+	return getUserInfo(userId).then(user => {
+		return user[target];
+	}).then(arr => {
+		const newArr = remove(arr, String(post.id));
+		console.log(target);
+		console.log(newArr);
+		return fetch(`${BASE_URL}/user/${userId}`, {
+			method: 'PATCH',
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json",
+			},
+			body: JSON.stringify({[target]: newArr})
+		})
+	})
+}
+
+/* Helper Functions */
+function save(arr, e) {
 	if (!arr.includes(e)) arr.push(e);
+	return arr;
+}
+
+function remove(arr, e) {
+	const index = arr.indexOf(e);
+	if (index > -1) arr.splice(index, 1);
 	return arr;
 }
 
@@ -81,5 +116,6 @@ export {
 	getSellPosts,
 	storePost,
 	deletePost,
-	starPost
+	savePost,
+	removePost
 }

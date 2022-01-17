@@ -1,172 +1,7 @@
 {
   "buy-post": [
-    {
-      "trade": "buy",
-      "status": "brand-new",
-      "brand": "adidas",
-      "model": "asd",
-      "price": "123",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "guest1",
-      "id": 1
-    },
-    {
-      "trade": "buy",
-      "status": "brand-new",
-      "brand": "asics",
-      "model": "ggg",
-      "price": "123",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin",
-      "id": 5
-    },
-    {
-      "trade": "buy",
-      "status": "brand-new",
-      "brand": "asics",
-      "model": "yyy",
-      "price": "1234",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin",
-      "id": 6
-    },
-    {
-      "trade": "buy",
-      "status": "second-hand",
-      "brand": "asics",
-      "model": "jjj",
-      "price": "123",
-      "negotiable": "true",
-      "description": "",
-      "posterId": "admin",
-      "id": 7
-    },
-    {
-      "trade": "buy",
-      "status": "brand-new",
-      "brand": "asics",
-      "model": "hhh",
-      "price": "123",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin",
-      "id": 8
-    },
-    {
-      "trade": "buy",
-      "status": "second-hand",
-      "brand": "converse",
-      "model": "yyy",
-      "price": "123",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin",
-      "id": 9
-    },
-    {
-      "trade": "buy",
-      "status": "second-hand",
-      "brand": "puma",
-      "model": "rty",
-      "price": "888",
-      "negotiable": "true",
-      "description": "",
-      "posterId": "admin",
-      "id": 10
-    },
-    {
-      "trade": "buy",
-      "status": "second-hand",
-      "brand": "nike",
-      "model": "tyt",
-      "price": "666",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "guest0",
-      "id": 11
-    }
   ],
   "sell-post": [
-    {
-      "id": 0,
-      "trade": "sell",
-      "status": "brand-new",
-      "brand": "nike",
-      "model": "kobe 5",
-      "price": 200,
-      "negotiable": "true",
-      "description": "",
-      "posterId": "admin"
-    },
-    {
-      "id": 1,
-      "trade": "sell",
-      "status": "second-hand",
-      "brand": "nike",
-      "model": "KD 13",
-      "price": 300,
-      "negotiable": "true",
-      "description": "",
-      "posterId": "admin"
-    },
-    {
-      "id": 2,
-      "trade": "sell",
-      "status": "brand-new",
-      "brand": "nike",
-      "model": "Kyrie 3",
-      "price": 250,
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin"
-    },
-    {
-      "trade": "sell",
-      "status": "brand-new",
-      "brand": "adidas",
-      "model": "hhh",
-      "price": "12",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin",
-      "id": 3
-    },
-    {
-      "trade": "sell",
-      "status": "brand-new",
-      "brand": "adidas",
-      "model": "jjj",
-      "price": "666",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin",
-      "id": 4
-    },
-    {
-      "trade": "sell",
-      "status": "second-hand",
-      "brand": "converse",
-      "model": "ttt",
-      "price": "555",
-      "negotiable": "false",
-      "description": "",
-      "posterId": "admin",
-      "id": 5
-    },
-    {
-      "trade": "sell",
-      "status": "brand-new",
-      "brand": "asics",
-      "model": "yyy",
-      "price": "666",
-      "negotiable": "true",
-      "description": "",
-      "posterId": "admin",
-      "id": 6
-    }
   ],
   "user": [
     {
@@ -178,22 +13,12 @@
       "location": "Melbourne",
       "authority": 0,
       "ownedBuyPost": [
-        "1",
-        "2",
-        "3"
       ],
       "ownedSellPost": [
-        "1",
-        "2",
-        "3"
       ],
       "starredBuyPost": [
-        "6"
       ],
       "starredSellPost": [
-        "1",
-        "2",
-        "3"
       ]
     },
     {
@@ -205,24 +30,12 @@
       "location": "Sydney",
       "authority": 1,
       "ownedBuyPost": [
-        "1",
-        "2",
-        "3"
       ],
       "ownedSellPost": [
-        "1",
-        "2",
-        "3"
       ],
       "starredBuyPost": [
-        "1",
-        "2",
-        "3"
       ],
       "starredSellPost": [
-        "1",
-        "2",
-        "3"
       ]
     },
     {
@@ -233,25 +46,12 @@
       "lastName": "Allen",
       "location": "Perth",
       "authority": 1,
-      "ownedBuyPost": [
-        "1",
-        "2",
-        "3"
-      ],
+      "ownedBuyPost": [],
       "ownedSellPost": [
-        "1",
-        "2",
-        "3"
       ],
       "starredBuyPost": [
-        "1",
-        "2",
-        "3"
       ],
       "starredSellPost": [
-        "1",
-        "2",
-        "3"
       ]
     }
   ]

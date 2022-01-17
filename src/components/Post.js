@@ -51,9 +51,9 @@ function Display(props) {
 			<div style={ss.infoGroup}>
 			{
 				post.trade === "buy" ?
-				<h1 className="text-danger">Looking for...</h1>
+				<h1 className="text-primary">{`Post ${post.id} is looking for...`}</h1>
 				:
-				<h1 className="text-danger">Find a new owner...</h1>
+				<h1 className="text-primary">{`Post ${post.id} is finding a new owener...`}</h1>
 			}
 				<div className="row" style={ss.info}>
 					<div className="col"><b>Brand:</b> {post.brand}</div>
@@ -61,7 +61,7 @@ function Display(props) {
 					<div className="col"><b>Price:</b> 
 						{post.price}
 						{
-							post.negotiable ?
+							post.negotiable === "true" ?
 							<span style={{fontSize: "smaller"}}> (negoitable)</span>
 							:
 							null
@@ -72,7 +72,7 @@ function Display(props) {
 					<div className="col"><b>Status:</b> {post.status}</div>
 					<div className="col"><b>Description:</b> {post.description}</div>
 				</div>
-				<h1 className="text-danger" style={{marginTop:"10px"}}>~Contact~</h1>
+				<h1 className="text-primary" style={{marginTop:"10px"}}>~Contact~</h1>
 				<div className="row" style={ss.info}>
 					<div className="col"><b>User:</b> {poster.id}</div>
 					<div className="col"><b>Email:</b> {poster.email}</div>

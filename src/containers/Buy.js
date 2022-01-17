@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { checkAuthorized } from '../Utilities.js/Utilities';
-import { getBuyPosts, deletePost, starPost } from '../Utilities.js/API';
+import { getBuyPosts, deletePost, savePost } from '../Utilities.js/API';
 import Post from '../components/Post';
 
 const Buy = () => {
@@ -20,7 +20,7 @@ const Buy = () => {
   }
 
   function handleStarPost (userId, post) {
-    starPost(userId, post).then(res => {
+    savePost(userId, post, "starred").then(res => {
       if (res.status === 200) {
         enqueueSnackbar(`Post ${post.id} has been successfully Starred.`,{variant:'success'});
         setPage("none");
