@@ -44,6 +44,61 @@ const ss = {
   }
 }
 
+function Display(props) {
+	const {post, poster, user, authority, close, setPage, handleStarPost} = props;
+	return(
+		<>
+			<div style={ss.infoGroup}>
+			{
+				post.trade === "buy" ?
+				<h1 className="text-danger">Looking for...</h1>
+				:
+				<h1 className="text-danger">Find a new owner...</h1>
+			}
+				<div className="row" style={ss.info}>
+					<div className="col"><b>Brand:</b> {post.brand}</div>
+					<div className="col"><b>Model:</b> {post.model}</div>
+					<div className="col"><b>Price:</b> 
+						{post.price}
+						{
+							post.negotiable ?
+							<span style={{fontSize: "smaller"}}> (negoitable)</span>
+							:
+							null
+						}
+					</div>
+				</div>
+				<div className="row" style={ss.info}>
+					<div className="col"><b>Status:</b> {post.status}</div>
+					<div className="col"><b>Description:</b> {post.description}</div>
+				</div>
+				<h1 className="text-danger" style={{marginTop:"10px"}}>~Contact~</h1>
+				<div className="row" style={ss.info}>
+					<div className="col"><b>User:</b> {poster.id}</div>
+					<div className="col"><b>Email:</b> {poster.email}</div>
+					<div className="col"><b>Location:</b> {poster.location}</div>
+				</div>
+			</div>
+			<div style={ss.buttonGroup}>
+				<div style={ss.buttonBox}>
+					<button className="btn btn-outline-light shadow" onClick={()=>{close();}} style={ss.button}><BsBack/></button>
+				</div>
+				{
+					authority === 0 ?
+					<div style={ss.buttonBox}>
+						<button className="btn btn-outline-primary shadow" onClick={()=>setPage("edit")} style={ss.button}><BiEdit/></button>
+					</div>
+					:
+					<div style={ss.buttonBox}></div>
+				}
+				<div style={ss.buttonBox}>
+					<button className="btn btn-outline-warning shadow" onClick={()=>handleStarPost(user, post)}style={ss.button}><BiStar/></button>
+				</div>
+			</div>
+		</>
+	)
+}
+
 function Edit(props) {
 	const {post, poster, setPage, handleDeletePost} = props;
 	return(
@@ -86,56 +141,9 @@ function Edit(props) {
 	)
 }
 
-function Display(props) {
-	const {post, poster, authority, close, setPage} = props;
-	return(
-		<>
-			<div style={ss.infoGroup}>
-			{
-				post.trade === "buy" ?
-				<h1 className="text-danger">Looking for...</h1>
-				:
-				<h1 className="text-danger">Find a new owner...</h1>
-			}
-				<div className="row" style={ss.info}>
-					<div className="col"><b>Brand:</b> {post.brand}</div>
-					<div className="col"><b>Model:</b> {post.model}</div>
-					<div className="col"><b>Price:</b> {post.price}</div>
-				</div>
-				<div className="row" style={ss.info}>
-					<div className="col"><b>Status:</b> {post.status}</div>
-					<div className="col"><b>Description:</b> {post.description}</div>
-				</div>
-				<h1 className="text-danger" style={{marginTop:"10px"}}>~Contact~</h1>
-				<div className="row" style={ss.info}>
-					<div className="col"><b>User:</b> {poster.id}</div>
-					<div className="col"><b>Email:</b> {poster.email}</div>
-					<div className="col"><b>Location:</b> {poster.location}</div>
-				</div>
-			</div>
-			<div style={ss.buttonGroup}>
-				<div style={ss.buttonBox}>
-					<button className="btn btn-outline-light shadow" onClick={()=>{close();}} style={ss.button}><BsBack/></button>
-				</div>
-				{
-					authority === 0 ?
-					<div style={ss.buttonBox}>
-						<button className="btn btn-outline-primary shadow" onClick={()=>setPage("edit")} style={ss.button}><BiEdit/></button>
-					</div>
-					:
-					<div style={ss.buttonBox}></div>
-				}
-				<div style={ss.buttonBox}>
-					<button className="btn btn-outline-warning shadow" style={ss.button}><BiStar/></button>
-				</div>
-			</div>
-		</>
-	)
-}
-
 const Post = (props) => {
 	
-	const {post, user, page, setPage, handleDeletePost} = props;
+	const {post, user, page, setPage, handleDeletePost, handleStarPost} = props;
 	const [poster, setPoster] = useState({});
 	const [authority, setAuthority] = useState(1);
 
@@ -167,7 +175,7 @@ const Post = (props) => {
 					<div onClick={close()}></div>
 					:
 					page === "display" ?
-		  		<Display post={post} poster={poster} authority={authority} close={close} setPage={setPage}/> 
+		  		<Display post={post} poster={poster} user={user} authority={authority} close={close} setPage={setPage} handleStarPost={handleStarPost}/> 
 					:
 					page === "edit" ?
 		  		<Edit post={post} poster={poster} close={close} setPage={setPage} handleDeletePost={handleDeletePost}/>

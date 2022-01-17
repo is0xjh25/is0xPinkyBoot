@@ -85,7 +85,7 @@
       "price": "666",
       "negotiable": "false",
       "description": "",
-      "poster": "guest0",
+      "posterId": "guest0",
       "id": 11
     }
   ],
@@ -166,57 +166,13 @@
       "description": "",
       "posterId": "admin",
       "id": 6
-    },
-    {
-      "trade": "sell",
-      "status": "second-hand",
-      "brand": "adidas",
-      "model": "tyt",
-      "price": "1234",
-      "negotiable": "false",
-      "description": "",
-      "poster": "guest0",
-      "id": 7
-    },
-    {
-      "trade": "sell",
-      "status": "second-hand",
-      "brand": "converse",
-      "model": "hjh",
-      "price": "666",
-      "negotiable": "true",
-      "description": "",
-      "poster": "guest0",
-      "id": 8
-    },
-    {
-      "trade": "sell",
-      "status": "second-hand",
-      "brand": "asics",
-      "model": "uiu",
-      "price": "888",
-      "negotiable": "false",
-      "description": "",
-      "poster": "guest0",
-      "id": 9
-    },
-    {
-      "trade": "sell",
-      "status": "second-hand",
-      "brand": "adidas",
-      "model": "ert",
-      "price": "666",
-      "negotiable": "true",
-      "description": "",
-      "poster": "guest0",
-      "id": 10
     }
   ],
   "user": [
     {
       "id": "admin",
       "email": "pinkyboot@gmail.com",
-      "password": "1234",
+      "password": "999",
       "firstName": "Jim",
       "lastName": "Hsiao",
       "location": "Melbourne",
@@ -232,9 +188,7 @@
         "3"
       ],
       "starredBuyPost": [
-        "1",
-        "2",
-        "3"
+        "6"
       ],
       "starredSellPost": [
         "1",

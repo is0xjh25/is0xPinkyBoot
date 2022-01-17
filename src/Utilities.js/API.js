@@ -1,4 +1,5 @@
 /* Base URL */
+import { capitalize } from "./Utilities";
 const BASE_URL = "http://localhost:4000";
 
 function getUserInfo(id) {
@@ -31,12 +32,6 @@ function getSellPosts() {
 	});
 }
 
-function deletePost(post) {
-	return fetch(`${BASE_URL}/${post.trade}-post/${post.id}`, {
-		method: 'DELETE'
-	})
-}
-
 function storePost(post) {
 	return fetch(`${BASE_URL}/${post.trade}-post`, {
 		method: 'POST',
@@ -48,10 +43,43 @@ function storePost(post) {
 	})
 }
 
+function deletePost(post) {
+	return fetch(`${BASE_URL}/${post.trade}-post/${post.id}`, {
+		method: 'DELETE'
+	})
+}
+
+function starPost(userId, post) {
+	
+	const target = `starred${capitalize(post.trade)}Post`;
+	
+	return getUserInfo(userId).then(user => {
+		return user[target];
+	}).then(arr => {
+		const newArr = addNew(arr, String(post.id));
+		return fetch(`${BASE_URL}/user/${userId}`, {
+			method: 'PATCH',
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json",
+			},
+			body: JSON.stringify({[target]: newArr})
+		})
+	}).then(res => {
+		return res;
+	})
+}
+
+function addNew(arr, e) {
+	if (!arr.includes(e)) arr.push(e);
+	return arr;
+}
+
 export {
 	getUserInfo,
 	getBuyPosts,
 	getSellPosts,
+	storePost,
 	deletePost,
-	storePost
+	starPost
 }

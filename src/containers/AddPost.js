@@ -70,7 +70,7 @@ const AddPost = () => {
         price: "",
         negotiable: "false",
         description: "",
-        poster: `${checkUser}`,
+        posterId: `${checkUser}`,
       })
     }
   }, []);
