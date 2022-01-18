@@ -151,12 +151,16 @@ th {
   border: 5px solid var(--bs-secondary) !important;
 }
 
-.trade-row-own:hover {
-  background-color: var(--bs-success);
+.post-row-owned:hover {
+  background-color: var(--bs-danger);
 }
 
-.trade-row:hover {
+.post-row-starred:hover {
   background-color: var(--bs-warning);
+}
+
+.post-row:hover {
+  background-color: var(--bs-secondary);
 }
 
 /* Form */

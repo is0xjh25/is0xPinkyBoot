@@ -3,10 +3,48 @@ import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { BsTrash, BsUpload } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';
-import { useWindowSize, checkAuthorized } from '../Utilities/Utilities';
+import { useWindowSize } from '../Utilities/Utilities';
 import { storePost } from '../Utilities/APIs';
 
-const AddPost = () => {
+const ss = {
+  main: {
+    width: "100%",
+    height: "auto",
+    minHeight: "100%",
+    backgroundColor: "var(--bs-dark)"
+  },
+  form: {
+    position: "relative",
+    width: "80%",
+    height: "100%",
+    left: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "var(--bs-warning)",
+  },
+  input: {
+    width: "200px",
+    textAlign: "center",
+  },
+  rowGap: {
+    paddingTop: "15px",
+  },
+  clickBox: {
+    width: "25px",
+    height: "25px",
+    marginLeft: "25px",
+    marginRight: "5px",
+  },
+  button: {
+    width: "50px",
+    height: "40px",
+    border: "2px solid ",
+    borderRadius: "10%",
+    fontSize: "15px",
+  },
+}
+
+const AddPost = (props) => {
 
   function handleWindowSize() {
     let d = document.querySelector('#add-post-hidden');
@@ -52,68 +90,33 @@ const AddPost = () => {
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
   const [width, height] = useWindowSize();
-  const [state, setState] = useState({})
+  const [state, setState] = useState({});
+  const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    const checkUser = checkAuthorized();
-    if (!checkUser) {
+    // check login
+    if ( !firstRender && !props.user) {
       navigate("/account");
       enqueueSnackbar("Please login first.",{variant:'warning'});
-    } else {
-      setState({
-        trade: "",
-        status: "",
-        brand: "",
-        model: "",
-        price: "",
-        negotiable: "false",
-        description: "",
-        posterId: `${checkUser}`,
-      })
     }
-  }, []);
+
+    setState({
+      trade: "",
+      status: "",
+      brand: "",
+      model: "",
+      price: "",
+      negotiable: "false",
+      description: "",
+      posterId: `${props.user}`,
+    })
+
+    setFirstRender(false);
+  }, [props.user]);
 
   useEffect(() => {
     handleWindowSize()
   }, [width, height]);
-
-  const ss = {
-    main: {
-      width: "100%",
-      height: "auto",
-      minHeight: "100%",
-      backgroundColor: "var(--bs-dark)"
-    },
-    form: {
-      position: "relative",
-      width: "80%",
-      height: "100%",
-      left: "10%",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "var(--bs-warning)",
-    },
-    input: {
-      width: "200px",
-      textAlign: "center",
-    },
-    rowGap: {
-      paddingTop: "15px",
-    },
-    clickBox: {
-      width: "25px",
-      height: "25px",
-      marginLeft: "25px",
-      marginRight: "5px",
-    },
-    button: {
-      width: "50px",
-      height: "40px",
-      border: "2px solid ",
-      borderRadius: "10%",
-      fontSize: "15px",
-    },
-  }
 
   return (
     <>

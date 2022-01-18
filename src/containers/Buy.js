@@ -1,11 +1,10 @@
 import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { checkAuthorized } from '../Utilities/Utilities';
 import { getBuyPosts, deletePost, savePost, removePost } from '../Utilities/APIs';
 import Post from '../components/Post';
 
-const Buy = () => {
+const Buy = (props) => {
   
   function handleDeletePost (post) {
     deletePost(post).then(res => {
@@ -46,26 +45,26 @@ const Buy = () => {
   const {enqueueSnackbar}  = useSnackbar();
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
-  const [user, setUser] = useState();
 	const [page, setPage] = useState("display"); 
   const [refreshCount, setRefreshCount] = useState(0);
+  const [firstRender, setFirstRender] = useState(true);
+
   const refresh = () => {
     setTimeout(() => {setRefreshCount(refreshCount+1);}, 1000);
   }
 
   useEffect(() => {
-    const checkUser = checkAuthorized();
-    if (!checkUser) {
+    // check login
+    if (!firstRender && !props.user) {
       navigate("/account");
       enqueueSnackbar("Please login first.",{variant:'warning'});
-    } else {
-      setUser(checkUser);
     }
     getBuyPosts().then(res => {
       setPosts(res);
     })
     setPage("display");
-  }, [refreshCount]);
+    setFirstRender(false);
+  }, [props.user, refreshCount]);
 
   return (
     <>
@@ -84,7 +83,7 @@ const Buy = () => {
         <tbody>
         {posts.map(p => 
           { return (
-              <Post key={p.id} post={p} user={user} page={page} setPage={setPage} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/>
+              <Post key={p.id} post={p} user={props.user} page={page} setPage={setPage} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost} refresh={refresh}/>
             )
           }
         )}

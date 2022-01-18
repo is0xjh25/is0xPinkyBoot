@@ -8,24 +8,40 @@ import Account from './Account';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import './App.css';
+import { checkAuthorized } from '../Utilities/Utilities';
 
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state= { 
+      user: ""
+    };
+  }
+
+  componentDidMount() {
+    this.setUser(checkAuthorized());
+  }
+
+  setUser = (u) => {
+    this.setState({user: u});
+  }
+
   render() {
     return (
       <>
-        <NavBar/>
+        <NavBar user={this.state.user}/>
         <Router>
         <div className='main'>
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route exact path='/add-post' element={<AddPost />} />
-              <Route path='/buy' element={<Buy />} />
-              <Route path='/sell' element={<Sell />} />
-              <Route exact path='/account' element={<Account />} />
+              <Route exact path='/add-post' element={<AddPost user={this.state.user}/>} />
+              <Route path='/buy' element={<Buy user={this.state.user}/>} />
+              <Route path='/sell' element={<Sell user={this.state.user}/>} />
+              <Route exact path='/account' element={<Account user={this.state.user} setUser={this.setUser}/>} />
             </Routes>
-            </div>
+          </div>
         </Router>
         <Footer/>
       </>

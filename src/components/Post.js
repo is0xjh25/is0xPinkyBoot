@@ -6,7 +6,6 @@ import { BsBack, BsTrash, BsUpload } from 'react-icons/bs';
 import { BiEdit} from 'react-icons/bi';
 import { FaHeartBroken, FaHeart} from 'react-icons/fa';
 
-
 const ss = {
   infoGroup: {
     position: "relative",
@@ -158,32 +157,41 @@ function Edit(props) {
 
 const Post = (props) => {
 	
-	const {post, user, page, setPage, handleDeletePost, handleStarPost, handleUnStarPost} = props;
+	const {post, user, page, setPage, handleDeletePost, handleStarPost, handleUnStarPost, refresh} = props;
 	const [poster, setPoster] = useState({});
 	const [authority, setAuthority] = useState(1);
-	const [owned, setOwned] = useState(false);
+	const [belonging, setBelonging] = useState("");
 
 	useEffect(() => {
+		// fetch poster info
 		getUserInfo(post.posterId).then(pr => {
 			setPoster(pr);
 		});
-
 		// set authority
 		(user === "admin" || user === post.posterId) ? setAuthority(0) : setAuthority(1);
-		user === post.posterId ? setOwned(true) : setOwned(false);
-	},[]);
+		// set belonging (row color)
+		getUserInfo(user).then(u => {
+			if (u[`starred${capitalize(post.trade)}Posts`].includes(String(post.id))) {
+				setBelonging("starred");
+			} else if(user === post.posterId) {
+				setBelonging("owned");
+			} else {
+				setBelonging("");
+			}
+		})
+	},[refresh]);
 
 	return (
 		<>
 		  <Popup trigger={			
-				<tr className={owned ? "trade-row-own" : "trade-row"}>
+				<tr className={belonging==="owned" ? "post-row-owned" : belonging==="starred" ? "post-row-starred":"post-row"}>
 					<td>{capitalize(post.brand)}</td>
 					<td>{post.model.toUpperCase()}</td>
 					<td>{capitalize(post.status)}</td>
 					<td>{post.price}</td>
 					<td>{poster.location}</td>
 					<td>{poster.id}</td>
-					<td>{poster.email}</td>
+					<td><a>{poster.email}</a></td>
 				</tr>
 			} modal>
 				{close => (

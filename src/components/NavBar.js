@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Favicon from '../favicon_io/logo.png';
 import { MdOutlinePostAdd } from 'react-icons/md';
-import { useWindowSize } from '../Utilities/Utilities';
+import { useWindowSize, capitalize } from '../Utilities/Utilities';
 
-const NavBar = () => {
+const NavBar = (props) => {
 
-  function GetStatus() {
+  // showing marquee
+  function getStatus() {
     let str = window.location.pathname.replace('/', '');
     setStatus(str);
     if (str === "buy" || str === "sell") {
@@ -42,7 +43,7 @@ const NavBar = () => {
   const [marqueeText, setMarqueeText] = useState("");
 
   useEffect(() => {
-    GetStatus();
+    getStatus();
   }, []);
 
   useEffect(() => {
@@ -126,7 +127,7 @@ const NavBar = () => {
               <a className="text-warning" href="/"><img  id="navFavicon" src={Favicon} alt="Favicon" style={ss.favicon}></img>PinkyBOOT</a>
             </li>
             <li style={ss.li}>
-              <a href="/account">Account</a>
+              <a href="/account">{props.user !=="" ? capitalize(props.user) : "Account"}</a>
             </li>
             <li style={ss.li}>
               <a href="/buy">BUY</a>

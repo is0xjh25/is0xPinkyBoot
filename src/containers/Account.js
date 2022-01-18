@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { capitalize, setCookie, getCookie, deleteCookie } from "../Utilities/Utilities";
+import { capitalize, setCookie, deleteCookie } from "../Utilities/Utilities";
 import { getUserInfo } from '../Utilities/APIs';
 
 const ss = {
@@ -81,31 +81,33 @@ function Info(props) {
   }
 }
 
-const Account = () => {
+const Account = (props) => {
 
   function switchUser(e) {
     let user = e.target.value;
-    setCookie('token', user, 7)
-    setUser(user);
+    setCookie('token', user, 7);
+    props.setUser(user);
     enqueueSnackbar(`Switch to ${capitalize(user)}.`,{variant:'success'});
     navigate("/");
   }
 
   function logOut() {
     deleteCookie("token");
+    props.setUser("");
     enqueueSnackbar("You are now successfully logged out.",{variant:'success'});
     navigate("/");
   }
 
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
-  const [user, setUser] = useState();
   const [hover, setHover] = useState("");
   const [info, setInfo] = useState([]);
+  const [firstRender, setFirstRender] = useState(true);
   const accounts = ["admin", "guest0", "guest1"];
   
   useEffect(() => {
-    if (!getCookie('token')) {
+    // check login
+    if (!firstRender && !props.user) {
       enqueueSnackbar("Pick a user.",{variant:'info'});
     }
     accounts.map(a => {
@@ -116,16 +118,15 @@ const Account = () => {
       })
     })
     enqueueSnackbar("Accounts have been setup." ,{variant:'info'});
-  }, [])
+    setFirstRender(false);
+  }, [props.user])
 
-  useEffect(() => {
-    setUser(getCookie('token'));
-  }, [switchUser]);
+
   
   return (
     <>
       <div style={ss.main}>
-        <Info info={info} user={user} hover={hover} />
+        <Info info={info} user={props.user} hover={hover} />
         <div style={ss.buttonGroup}>
           <div style={ss.buttonBox}>
             <button className="btn btn-outline-success shadow" value="admin" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
