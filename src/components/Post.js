@@ -62,7 +62,11 @@ const ss = {
   },
 	heading: {
 		marginTop: "20px",
-	}
+	},
+	input: {
+    width: "150px",
+    textAlign: "center",
+  },
 }
 
 function Display(props) {
@@ -86,6 +90,7 @@ function Display(props) {
 				<div className="row" style={ss.info}>
 					<div className="col"><b>BRAND:</b> {capitalize(post.brand)}</div>
 					<div className="col"><b>MODEL:</b> {post.model.toUpperCase()}</div>
+					<div className="col"><b>SIZE (cm):</b>{capitalize(post.gender)+" "+post.size}</div>
 					<div className="col"><b>PRICE:</b> 
 						{post.price}
 						{
@@ -98,7 +103,7 @@ function Display(props) {
 				</div>
 				<div className="row" style={ss.info}>
 					<div className="col"><b>STATUS:</b>{capitalize(post.status)}</div>
-					<div className="col"><b>DESCRIPTION:</b> {post.description}</div>
+					<div className="col" style={{overflow:"scroll"}}><b>DESCRIPTION:</b> {post.description}</div>
 				</div>
 				<h2 className="text-primary" style={{marginTop:"10px"}} style={ss.heading}>~Contact~</h2>
 				<div className="row" style={ss.info}>
@@ -183,28 +188,16 @@ function Edit(props) {
           <div className="row">
             <div className="col">
                 <label htmlFor="edit-post-trade">BUY / SELL</label>
-                <div className="edit-post-box">
-                  <select id="edit-post-trade" name="trade" defaultValue={post.trade} required>
+                <div>
+                  <select id="edit-post-trade" name="trade" defaultValue={post.trade} required style={ss.input}>
                     <option value={post.trade}>{post.trade}</option>
                   </select>
                 </div>
             </div>
-            <div className="col">
-              <label htmlFor="edit-post-status">STATUS</label>
-              <div className="edit-post-box">
-                <select id="edit-post-status" name="status" defaultValue={post.status} required>
-                  <option value="" disabled>Choose</option>
-                  <option value="brand-new">Brand-new</option>
-                  <option value="second-hand">Second-hand</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
+						<div className="col">
               <label htmlFor="edit-post-brand">BRAND</label>
-              <div className="edit-post-box">
-                <select id="edit-post-brand" name="brand" defaultValue={post.brand} required>
+              <div>
+                <select id="edit-post-brand" name="brand" defaultValue={post.brand} required style={ss.input}>
                   <option value="" disabled>Choose</option>
                   <option value="adidas">Adidas</option>
                   <option value="asics">Asics</option>
@@ -216,17 +209,45 @@ function Edit(props) {
               </div>
             </div>
             <div className="col">
+              <label htmlFor="edit-post-status">STATUS</label>
+              <div>
+                <select id="edit-post-status" name="status" defaultValue={post.status} required style={ss.input}>
+                  <option value="" disabled>Choose</option>
+                  <option value="brand-new">Brand-new</option>
+                  <option value="second-hand">Second-hand</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+						<div className="col">
+              <label htmlFor="edit-post-gender">GENDER</label>
+              <div>
+                <select id="edit-post-gender" name="gender" defaultValue={post.gender} required style={ss.input}>
+                  <option value="" disabled>Choose</option>
+                  <option value="m">Male</option>
+                  <option value="f">Female</option>
+                </select>
+              </div>
+            </div>
+						<div className="col">
+              <label htmlFor="edit-post-size">SIZE (cm)</label>
+              <div>
+                <input id="edit-post-size" name="size" type="number" max="50" min="10" step=".5" defaultValue={post.size} placeholder={post.size} required style={ss.input}/>
+              </div>
+            </div>
+            <div className="col">
               <label htmlFor="edit-post-model">MODEL</label>
-              <div className="edit-post-box" >
-                <input id="edit-post-model" name="model" type="text" defaultValue={post.model} placeholder={post.model} required/>
+              <div>
+                <input id="edit-post-model" name="model" type="text" defaultValue={post.model} placeholder={post.model} required style={ss.input}/>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col">
               <label htmlFor="edit-post-price">PRICE</label>
-              <div className="edit-post-box">
-                <input id="edit-post-price" name="price" type="number" min="0" defaultValue={post.price} placeholder={post.price} required/>
+              <div>
+                <input id="edit-post-price" name="price" type="number" min="0" defaultValue={post.price} placeholder={post.price} required style={ss.input}/>
                 <input id="addPostNegotiable" name="negotiable" type="checkbox" defaultChecked={post.negotiable==="true" ? true : false} style={ss.clickBox}/>
                 <span>NEGOTIABLE</span>
               </div>
@@ -235,7 +256,7 @@ function Edit(props) {
           <div className="row">
             <div id="edit-post-hidden" className="col">
               <label htmlFor="edit-post-description">DESCRIPTION</label>
-              <div className="edit-post-box" defaultValue={stat.description}>
+              <div defaultValue={stat.description}>
                 <textarea id="edit-post-description" name="description" type="text" rows="2" cols="40"/>
               </div>
             </div>
@@ -273,10 +294,10 @@ const Post = (props) => {
 		(user === "admin" || user === post.posterId) ? setAuthority(0) : setAuthority(1);
 		// set belonging (row color)
 		getUserInfo(user).then(u => {
-			if (u[`starred${capitalize(post.trade)}Posts`].includes(String(post.id))) {
-				setBelonging("starred");
-			} else if(user === post.posterId) {
+			if (user === post.posterId) {
 				setBelonging("owned");
+			} else if(u[`starred${capitalize(post.trade)}Posts`].includes(String(post.id))) {
+				setBelonging("starred");
 			} else {
 				setBelonging("");
 			}
@@ -289,6 +310,7 @@ const Post = (props) => {
 				<tr className={belonging==="owned" ? "post-row-owned" : belonging==="starred" ? "post-row-starred":"post-row"}>
 					<td>{capitalize(post.brand)}</td>
 					<td>{post.model.toUpperCase()}</td>
+					<td>{post.gender.toUpperCase()+" "+post.size}</td>
 					<td>{capitalize(post.status)}</td>
 					<td>{post.price}</td>
 					<td>{poster.location}</td>

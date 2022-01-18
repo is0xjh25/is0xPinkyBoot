@@ -5,6 +5,8 @@
       "status": "brand-new",
       "brand": "nike",
       "model": "PG3",
+      "gender": "m",
+      "size": "28",
       "price": "90",
       "negotiable": "false",
       "description": "",
@@ -16,6 +18,8 @@
       "status": "brand-new",
       "brand": "nike",
       "model": "Kyrie1",
+      "gender": "m",
+      "size": "28",
       "price": "399",
       "negotiable": "false",
       "description": "",
@@ -27,9 +31,11 @@
       "status": "brand-new",
       "brand": "asics",
       "model": "asd",
+      "gender": "m",
+      "size": "22.5",
       "price": "555",
-      "negotiable": "true",
-      "description": "GOOOD",
+      "negotiable": "false",
+      "description": "GOOODasdasdqweasdaszcxcxzzcawseqwe",
       "posterId": "guest1",
       "id": 5
     }
@@ -96,8 +102,7 @@
       "ownedSellPosts": [],
       "starredBuyPosts": [
         "4",
-        "3",
-        "5"
+        "3"
       ],
       "starredSellPosts": []
     }

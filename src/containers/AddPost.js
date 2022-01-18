@@ -105,6 +105,8 @@ const AddPost = (props) => {
       status: "",
       brand: "",
       model: "",
+      gender: "",
+      size: "",
       price: "",
       negotiable: "false",
       description: "",
@@ -134,18 +136,6 @@ const AddPost = (props) => {
                 </div>
             </div>
             <div className="col">
-              <label htmlFor="add-post-status">STATUS</label>
-              <div className="add-post-box">
-                <select id="add-post-status" name="status" defaultValue=""  required style={ss.input}>
-                  <option value="" disabled>Choose</option>
-                  <option value="brand-new">Brand-new</option>
-                  <option value="second-hand">Second-hand</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className="row" style={ss.rowGap}>
-            <div className="col">
               <label htmlFor="add-post-brand">BRAND</label>
               <div className="add-post-box">
                 <select id="add-post-brand" name="brand" defaultValue="" required style={ss.input}>
@@ -160,6 +150,34 @@ const AddPost = (props) => {
               </div>
             </div>
             <div className="col">
+              <label htmlFor="add-post-status">STATUS</label>
+              <div className="add-post-box">
+                <select id="add-post-status" name="status" defaultValue=""  required style={ss.input}>
+                  <option value="" disabled>Choose</option>
+                  <option value="brand-new">Brand-new</option>
+                  <option value="second-hand">Second-hand</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="row" style={ss.rowGap}>
+            <div className="col">
+              <label htmlFor="add-post-gender">MALE / FEMALE</label>
+              <div className="add-post-box">
+                <select id="add-post-gender" name="gender" defaultValue="" required style={ss.input}>
+                  <option value="" disabled>Choose</option>
+                  <option value="m">Male</option>
+                  <option value="f">Female</option>
+                </select>
+              </div>
+            </div>
+            <div className="col">
+              <label htmlFor="add-post-size">SIZE</label>
+              <div className="add-post-box">
+                <input id="add-post-size" name="size" type="number" max="50" min="10" step=".5" placeholder="What size is this? (cm)" required style={ss.input}/>
+              </div>
+            </div>
+            <div className="col">
               <label htmlFor="add-post-model">MODEL</label>
               <div className="add-post-box" >
                 <input id="add-post-model" name="model" type="text" placeholder="What is the name of boot?" required style={ss.input}/>
@@ -170,7 +188,7 @@ const AddPost = (props) => {
             <div className="col">
               <label htmlFor="add-post-price">PRICE</label>
               <div className="add-post-box">
-                <input id="add-post-price" name="price" type="number" min="0" placeholder="Expected this number!" required style={ss.input}/>
+                <input id="add-post-price" name="price" type="number" min="0" placeholder="Expecting this number!" required style={ss.input}/>
                 <input id="addPostNegotiable" name="negotiable" type="checkbox" style={ss.clickBox}/>
                 <span >NEGOTIABLE</span>
               </div>

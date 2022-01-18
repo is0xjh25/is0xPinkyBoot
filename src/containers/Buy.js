@@ -85,6 +85,7 @@ const Buy = (props) => {
           <tr>
             <th scope="col">Brand</th>
             <th scope="col">Model</th>
+            <th scope="col">Size (cm)</th>
             <th scope="col">Status</th>
             <th scope="col">Price</th>
             <th scope="col">Location</th>
