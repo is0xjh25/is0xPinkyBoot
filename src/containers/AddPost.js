@@ -57,18 +57,18 @@ const AddPost = (props) => {
 
   const handleOnChange = (e) => {
     if (e.target.name === "negotiable" && e.target.checked) {
-      setState({
-        ...state,
+      setStat({
+        ...stat,
         [e.target.name]: "true"
       });
     } else if (e.target.name === "negotiable" && !e.target.checked) {
-      setState({
-        ...state,
+      setStat({
+        ...stat,
         [e.target.name]: "false"
       });
     } else {
-      setState({
-        ...state,
+      setStat({
+        ...stat,
         [e.target.name]: e.target.value
       });
     }
@@ -76,7 +76,7 @@ const AddPost = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    storePost(state).then(res => {
+    storePost(stat).then(res => {
       if (res.status === 200 || res.status === 201) {
         enqueueSnackbar("It had been posted successfully.",{variant:'success'});
       } else {
@@ -90,17 +90,17 @@ const AddPost = (props) => {
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
   const [width, height] = useWindowSize();
-  const [state, setState] = useState({});
+  const [stat, setStat] = useState({});
   const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
     // check login
-    if ( !firstRender && !props.user) {
+    if (!firstRender && !props.user) {
       navigate("/account");
       enqueueSnackbar("Please login first.",{variant:'warning'});
     }
 
-    setState({
+    setStat({
       trade: "",
       status: "",
       brand: "",

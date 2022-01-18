@@ -5,6 +5,7 @@ import { getUserInfo, checkPost } from '../Utilities/APIs';
 import { BsBack, BsTrash, BsUpload } from 'react-icons/bs';
 import { BiEdit} from 'react-icons/bi';
 import { FaHeartBroken, FaHeart} from 'react-icons/fa';
+import { useSnackbar } from 'notistack';
 
 const ss = {
   infoGroup: {
@@ -14,7 +15,8 @@ const ss = {
     justifyContent: "center",
     width: "100%",
     height: "80%",
-    paddingTop: "5%",
+		margin: "5px",
+    paddingTop: "1%",
     color: "var(--bs-light)",
   },
   buttonGroup: {
@@ -42,7 +44,25 @@ const ss = {
   info: {
 		paddingTop: "2%",
     fontSize: "30px"
-  }
+  },
+	form: {
+    position: "relative",
+    width: "80%",
+    height: "100%",
+    left: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "var(--bs-warning)",
+  },
+	clickBox: {
+    width: "25px",
+    height: "25px",
+    marginLeft: "25px",
+    marginRight: "5px",
+  },
+	heading: {
+		marginTop: "20px",
+	}
 }
 
 function Display(props) {
@@ -59,14 +79,14 @@ function Display(props) {
 			<div style={ss.infoGroup}>
 			{
 				post.trade === "buy" ?
-				<h1 className="text-primary">{`Post ${post.id} is looking for...`}</h1>
+				<h2 className="text-primary" style={ss.heading}>{`Post ${post.id} is looking for...`}</h2>
 				:
-				<h1 className="text-primary">{`Post ${post.id} is finding a new owener...`}</h1>
+				<h2 className="text-primary" style={ss.heading}>{`Post ${post.id} is finding a new owener...`}</h2>
 			}
 				<div className="row" style={ss.info}>
-					<div className="col"><b>Brand:</b> {post.brand}</div>
-					<div className="col"><b>Model:</b> {post.model}</div>
-					<div className="col"><b>Price:</b> 
+					<div className="col"><b>BRAND:</b> {capitalize(post.brand)}</div>
+					<div className="col"><b>MODEL:</b> {post.model.toUpperCase()}</div>
+					<div className="col"><b>PRICE:</b> 
 						{post.price}
 						{
 							post.negotiable === "true" ?
@@ -77,19 +97,19 @@ function Display(props) {
 					</div>
 				</div>
 				<div className="row" style={ss.info}>
-					<div className="col"><b>Status:</b> {post.status}</div>
-					<div className="col"><b>Description:</b> {post.description}</div>
+					<div className="col"><b>STATUS:</b>{capitalize(post.status)}</div>
+					<div className="col"><b>DESCRIPTION:</b> {post.description}</div>
 				</div>
-				<h1 className="text-primary" style={{marginTop:"10px"}}>~Contact~</h1>
+				<h2 className="text-primary" style={{marginTop:"10px"}} style={ss.heading}>~Contact~</h2>
 				<div className="row" style={ss.info}>
-					<div className="col"><b>User:</b> {poster.id}</div>
-					<div className="col"><b>Email:</b> <a id="display-post-email" href={`mailto:${poster.email}`}>{poster.email}</a></div>
-					<div className="col"><b>Location:</b> {poster.location}</div>
+					<div className="col"><b>USER:</b> {poster.id}</div>
+					<div className="col"><b>EMAIL:</b> <a id="display-post-email" href={`mailto:${poster.email}`}>{poster.email}</a></div>
+					<div className="col"><b>LOCATION:</b> {poster.location}</div>
 				</div>
 			</div>
 			<div style={ss.buttonGroup}>
 				<div style={ss.buttonBox}>
-					<button className="btn btn-outline-light shadow" onClick={()=>{close();}} style={ss.button}><BsBack/></button>
+					<button className="btn btn-outline-light shadow" name="back" onClick={()=>{close();}} style={ss.button}><BsBack/></button>
 				</div>
 				{
 					authority === 0 ?
@@ -115,41 +135,122 @@ function Display(props) {
 }
 
 function Edit(props) {
-	const {post, poster, setPage, handleDeletePost} = props;
+	
+  const {enqueueSnackbar}  = useSnackbar();
+	const {post, setPage, handleDeletePost, handleUpdatePost} = props;
+	const [stat, setStat] = useState({});
+
+	function isEdited() {
+		return !(JSON.stringify(stat) === JSON.stringify(post)); 
+	}
+
+	function handleOnChange(e) {
+    if (e.target.name === "negotiable" && e.target.checked) {
+      setStat({
+        ...stat,
+        [e.target.name]: "true"
+      });
+    } else if (e.target.name === "negotiable" && !e.target.checked) {
+      setStat({
+        ...stat,
+        [e.target.name]: "false"
+      });
+    } else {
+      setStat({
+        ...stat,
+        [e.target.name]: e.target.value
+      });
+    }
+  };
+
+	function handleSubmit(e) {
+    e.preventDefault();
+		if (isEdited()) {
+			props.handleUpdatePost(stat);
+		} else {
+			enqueueSnackbar("You have not edited yet.",{variant:'warning'});
+		}
+  }
+
+	useEffect(() => {
+		setStat(post);
+	}, [])
+
 	return(
 		<>
 			<div style={ss.infoGroup}>
-			{
-				post.trade === "buy" ?
-				<h1 className="text-danger">Looking for...</h1>
-				:
-				<h1 className="text-danger">Find a new owner...</h1>
-			}
-				<div className="row" style={ss.info}>
-					<div className="col"><b>Brand:</b> {post.brand}</div>
-					<div className="col"><b>Model:</b> {post.model}</div>
-					<div className="col"><b>Price:</b> {post.price}</div>
-				</div>
-				<div className="row" style={ss.info}>
-					<div className="col"><b>Status:</b> {post.status}</div>
-					<div className="col"><b>Description:</b> {post.description}</div>
-				</div>
-				<h1 className="text-danger" style={{marginTop:"10px"}}>~Contact~</h1>
-				<div className="row" style={ss.info}>
-					<div className="col"><b>User:</b> {poster.id}</div>
-					<div className="col"><b>Email:</b> {poster.email}</div>
-					<div className="col"><b>Location:</b> {poster.location}</div>
-				</div>
+				<form id="update-post-form" name="update-post-form" style={ss.form} onChange={handleOnChange} onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col">
+                <label htmlFor="edit-post-trade">BUY / SELL</label>
+                <div className="edit-post-box">
+                  <select id="edit-post-trade" name="trade" defaultValue={post.trade} required>
+                    <option value={post.trade}>{post.trade}</option>
+                  </select>
+                </div>
+            </div>
+            <div className="col">
+              <label htmlFor="edit-post-status">STATUS</label>
+              <div className="edit-post-box">
+                <select id="edit-post-status" name="status" defaultValue={post.status} required>
+                  <option value="" disabled>Choose</option>
+                  <option value="brand-new">Brand-new</option>
+                  <option value="second-hand">Second-hand</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="edit-post-brand">BRAND</label>
+              <div className="edit-post-box">
+                <select id="edit-post-brand" name="brand" defaultValue={post.brand} required>
+                  <option value="" disabled>Choose</option>
+                  <option value="adidas">Adidas</option>
+                  <option value="asics">Asics</option>
+                  <option value="converse">Converse</option>
+                  <option value="jordan">Jordan</option>
+                  <option value="nike">Nike</option>
+                  <option value="puma">Puma</option>
+                </select>
+              </div>
+            </div>
+            <div className="col">
+              <label htmlFor="edit-post-model">MODEL</label>
+              <div className="edit-post-box" >
+                <input id="edit-post-model" name="model" type="text" defaultValue={post.model} placeholder={post.model} required/>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="edit-post-price">PRICE</label>
+              <div className="edit-post-box">
+                <input id="edit-post-price" name="price" type="number" min="0" defaultValue={post.price} placeholder={post.price} required/>
+                <input id="addPostNegotiable" name="negotiable" type="checkbox" defaultChecked={post.negotiable==="true" ? true : false} style={ss.clickBox}/>
+                <span>NEGOTIABLE</span>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div id="edit-post-hidden" className="col">
+              <label htmlFor="edit-post-description">DESCRIPTION</label>
+              <div className="edit-post-box" defaultValue={stat.description}>
+                <textarea id="edit-post-description" name="description" type="text" rows="2" cols="40"/>
+              </div>
+            </div>
+          </div>
+				</form>
 			</div>
 			<div style={ss.buttonGroup}>
 				<div style={ss.buttonBox}>
 					<button className="btn btn-outline-light shadow" onClick={()=>setPage("display")} style={ss.button}><BsBack/></button>
 				</div>
 				<div style={ss.buttonBox}>
-					<button className="btn btn-outline-danger shadow" onClick={()=>handleDeletePost(post)}style={ss.button}><BsTrash/></button>
+					<button className="btn btn-outline-danger shadow" onClick={()=>handleDeletePost(post)} style={ss.button}><BsTrash/></button>
 				</div>
 				<div style={ss.buttonBox}>
-					<button className="btn btn-outline-warning shadow" style={ss.button}><BsUpload/></button>
+					<button className="btn btn-outline-warning shadow" form="update-post-form" type="submit" style={ss.button}><BsUpload/></button>
 				</div>
 			</div>
 		</>
@@ -158,7 +259,7 @@ function Edit(props) {
 
 const Post = (props) => {
 	
-	const {post, user, page, setPage, handleDeletePost, handleStarPost, handleUnStarPost, refresh} = props;
+	const {post, user, page, setPage, handleUpdatePost, handleDeletePost, handleStarPost, handleUnStarPost, refresh} = props;
 	const [poster, setPoster] = useState({});
 	const [authority, setAuthority] = useState(1);
 	const [belonging, setBelonging] = useState("");
@@ -205,7 +306,7 @@ const Post = (props) => {
 		  		<Display post={post} poster={poster} user={user} authority={authority} close={close} setPage={setPage} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/> 
 					:
 					page === "edit" ?
-		  		<Edit post={post} poster={poster} close={close} setPage={setPage} handleDeletePost={handleDeletePost}/>
+		  		<Edit post={post} close={close} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost}/>
 					: 
 					null 
 				}

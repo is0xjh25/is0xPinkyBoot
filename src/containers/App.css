@@ -79,8 +79,7 @@ a:hover{
 }
 
 #display-post-email:hover {
-  color: var(--bs-primary) !important;
-  font-size: larger;
+  color: var(--bs-success) !important;
 }
 #footer a:hover{
   color: var(--bs-light) !important;

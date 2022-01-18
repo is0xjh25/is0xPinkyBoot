@@ -3,17 +3,6 @@
     {
       "trade": "buy",
       "status": "brand-new",
-      "brand": "jordan",
-      "model": "35",
-      "price": "500",
-      "negotiable": "true",
-      "description": "",
-      "posterId": "guest1",
-      "id": 2
-    },
-    {
-      "trade": "buy",
-      "status": "brand-new",
       "brand": "nike",
       "model": "PG3",
       "price": "90",
@@ -32,6 +21,17 @@
       "description": "",
       "posterId": "admin",
       "id": 4
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "asics",
+      "model": "eee",
+      "price": "555",
+      "negotiable": "true",
+      "description": "GOOOD",
+      "posterId": "guest1",
+      "id": 5
     }
   ],
   "sell-post": [],
@@ -77,11 +77,12 @@
       "location": "Perth",
       "authority": 1,
       "ownedBuyPosts": [
-        "2"
+        "5"
       ],
       "ownedSellPosts": [],
       "starredBuyPosts": [
-        "4"
+        "4",
+        "3"
       ],
       "starredSellPosts": []
     }

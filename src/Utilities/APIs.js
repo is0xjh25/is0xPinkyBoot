@@ -48,6 +48,18 @@ function storePost(post) {
 	})
 }
 
+function updatePost(post) {
+	console.log(post);
+	return fetch(`${BASE_URL}/${post.trade}-post/${post.id}`, {
+		method: 'PUT',
+		headers: {
+			"Content-Type": "application/json",
+			"Accept": "application/json",
+		},
+		body: JSON.stringify(post)
+	})
+}
+
 function deletePost(post) {
 	return fetch(`${BASE_URL}/${post.trade}-post/${post.id}`, {
 		method: 'DELETE'
@@ -130,6 +142,7 @@ export {
 	getBuyPosts,
 	getSellPosts,
 	storePost,
+	updatePost, 
 	deletePost,
 	savePost,
 	removePost,
