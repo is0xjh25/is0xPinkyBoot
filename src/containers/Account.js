@@ -107,9 +107,6 @@ const Account = (props) => {
   
   useEffect(() => {
     // check login
-    if (!firstRender && !props.user) {
-      enqueueSnackbar("Pick a user.",{variant:'info'});
-    }
     accounts.map(a => {
       getUserInfo(a).then(res => {
         setInfo(info => [...info, res]);
@@ -117,7 +114,10 @@ const Account = (props) => {
         enqueueSnackbar(err ,{variant:'error'});
       })
     })
-    enqueueSnackbar("Accounts have been setup." ,{variant:'info'});
+    if (firstRender) {
+      enqueueSnackbar("Accounts have been setup." ,{variant:'info'});
+      enqueueSnackbar("Pick a user.",{variant:'info'});
+    }
     setFirstRender(false);
   }, [props.user])
 
