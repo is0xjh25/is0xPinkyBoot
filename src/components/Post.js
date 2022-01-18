@@ -166,7 +166,7 @@ function Edit(props) {
 	function handleSubmit(e) {
     e.preventDefault();
 		if (isEdited()) {
-			props.handleUpdatePost(stat);
+			handleUpdatePost(stat);
 		} else {
 			enqueueSnackbar("You have not edited yet.",{variant:'warning'});
 		}

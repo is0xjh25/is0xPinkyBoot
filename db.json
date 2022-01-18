@@ -26,7 +26,7 @@
       "trade": "buy",
       "status": "brand-new",
       "brand": "asics",
-      "model": "eee",
+      "model": "asd",
       "price": "555",
       "negotiable": "true",
       "description": "GOOOD",
@@ -34,7 +34,19 @@
       "id": 5
     }
   ],
-  "sell-post": [],
+  "sell-post": [
+    {
+      "trade": "sell",
+      "status": "brand-new",
+      "brand": "asics",
+      "model": "hhh",
+      "price": "678",
+      "negotiable": "false",
+      "description": "super fit",
+      "posterId": "admin",
+      "id": 1
+    }
+  ],
   "user": [
     {
       "id": "admin",
@@ -48,7 +60,9 @@
         "3",
         "4"
       ],
-      "ownedSellPosts": [],
+      "ownedSellPosts": [
+        "1"
+      ],
       "starredBuyPosts": [],
       "starredSellPosts": []
     },
@@ -82,7 +96,8 @@
       "ownedSellPosts": [],
       "starredBuyPosts": [
         "4",
-        "3"
+        "3",
+        "5"
       ],
       "starredSellPosts": []
     }
