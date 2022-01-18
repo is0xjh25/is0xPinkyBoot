@@ -80,7 +80,9 @@
         "2"
       ],
       "ownedSellPosts": [],
-      "starredBuyPosts": [],
+      "starredBuyPosts": [
+        "4"
+      ],
       "starredSellPosts": []
     }
   ]

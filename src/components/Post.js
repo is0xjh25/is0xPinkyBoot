@@ -46,6 +46,7 @@ const ss = {
 }
 
 function Display(props) {
+	
 	const {post, poster, user, authority, close, setPage, handleStarPost, handleUnStarPost} = props;
 	const [postStarred, setPostStarred] = useState();
 
@@ -82,7 +83,7 @@ function Display(props) {
 				<h1 className="text-primary" style={{marginTop:"10px"}}>~Contact~</h1>
 				<div className="row" style={ss.info}>
 					<div className="col"><b>User:</b> {poster.id}</div>
-					<div className="col"><b>Email:</b> {poster.email}</div>
+					<div className="col"><b>Email:</b> <a id="display-post-email" href={`mailto:${poster.email}`}>{poster.email}</a></div>
 					<div className="col"><b>Location:</b> {poster.location}</div>
 				</div>
 			</div>
@@ -191,7 +192,7 @@ const Post = (props) => {
 					<td>{post.price}</td>
 					<td>{poster.location}</td>
 					<td>{poster.id}</td>
-					<td><a>{poster.email}</a></td>
+					<td>{poster.email}</td>
 				</tr>
 			} modal>
 				{close => (

@@ -68,14 +68,25 @@ a {
   color: var(--bs-secondary) !important;
 }
 
+#display-post-email {
+  text-decoration: none !important;
+  color: var(--bs-light) !important;
+}
+
+
 a:hover{
   color: var(--bs-danger) !important;
 }
 
-#footer a:hover{
-  color: white !important;
+#display-post-email:hover {
+  color: var(--bs-primary) !important;
   font-size: larger;
 }
+#footer a:hover{
+  color: var(--bs-light) !important;
+  font-size: larger;
+}
+
 
 /* Marquee */
 .marquee {
@@ -151,16 +162,17 @@ th {
   border: 5px solid var(--bs-secondary) !important;
 }
 
+/* Post */
 .post-row-owned:hover {
-  background-color: var(--bs-danger);
+  background-color: rgba(249,49,84, 0.8);
 }
 
 .post-row-starred:hover {
-  background-color: var(--bs-warning);
+  background-color: rgba(255,169,0, 0.8); 
 }
 
 .post-row:hover {
-  background-color: var(--bs-secondary);
+  background-color: rgba(18,102,241, 0.8);
 }
 
 /* Form */
