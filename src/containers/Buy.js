@@ -79,30 +79,30 @@ const Buy = (props) => {
   }, [props.user, refreshCount]);
 
   return (
-    <>
-      <table className="tableFixHead">
-        <thead>
-          <tr>
-            <th scope="col">Brand</th>
-            <th scope="col">Model</th>
-            <th scope="col">Size (cm)</th>
-            <th scope="col">Status</th>
-            <th scope="col">Price</th>
-            <th scope="col">Location</th>
-            <th scope="col">Buyer</th>
-            <th scope="col">Contact</th>
-          </tr>
-        </thead>
-        <tbody>
-        {posts.map(p => 
-          { return (
-              <Post key={p.id} post={p} user={props.user} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost} refresh={refresh}/>
-            )
-          }
-        )}
-        </tbody>
-      </table>
-    </>
+      <div className="table-fix-head">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Brand</th>
+              <th scope="col">Model</th>
+              <th scope="col">Size (cm)</th>
+              <th scope="col">Status</th>
+              <th scope="col">Price</th>
+              <th scope="col">Location</th>
+              <th scope="col">Buyer</th>
+              <th scope="col">Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+          {posts.map(p => 
+            { return (
+                <Post key={p.id} post={p} user={props.user} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost} refresh={refresh}/>
+              )
+            }
+          )}
+          </tbody>
+        </table>
+      </div>
   );
 };
 

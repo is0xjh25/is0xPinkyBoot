@@ -15,8 +15,6 @@ const ss = {
     justifyContent: "center",
     width: "100%",
     height: "80%",
-		margin: "5px",
-    paddingTop: "1%",
     color: "var(--bs-light)",
   },
   buttonGroup: {
@@ -35,11 +33,9 @@ const ss = {
     height: "100%",
   },
   button: {
-    width: "60px",
-    height: "60px",
     border: "2px solid ",
     borderRadius: "10%",
-    fontSize: "30px",
+    fontSize: "20px",
   },
   info: {
 		paddingTop: "2%",
@@ -64,8 +60,8 @@ const ss = {
 		marginTop: "20px",
 	},
 	input: {
-    width: "150px",
-    textAlign: "center",
+		width: "150px",
+		textAlign: "center",
   },
 }
 
@@ -103,7 +99,7 @@ function Display(props) {
 				</div>
 				<div className="row" style={ss.info}>
 					<div className="col"><b>STATUS:</b>{capitalize(post.status)}</div>
-					<div className="col" style={{overflow:"scroll"}}><b>DESCRIPTION:</b> {post.description}</div>
+					<div className="col" style={{overflowX:"scroll"}}><b>DESCRIPTION:</b> {post.description}</div>
 				</div>
 				<h2 className="text-primary" style={{marginTop:"10px"}} style={ss.heading}>~Contact~</h2>
 				<div className="row" style={ss.info}>
@@ -150,6 +146,7 @@ function Edit(props) {
 	}
 
 	function handleOnChange(e) {
+		console.log(e);
     if (e.target.name === "negotiable" && e.target.checked) {
       setStat({
         ...stat,
@@ -256,8 +253,8 @@ function Edit(props) {
           <div className="row">
             <div id="edit-post-hidden" className="col">
               <label htmlFor="edit-post-description">DESCRIPTION</label>
-              <div defaultValue={stat.description}>
-                <textarea id="edit-post-description" name="description" type="text" rows="2" cols="40"/>
+              <div>
+                <textarea id="edit-post-description" name="description" type="text" rows="3" cols="40" defaultValue={stat.description} form-group/>
               </div>
             </div>
           </div>

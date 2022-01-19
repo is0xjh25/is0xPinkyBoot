@@ -3,8 +3,82 @@ import Favicon from '../favicon_io/logo.png';
 import { MdOutlinePostAdd } from 'react-icons/md';
 import { useWindowSize, capitalize } from '../Utilities/Utilities';
 
-const NavBar = (props) => {
+// Style Sheet
+const ss = {
+  main: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    height: "100%",
+    fontSize: "25px"
+  },
+  left: {
+    display: "inline-flex",
+    position: "relative",
+    justifyContent: "start",
+    alignItems: "center",
+    paddingLeft: "30px",
+    width: "40%",
+    height: "100%",
+  },
+  mid: {
+    display: "block",
+    width: "40%",
+    height: "100%",
+    paddingRight: "5%",
+  },
+  fullMid: {
+    width: "50%",
+    height: "100%",
+  },
+  right: {
+    display: "flex",
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "20%",
+    height: "100%",
+  },
+  fullRight: {
+    display: "none"
+  },
+  favicon: {
+    position: "relative",
+    height: "32px",
+    right:"5px",
+    borderRadius: "5px",
+  },
+  icon: {
+    display:"inline",
+    position:"relative",
+    left: "50px"
+  },
+  marquee: {
+    color: "var(--bs-danger)",
+  },
+  input: {
+    display:"flex",
+    width: "70%",
+    height: "32px",
+    border: "2px solid black",
+    borderRadius: "5px",
+  },
+  button: {
+    display:"flex",
+    height: "50%",
+  },
+  buttonText: {
+    position:"relative",
+    top: "-10px",
+  },
+  navButton: {
+    display: "flex",
+    marginRight: "12px",
+    alignItems: "center"
+  },
+}
 
+const NavBar = (props) => {
   // showing marquee
   function getStatus() {
     let str = window.location.pathname.replace('/', '');
@@ -14,7 +88,7 @@ const NavBar = (props) => {
     } else if (str === "add-post") {
       setMarqueeText("#POSTING# Get the best price !")
     } else if (str === "account") {
-      setMarqueeText("#ACCOUNT INFO# Suit yourself.")
+      setMarqueeText("#ACCOUNT INFORMATION# Suit yourself.")
     } else {
       setMarqueeText("You are visiting #PinkyBOOT# !!!")
     }
@@ -24,17 +98,14 @@ const NavBar = (props) => {
     let r = document.querySelector('#rightNav');
     let m = document.querySelector('.midNav');
     let img = document.querySelector('#navFavicon');
-    let icon = document.querySelector('#navIcon');
     if (width < 1080) {
       r.style.display = "none";
       m.style.display = "none";
       img.style.display = "none";
-      icon.style.display = "none";
     } else {
-      r.style.display = "inline-block";
-      m.style.display = "inline-block";
-      img.style.display = "inline-block";
-      icon.style.display = "inline-block";
+      r.style.display = "flex";
+      m.style.display = "block";
+      img.style.display = "block";
     }
   }
 
@@ -50,118 +121,36 @@ const NavBar = (props) => {
     handleWindowSize()
   }, [width]);
 
-  // Style Sheet
-  const ss = {
-    left: {
-      width: "45%",
-      height: "100%",
-    },
-    mid: {
-      width: "35%",
-      height: "100%",
-    },
-    fullMid: {
-      width: "50%",
-      height: "100%",
-    },
-    right: {
-      width: "20%",
-      height: "100%",
-    },
-    fullRight: {
-      display: "none"
-    },
-    ul: {
-      display: "inline",
-      width: "100%",
-      height: "100%",
-      listStyleType: "none",
-    },
-    li: {
-      display: "inline",
-      marginRight: "15px",
-    },
-    favicon: {
-      position: "relative",
-      height: "50%",
-      right:"5px",
-      borderRadius: "5px",
-    },
-    icon: {
-      position:"absolute",
-      top: "23px"
-    },
-    marquee: {
-      color: "var(--bs-danger)",
-    },
-    marqueeHalf: {
-      color: "var(--bs-danger)",
-    },
-    form: {
-      width: "50%",
-      textAlign: "center !important"
-    },
-    input: {
-      width: "70%",
-      height: "30px",
-      border: "2px solid black",
-      borderRadius: "5px",
-    },
-    button: {
-      position: "relative",
-      display: "inline-flex",
-      width: "40px",
-      height: "40px",
-      top:"-5px",
-      justifyContent: "center",
-      textAlign: "center",
-    }
-  }
-
   return (
-    <>
-      <div id= "nav" className="fixed-top highlight bg-dark">
-        <div id="leftNav" style={ss.left}>
-          <ul style={ss.ul}>
-            <li style={ss.li}>
-              <a className="text-warning" href="/"><img  id="navFavicon" src={Favicon} alt="Favicon" style={ss.favicon}></img>PinkyBOOT</a>
-            </li>
-            <li style={ss.li}>
-              <a href="/account">{props.user !=="" ? capitalize(props.user) : "Account"}</a>
-            </li>
-            <li style={ss.li}>
-              <a href="/buy">BUY</a>
-            </li>
-            <li style={ss.li}>
-              <a href="/sell">SELL</a>
-            </li>
-            <li style={ss.li}>
-              <a href="/add-post">POST<MdOutlinePostAdd id="navIcon" style={ss.icon}/></a>
-            </li>
-          </ul>
+    <div className="boost" style={ss.main}>
+      <div id="leftNav" style={ss.left}>
+        <img id="navFavicon" src={Favicon} alt="Favicon" style={ss.favicon}></img>
+        <a className="text-warning" href="/" style={ss.navButton}>PinkyBOOT</a>
+        <a href="/account" style={ss.navButton}>{props.user !=="" ? capitalize(props.user) : "Account"}</a>
+        <a href="/buy" style={ss.navButton}>BUY</a>
+        <a href="/sell" style={ss.navButton}>SELL</a>
+        <a href="/add-post" style={ss.navButton}>POST<MdOutlinePostAdd style={{flex: "1"}}/></a>
+      </div>      
+      {(status === "buy" || status === "sell") ?
+        <div className="midNav" style={ss.mid}>
+          
+          <div className="marquee" style={ss.marquee}><p>{marqueeText}</p></div>  
         </div>
-        {(status === "buy" || status === "sell") ?
-        <>
-          <div className="midNav" style={ss.mid}>
-            <div className="marquee" style={ss.marquee}><h2>{marqueeText}</h2></div>  
-          </div>
-          <div id="rightNav" style={ss.right}>
-            <input type="search" placeholder="Find Boots..." aria-label="Search" style={ss.input}></input>
-            <button className="btn btn-outline-warning shadow-none" type="submit" style={ss.button}>GO</button>
-          </div>
-        </>
-        :
-        <>
-          <div className="midNav" style={ss.fullMid}>
-            <div className="marquee" style={ss.marquee}><h2>{marqueeText}</h2></div>  
-          </div>
-          <div id="rightNav" style={ss.fullRight}></div>
-        </>
-        }
-      </div>
-    </>
+      :
+        <div className="midNav" style={ss.fullMid}>
+          <div className="marquee" style={ss.marquee}><p>{marqueeText}</p></div>  
+        </div>
+      }      
+      {(status === "buy" || status === "sell") ?
+        <div id="rightNav" style={ss.right}>
+          <input type="search" placeholder="Find Boots..." aria-label="Search" style={ss.input}></input>
+          <button className="btn btn-outline-warning shadow-none" type="submit" style={ss.button}><div style={ss.buttonText}>GO</div></button>
+        </div>
+      :
+        <div id="rightNav" style={ss.fullRight}></div>
+      }
+    </div>
   );
 }
 
 export default NavBar;
-

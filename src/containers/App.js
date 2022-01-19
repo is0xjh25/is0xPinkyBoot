@@ -31,9 +31,11 @@ class App extends Component {
   render() {
     return (
       <>
-        <NavBar user={this.state.user}/>
+        <div id='header'>
+          <NavBar user={this.state.user}/>
+        </div>
         <Router>
-        <div className='main'>
+        <div id='main'>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route exact path='/add-post' element={<AddPost user={this.state.user}/>} />
@@ -43,7 +45,9 @@ class App extends Component {
             </Routes>
           </div>
         </Router>
-        <Footer/>
+        <div id='footer'>
+          <Footer/>
+        </div>
       </>
     );
   }

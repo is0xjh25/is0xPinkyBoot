@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { capitalize, setCookie, deleteCookie } from "../Utilities/Utilities";
+import { useWindowSize ,capitalize, setCookie, deleteCookie } from "../Utilities/Utilities";
 import { getUserInfo } from '../Utilities/APIs';
 
 const ss = {
@@ -12,9 +12,9 @@ const ss = {
     justifyContent: "center",
     width: "100%",
     height: "100%",
-    paddingTop: "5%",
+    paddingTop: "3%",
     color: "var(--bs-light)",
-    backgroundColor: "var(--bs-dark)"
+    overflow: "hidden",
   },
   infoGroup: {
     width: "100%",
@@ -23,7 +23,6 @@ const ss = {
   buttonGroup: {
     display: "flex",
     position: "relative",
-    alignItems: "start",
     justifyContent: "center",
     width: "100%",
     height: "50%",
@@ -40,7 +39,9 @@ const ss = {
     height: "80%",
     border: "5px solid",
     borderRadius: "5%",
-    fontSize: "35px",
+    fontSize: "40px",
+    minWidth: "100px",
+    textAlign: "center",
   },
   info: {
     fontSize: "25px"
@@ -73,15 +74,33 @@ function Info(props) {
     );
   } else {
     return (
-      <div style={ss.infoGroup}>
-        <h1 style={{fontSize: "100px"}}>Mock Users</h1>
-        <h3>You are <b>{props.user ? capitalize(props.user): "No One" }</b> now !</h3>
+      <div className="boost" style={ss.infoGroup}>
+        <h1 id="mock-user" style={{fontSize: "100px"}}>Mock Users</h1>
+        <h3 >You are <b>{props.user ? capitalize(props.user): "No One" }</b> now !</h3>
       </div>
     );
   }
 }
 
 const Account = (props) => {
+
+  function handleWindowSize() {
+    const b = document.querySelectorAll('.account-button');
+    const bArray = [...b];
+    const m = document.querySelector('#mock-user');
+
+    if (width < 540) {
+      bArray.forEach(b => {
+        b.style.fontSize = "25px";
+      })
+      m.style.fontSize = "50px";
+    } else {
+      bArray.forEach(b => {
+        b.style.fontSize = "40px";
+      })
+      m.style.fontSize = "100px";
+    }
+  }
 
   function switchUser(e) {
     let user = e.target.value;
@@ -100,6 +119,7 @@ const Account = (props) => {
 
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
+  const [width, height] = useWindowSize();
   const [hover, setHover] = useState("");
   const [info, setInfo] = useState([]);
   const [firstRender, setFirstRender] = useState(true);
@@ -116,40 +136,39 @@ const Account = (props) => {
     })
     if (firstRender) {
       enqueueSnackbar("Accounts have been setup." ,{variant:'info'});
-      enqueueSnackbar("Pick a user.",{variant:'info'});
     }
     setFirstRender(false);
   }, [props.user])
 
+  useEffect(() => {
+    handleWindowSize()
+  }, [width]);
 
-  
   return (
-    <>
-      <div style={ss.main}>
-        <Info info={info} user={props.user} hover={hover} />
-        <div style={ss.buttonGroup}>
-          <div style={ss.buttonBox}>
-            <button className="btn btn-outline-success shadow" value="admin" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
-              Admin
-            </button>
-          </div>
-          <div style={ss.buttonBox}>
-            <button className="btn btn-outline-primary shadow" value="guest0" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
-              Guest 0
-            </button>
-          </div>
-          <div style={ss.buttonBox}>
-            <button className="btn btn-outline-primary shadow" value="guest1" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
-              Guest 1
-            </button>
-          </div>
-          <div style={ss.buttonBox}>
-            <button className="btn btn-outline-danger shadow" style={ss.button} onClick={logOut}>Log out</button>
-          </div>
+    <div className="bg-dark" style={ss.main}>
+      <Info info={info} user={props.user} hover={hover} />
+      <div className="boost" style={ss.buttonGroup}>
+        <div style={ss.buttonBox}>
+          <button className="btn btn-outline-success shadow account-button" value="admin" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
+            Admin
+          </button>
         </div>
-        <h1 style={{fontSize: "50px"}}>Personal Account is coming...</h1>
+        <div style={ss.buttonBox}>
+          <button className="btn btn-outline-primary shadow account-button" value="guest0" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
+            Guest 0
+          </button>
+        </div>
+        <div style={ss.buttonBox}>
+          <button className="btn btn-outline-primary shadow account-button" value="guest1" style={ss.button} onClick={switchUser} onMouseEnter={(e) => setHover(e.target.value)} onMouseLeave={() => setHover(null)}>
+            Guest 1
+          </button>
+        </div>
+        <div style={ss.buttonBox}>
+          <button className="btn btn-outline-danger shadow account-button" style={ss.button} onClick={logOut}>Log out</button>
+        </div>
       </div>
-    </>
+      <h1 style={{fontSize: "50px"}}>Personal Account is coming...</h1>
+    </div>
   );
 };
 

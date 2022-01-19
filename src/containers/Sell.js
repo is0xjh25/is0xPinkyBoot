@@ -79,8 +79,8 @@ const Sell = (props) => {
   }, [props.user, refreshCount]);
 
   return (
-    <>
-      <table className="tableFixHead">
+    <div className="table-fix-head">
+      <table>
         <thead>
           <tr>
             <th scope="col">Brand</th>
@@ -89,7 +89,7 @@ const Sell = (props) => {
             <th scope="col">Status</th>
             <th scope="col">Price</th>
             <th scope="col">Location</th>
-            <th scope="col">Seller</th>
+            <th scope="col">Buyer</th>
             <th scope="col">Contact</th>
           </tr>
         </thead>
@@ -102,7 +102,7 @@ const Sell = (props) => {
         )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

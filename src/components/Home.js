@@ -7,6 +7,12 @@ import { BsCashCoin } from 'react-icons/bs';
 import { AiOutlineShoppingCart, AiOutlineLogin } from 'react-icons/ai';
 
 const ss = {
+  main: {
+    width: "100%",
+    height: "100%",
+    color: "var(--bs-light)",
+    overflow: "hidden"
+  },
   top: {
     display: "flex",
     width: "100%",
@@ -17,7 +23,7 @@ const ss = {
     justifyContent: "center",
     width: "100%",
     height: "25%",
-    fontSize: "80px",
+    fontSize: "70px",
   },
   left: {
     display: "flex",
@@ -31,8 +37,8 @@ const ss = {
     display: "-webkit-flex",
     justifyContent: "center",
     WebkitJustifyContent: "center",
-    alignItems: "end",
-    WebkitAlignItems: "flex-end",
+    alignItems: "center",
+    WebkitAlignItems: "flex-center",
     width: "10%",
     height: "100%",
   },
@@ -51,15 +57,16 @@ const ss = {
     height: "80%",
     border: "5px solid",
     borderRadius: "5%",
-    fontSize: "80px",
+    fontSize: "70px",
   },
   info: {
-    display: "flex",
+    display: "block",
     position: "relative",
+    top: "30px",
     left: "10px",
     alignItems: "center",
     justifyContent: "center",
-    fontSize: "30px",
+    fontSize: "40px",
     color: "white"
   }
 }
@@ -67,11 +74,18 @@ const ss = {
 const Home = () => {
 
   function handleWindowSize() {
-    let i = document.querySelector('#accountFavicon');
-    if (width < 1080) {
+    const i = document.querySelector('#accountFavicon');
+    const s = document.querySelector('#switch-info');
+
+    if (width < 540) {
       i.style.display = "none";
+      s.style.display = "none";
+    } else if (width < 1080) {
+      i.style.display = "none";
+      s.style.display = "inline";
     } else {
       i.style.display = "inline-block";
+      s.style.display = "inline";
     }
   }
 
@@ -95,29 +109,31 @@ const Home = () => {
   }, [width]);
 
   return (
-    <>
-    <div className="bg-dark highlight" style={ss.top}>
-      <div style={ss.left}>
-        <button className="btn btn-outline-warning shadow" style={ss.button} onClick={()=>{navigate("./buy")}}>
-          <AiOutlineShoppingCart/> BUY
-        </button>
+    <div className="boost" style={ss.main}>
+      <div className="bg-dark" style={ss.top}>
+        <div style={ss.left}>
+          <button className="btn btn-outline-warning shadow" style={ss.button} onClick={()=>{navigate("./buy")}}>
+            <AiOutlineShoppingCart/> BUY
+          </button>
+        </div>
+        <div style={ss.mid}>
+          <img id="accountFavicon" src={Favicon} alt="Favicon" style={ss.favicon}></img>
+        </div>
+        <div style={ss.right}>
+          <button className="btn btn-outline-warning shadow" style={ss.button} onClick={()=>{navigate("./sell")}}>
+            <BsCashCoin/> SELL
+          </button>
+        </div>
       </div>
-      <div style={ss.mid}>
-        <img id="accountFavicon" src={Favicon} alt="Favicon" style={ss.favicon}></img>
-      </div>
-      <div style={ss.right}>
-        <button className="btn btn-outline-warning shadow" style={ss.button} onClick={()=>{navigate("./sell")}}>
-          <BsCashCoin/> SELL
-        </button>
+      <div className="bg-dark highlight" style={ss.bot}>
+        <div>
+          <a href="/account"><AiOutlineLogin/> {user ? " SWITCH": " LOGIN"} </a>
+        </div>
+        <span id="switch-info" style={ss.info}>
+          {user ? `Now is ${capitalize(user)}`: null}
+        </span>
       </div>
     </div>
-    <div className="bg-dark highlight" style={ss.bot}>
-      <a href="/account"><AiOutlineLogin/> {user ? " SWITCH": " LOGIN"} </a>
-      <div style={ss.info}>
-        {user ? `Now is ${capitalize(user)}`: null}
-      </div>
-    </div>
-    </>
   );
 };
 

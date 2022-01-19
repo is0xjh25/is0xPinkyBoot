@@ -27,7 +27,7 @@ const ss = {
     textAlign: "center",
   },
   rowGap: {
-    paddingTop: "15px",
+    paddingTop: "10px",
   },
   clickBox: {
     width: "25px",
@@ -35,20 +35,20 @@ const ss = {
     marginLeft: "25px",
     marginRight: "5px",
   },
-  button: {
-    width: "50px",
-    height: "40px",
-    border: "2px solid ",
-    borderRadius: "10%",
-    fontSize: "15px",
+  buttonGroup: {
+    paddingTop: "10px",
   },
+  button: {
+    border: "2px solid ",
+    fontSize: "20px"
+  }
 }
 
 const AddPost = (props) => {
 
   function handleWindowSize() {
     let d = document.querySelector('#add-post-hidden');
-    if (width < 530 || height < 620) {
+    if (width < 540 || height < 620) {
       d.style.display = "none";
     } else {
       d.style.display = "inline-block";
@@ -202,7 +202,7 @@ const AddPost = (props) => {
               </div>
             </div>
           </div>
-          <div className="row add-post-box" style={ss.rowGap}>
+          <div className="row add-post-box" style={ss.rowGap, ss.buttonGroup}>
             <div className="col">
               <button className="btn btn-outline-light shadow" onClick={()=>{navigate("/")}} style={ss.button}><BsTrash/></button>
             </div>
