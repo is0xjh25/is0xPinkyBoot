@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { BsTrash, BsUpload } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';
-import { useWindowSize } from '../Utilities/Utilities';
+import { useWindowSize, checkAuthorized } from '../Utilities/Utilities';
 import { storePost } from '../Utilities/APIs';
 
 const ss = {
@@ -44,7 +44,7 @@ const ss = {
   }
 }
 
-const AddPost = (props) => {
+const AddPost = () => {
 
   function handleWindowSize() {
     let d = document.querySelector('#add-post-hidden');
@@ -91,13 +91,16 @@ const AddPost = (props) => {
   const {enqueueSnackbar}  = useSnackbar();
   const [width, height] = useWindowSize();
   const [stat, setStat] = useState({});
-  const [firstRender, setFirstRender] = useState(true);
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     // check login
-    if (!firstRender && !props.user) {
+    const user = checkAuthorized();
+    if (!user) {
       navigate("/account");
       enqueueSnackbar("Please login first.",{variant:'warning'});
+    } else {
+      setUser(user);
     }
 
     setStat({
@@ -110,11 +113,10 @@ const AddPost = (props) => {
       price: "",
       negotiable: "false",
       description: "",
-      posterId: `${props.user}`,
+      posterId: `${user}`,
     })
 
-    setFirstRender(false);
-  }, [props.user]);
+  }, []);
 
   useEffect(() => {
     handleWindowSize()

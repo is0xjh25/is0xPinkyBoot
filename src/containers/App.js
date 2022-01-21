@@ -38,9 +38,9 @@ class App extends Component {
         <div id='main'>
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route exact path='/add-post' element={<AddPost user={this.state.user}/>} />
-              <Route path='/buy' element={<Buy user={this.state.user}/>} />
-              <Route path='/sell' element={<Sell user={this.state.user}/>} />
+              <Route exact path='/add-post' element={<AddPost/>} />
+              <Route path='/buy' element={<Buy/>} />
+              <Route path='/sell' element={<Sell/>} />
               <Route exact path='/account' element={<Account user={this.state.user} setUser={this.setUser}/>} />
             </Routes>
           </div>

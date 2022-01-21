@@ -2,9 +2,10 @@ import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { getBuyPosts, updatePost, deletePost, savePost, removePost } from '../Utilities/APIs';
+import { checkAuthorized } from '../Utilities/Utilities';
 import Post from '../components/Post';
 
-const Buy = (props) => {
+const Buy = () => {
 
   function handleUpdatePost (post) {
     updatePost(post).then(res => {
@@ -59,7 +60,7 @@ const Buy = (props) => {
   const [posts, setPosts] = useState([]);
 	const [page, setPage] = useState("display"); 
   const [refreshCount, setRefreshCount] = useState(0);
-  const [firstRender, setFirstRender] = useState(true);
+  const [user, setUser] = useState("");
 
   const refresh = () => {
     setTimeout(() => {setRefreshCount(refreshCount+1);}, 1000);
@@ -67,16 +68,18 @@ const Buy = (props) => {
 
   useEffect(() => {
     // check login
-    if (!firstRender && !props.user) {
+    const user = checkAuthorized();
+    if (!user) {
       navigate("/account");
       enqueueSnackbar("Please login first.",{variant:'warning'});
+    } else {
+      setUser(user);
     }
     getBuyPosts().then(res => {
       setPosts(res);
     })
     setPage("display");
-    setFirstRender(false);
-  }, [props.user, refreshCount]);
+  }, [refreshCount]);
 
   return (
       <div className="table-fix-head">
@@ -96,7 +99,7 @@ const Buy = (props) => {
           <tbody>
           {posts.map(p => 
             { return (
-                <Post key={p.id} post={p} user={props.user} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost} refresh={refresh}/>
+                <Post key={p.id} post={p} user={user} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost} refresh={refresh}/>
               )
             }
           )}

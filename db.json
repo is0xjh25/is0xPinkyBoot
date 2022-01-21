@@ -10,21 +10,14 @@
       "lastName": "Hsiao",
       "location": "Melbourne",
       "authority": 0,
-      "ownedBuyPosts": [
-        "3",
-        "4"
-      ],
-      "ownedSellPosts": [
-        "1"
-      ],
-      "starredBuyPosts": [
-        "5"
-      ],
+      "ownedBuyPosts": [],
+      "ownedSellPosts": [],
+      "starredBuyPosts": [],
       "starredSellPosts": []
     },
     {
       "id": "guest0",
-      "email": "footlocker@gmail.com",
+      "email": "harry@gmail.com",
       "password": "1234",
       "firstName": "Harry",
       "lastName": "Qin",
@@ -32,14 +25,8 @@
       "authority": 1,
       "ownedBuyPosts": [],
       "ownedSellPosts": [],
-      "starredBuyPosts": [
-        "1",
-        "2",
-        "3"
-      ],
-      "starredSellPosts": [
-        "1"
-      ]
+      "starredBuyPosts": [],
+      "starredSellPosts": []
     },
     {
       "id": "guest1",
@@ -51,10 +38,7 @@
       "authority": 1,
       "ownedBuyPosts": [],
       "ownedSellPosts": [],
-      "starredBuyPosts": [
-        "4",
-        "3"
-      ],
+      "starredBuyPosts": [],
       "starredSellPosts": []
     }
   ]

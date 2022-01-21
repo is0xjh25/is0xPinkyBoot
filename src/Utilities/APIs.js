@@ -49,7 +49,6 @@ function storePost(post) {
 }
 
 function updatePost(post) {
-	console.log(post);
 	return fetch(`${BASE_URL}/${post.trade}-post/${post.id}`, {
 		method: 'PUT',
 		headers: {
