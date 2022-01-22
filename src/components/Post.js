@@ -146,7 +146,6 @@ function Edit(props) {
 	}
 
 	function handleOnChange(e) {
-		console.log(e);
     if (e.target.name === "negotiable" && e.target.checked) {
       setStat({
         ...stat,

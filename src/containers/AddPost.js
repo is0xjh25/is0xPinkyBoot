@@ -78,7 +78,7 @@ const AddPost = () => {
     e.preventDefault();
     storePost(stat).then(res => {
       if (res.status === 200 || res.status === 201) {
-        enqueueSnackbar("It had been posted successfully.",{variant:'success'});
+        enqueueSnackbar("It has been posted successfully.",{variant:'success'});
       } else {
         enqueueSnackbar("Post failed. Please try again.", {variant:'error'});
       }

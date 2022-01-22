@@ -34,7 +34,7 @@ const Sell = () => {
   function handleStarPost (userId, post) {
     savePost(userId, post, "starred").then(res => {
       if (res.status === 200) {
-        enqueueSnackbar(`Post ${post.id} has been successfully Starred.`,{variant:'success'});
+        enqueueSnackbar(`Post ${post.id} has been successfully starred.`,{variant:'success'});
         setPage("none");
       } else {
         enqueueSnackbar(res.statusText, {variant:'error'});
@@ -46,7 +46,7 @@ const Sell = () => {
   function handleUnStarPost (userId, post) {
     removePost(userId, post, "starred").then(res => {
       if (res.status === 200) {
-        enqueueSnackbar(`Post ${post.id} has been successfully Unstarred.`,{variant:'success'});
+        enqueueSnackbar(`Post ${post.id} has been successfully unstarred.`,{variant:'success'});
         setPage("none");
       } else {
         enqueueSnackbar(res.statusText, {variant:'error'});
