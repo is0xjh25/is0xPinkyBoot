@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from '../components/Home';
 import AddPost from './AddPost';
-import Buy from './Buy';
-import Sell from './Sell';
 import Account from './Account';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import './App.css';
 import { checkAuthorized } from '../Utilities/Utilities';
+import Trade from './Trade';
 
 
 class App extends Component {
@@ -39,8 +38,8 @@ class App extends Component {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route exact path='/add-post' element={<AddPost/>} />
-              <Route path='/buy' element={<Buy/>} />
-              <Route path='/sell' element={<Sell/>} />
+              <Route path='/buy' element={<Trade fn="buy"/>} />
+              <Route path='/sell' element={<Trade fn="sell"/>} />
               <Route exact path='/account' element={<Account user={this.state.user} setUser={this.setUser}/>} />
             </Routes>
           </div>

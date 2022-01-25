@@ -1,11 +1,12 @@
 import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { getBuyPosts, updatePost, deletePost, savePost, removePost } from '../Utilities/APIs';
+import { updatePost, deletePost, savePost, removePost } from '../Utilities/APIs';
 import { checkAuthorized } from '../Utilities/Utilities';
-import Post from '../components/Post';
+import Buy from '../components/Buy';
+import Sell from '../components/Sell';
 
-const Buy = () => {
+const Trade = (props) => {
 
   function handleUpdatePost (post) {
     updatePost(post).then(res => {
@@ -57,8 +58,7 @@ const Buy = () => {
 
   const {enqueueSnackbar}  = useSnackbar();
   const navigate = useNavigate();
-  const [posts, setPosts] = useState([]);
-	const [page, setPage] = useState("display"); 
+  const [page, setPage] = useState("display"); 
   const [refreshCount, setRefreshCount] = useState(0);
   const [user, setUser] = useState("");
 
@@ -75,38 +75,26 @@ const Buy = () => {
     } else {
       setUser(user);
     }
-    getBuyPosts().then(res => {
-      setPosts(res);
-    })
+
     setPage("display");
+
+    return () => {
+      setUser("");
+      setPage("display");
+      setRefreshCount(0);
+    }
   }, [refreshCount]);
 
   return (
-      <div className="table-fix-head">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Brand</th>
-              <th scope="col">Model</th>
-              <th scope="col">Size (cm)</th>
-              <th scope="col">Status</th>
-              <th scope="col">Price</th>
-              <th scope="col">Location</th>
-              <th scope="col">Buyer</th>
-              <th scope="col">Contact</th>
-            </tr>
-          </thead>
-          <tbody>
-          {posts.map(p => 
-            { return (
-                <Post key={p.id} post={p} user={user} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost} refresh={refresh}/>
-              )
-            }
-          )}
-          </tbody>
-        </table>
-      </div>
+      <>
+		{
+		  props.fn === "buy" ?
+		  <Buy user={user} refresh={refresh} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/> 
+		  :
+		  <Sell user={user} refresh={refresh} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/>
+  		}
+      </>
   );
 };
 
-export default Buy;
+export default Trade;
