@@ -23,6 +23,10 @@ class App extends Component {
     this.setUser(checkAuthorized());
   }
 
+  componentWillUnmount() {
+    this.setUser("");
+  }
+
   setUser = (u) => {
     this.setState({user: u});
   }

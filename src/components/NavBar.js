@@ -115,6 +115,11 @@ const NavBar = (props) => {
 
   useEffect(() => {
     getStatus();
+
+    return () => {
+      setStatus("");
+      setMarqueeText("");
+    }
   }, []);
 
   useEffect(() => {

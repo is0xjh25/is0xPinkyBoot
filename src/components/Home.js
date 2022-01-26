@@ -91,16 +91,22 @@ const Home = () => {
 
   const navigate = useNavigate();
   const {enqueueSnackbar}  = useSnackbar();
-  const [user, setUser] = useState("");
   const [width, height] = useWindowSize();
+  const [user, setUser] = useState("");
   
   useEffect(() => {
+
     const cookie= getCookie('token');
+
     if (cookie === "") {
       enqueueSnackbar("Please login first.",{variant:'warning'});
       setUser("");
     }  else {
       setUser(cookie);
+    }
+
+    return () => {
+      setUser("");
     }
   }, [])
 

@@ -116,6 +116,10 @@ const AddPost = () => {
       posterId: `${user}`,
     })
 
+    return () => {
+      setStat({});
+      setUser("");
+    }
   }, []);
 
   useEffect(() => {

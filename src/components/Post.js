@@ -298,6 +298,12 @@ const Post = (props) => {
 				setBelonging("");
 			}
 		})
+
+		return () => {
+			setPoster({});
+			setAuthority(1);
+			setBelonging("");
+		}
 	},[refresh]);
 
 	return (

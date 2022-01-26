@@ -138,6 +138,12 @@ const Account = (props) => {
       enqueueSnackbar("Accounts have been setup." ,{variant:'info'});
     }
     setFirstRender(false);
+
+    return () => {
+      setHover("");
+      setInfo([]);
+      setFirstRender(true);
+    }
   }, [props.user])
 
   useEffect(() => {
