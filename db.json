@@ -3,28 +3,106 @@
     {
       "trade": "buy",
       "status": "brand-new",
-      "brand": "puma",
-      "model": "Pacer",
+      "brand": "nike",
+      "model": "KD5",
       "gender": "m",
-      "size": "19",
-      "price": "200",
+      "size": "20",
+      "price": "199",
       "negotiable": "false",
+      "description": "Basketball shoes.",
+      "posterId": "guest0",
+      "id": 1
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "jordan",
+      "model": "VII",
+      "gender": "f",
+      "size": "22",
+      "price": "250",
+      "negotiable": "true",
+      "description": "Awesome outlook!",
+      "posterId": "guest0",
+      "id": 2
+    },
+    {
+      "trade": "buy",
+      "status": "second-hand",
+      "brand": "puma",
+      "model": "PACER",
+      "gender": "m",
+      "size": "28",
+      "price": "99",
+      "negotiable": "true",
       "description": "For running. ",
+      "posterId": "guest0",
+      "id": 3
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "converse",
+      "model": "Chuck Taylor All Star",
+      "gender": "m",
+      "size": "29.5",
+      "price": "79",
+      "negotiable": "true",
+      "description": "",
       "posterId": "guest1",
       "id": 4
+    },
+    {
+      "trade": "buy",
+      "status": "second-hand",
+      "brand": "jordan",
+      "model": "VVII",
+      "gender": "m",
+      "size": "27",
+      "price": "59",
+      "negotiable": "true",
+      "description": "Fine shoes. ",
+      "posterId": "guest1",
+      "id": 5
     },
     {
       "trade": "buy",
       "status": "brand-new",
       "brand": "nike",
       "model": "PG6",
-      "gender": "m",
-      "size": "26",
-      "price": "150",
+      "gender": "f",
+      "size": "22",
+      "price": "230",
       "negotiable": "true",
       "description": "",
-      "posterId": "guest1",
-      "id": 5
+      "posterId": "admin",
+      "id": 6
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "adidas",
+      "model": "Yeezy",
+      "gender": "m",
+      "size": "28.5",
+      "price": "999",
+      "negotiable": "true",
+      "description": "",
+      "posterId": "admin",
+      "id": 7
+    },
+    {
+      "trade": "buy",
+      "status": "brand-new",
+      "brand": "nike",
+      "model": "AF1",
+      "gender": "m",
+      "size": "28",
+      "price": "500",
+      "negotiable": "true",
+      "description": "White. ",
+      "posterId": "admin",
+      "id": 8
     }
   ],
   "sell-post": [],
@@ -37,12 +115,13 @@
       "lastName": "Hsiao",
       "location": "Melbourne",
       "authority": 0,
-      "ownedBuyPosts": [],
-      "ownedSellPosts": [],
-      "starredBuyPosts": [
-        "4",
-        "5"
+      "ownedBuyPosts": [
+        "6",
+        "7",
+        "8"
       ],
+      "ownedSellPosts": [],
+      "starredBuyPosts": [],
       "starredSellPosts": []
     },
     {
@@ -53,12 +132,13 @@
       "lastName": "Qin",
       "location": "Sydney",
       "authority": 1,
-      "ownedBuyPosts": [],
-      "ownedSellPosts": [],
-      "starredBuyPosts": [
-        "5",
-        "4"
+      "ownedBuyPosts": [
+        "1",
+        "2",
+        "3"
       ],
+      "ownedSellPosts": [],
+      "starredBuyPosts": [],
       "starredSellPosts": []
     },
     {
@@ -74,9 +154,7 @@
         "5"
       ],
       "ownedSellPosts": [],
-      "starredBuyPosts": [
-        "4"
-      ],
+      "starredBuyPosts": [],
       "starredSellPosts": []
     }
   ]
