@@ -15,35 +15,42 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state= { 
-      user: ""
+      user: "",
+      searchBar: ""
     };
   }
 
   componentDidMount() {
     this.setUser(checkAuthorized());
+    this.setSearchBar("false");
   }
 
   componentWillUnmount() {
     this.setUser("");
+    this.searchBar("");
   }
 
   setUser = (u) => {
     this.setState({user: u});
   }
 
+  setSearchBar = (b) => {
+    this.setState({searchBar: b});
+  }
+
   render() {
     return (
       <>
         <div id='header'>
-          <NavBar user={this.state.user}/>
+          <NavBar user={this.state.user} searchBar={this.state.searchBar}/>
         </div>
         <Router>
         <div id='main'>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route exact path='/add-post' element={<AddPost/>} />
-              <Route path='/buy' element={<Trade fn="buy"/>} />
-              <Route path='/sell' element={<Trade fn="sell"/>} />
+              <Route path='/buy' element={<Trade fn="buy" setSearchBar={this.setSearchBar}/>} />
+              <Route path='/sell' element={<Trade fn="sell" setSearchBar={this.setSearchBar}/>} />
               <Route exact path='/account' element={<Account user={this.state.user} setUser={this.setUser}/>} />
             </Routes>
           </div>

@@ -136,7 +136,7 @@ const NavBar = (props) => {
         <a href="/sell" style={ss.navButton}>SELL</a>
         <a href="/add-post" style={ss.navButton}>POST<MdOutlinePostAdd style={{flex: "1"}}/></a>
       </div>      
-      {(status === "buy" || status === "sell") ?
+      {(props.searchBar === "true") ?
         <div className="midNav" style={ss.mid}>
           
           <div className="marquee" style={ss.marquee}><p>{marqueeText}</p></div>  
@@ -146,7 +146,7 @@ const NavBar = (props) => {
           <div className="marquee" style={ss.marquee}><p>{marqueeText}</p></div>  
         </div>
       }      
-      {(status === "buy" || status === "sell") ?
+      {(props.searchBar === "true") ?
         <div id="rightNav" style={ss.right}>
           <input type="search" placeholder="Find Boots..." aria-label="Search" style={ss.input}></input>
           <button className="btn btn-outline-warning shadow-none" type="submit" style={ss.button}><div style={ss.buttonText}>GO</div></button>

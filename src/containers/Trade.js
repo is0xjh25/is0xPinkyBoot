@@ -70,10 +70,12 @@ const Trade = (props) => {
     // check login
     const user = checkAuthorized();
     if (!user) {
+      props.setSearchBar("false");
       navigate("/account");
       enqueueSnackbar("Please login first.",{variant:'warning'});
     } else {
       setUser(user);
+      props.setSearchBar("true");
     }
 
     setPage("display");
