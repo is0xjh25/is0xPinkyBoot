@@ -6,7 +6,7 @@
       "brand": "puma",
       "model": "Pacer",
       "gender": "m",
-      "size": "13",
+      "size": "19",
       "price": "200",
       "negotiable": "false",
       "description": "For running. ",
@@ -19,7 +19,7 @@
       "brand": "nike",
       "model": "PG6",
       "gender": "m",
-      "size": "28",
+      "size": "26",
       "price": "150",
       "negotiable": "true",
       "description": "",
@@ -40,6 +40,7 @@
       "ownedBuyPosts": [],
       "ownedSellPosts": [],
       "starredBuyPosts": [
+        "4",
         "5"
       ],
       "starredSellPosts": []

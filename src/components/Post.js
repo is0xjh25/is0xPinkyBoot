@@ -304,7 +304,7 @@ const Post = (props) => {
 			setAuthority(1);
 			setBelonging("");
 		}
-	},[update]);
+	},[refresh]);
 
 	return (
 		<>

@@ -1,10 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React from 'react';
 import Post from './Post';
-import { getBuyPosts } from '../Utilities/APIs';
 
 const Buy = (props) => {
 
-  const {user, refresh, update, page, setPage, posts, handleUpdatePost, handleDeletePost, handleStarPost, handleUnStarPost} = props;
+  const {user, refresh, page, setPage, posts, handleUpdatePost, handleDeletePost, handleStarPost, handleUnStarPost} = props;
 
   return (
       <div className="table-fix-head">
@@ -24,7 +23,7 @@ const Buy = (props) => {
           <tbody>
           {posts.map(p => 
             { return (
-                <Post key={p.id} post={p} user={user} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost} refresh={refresh} update={update}/>
+                <Post key={p.id} post={p} user={user} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost} refresh={refresh}/>
               )
             }
           )}

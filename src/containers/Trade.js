@@ -43,7 +43,6 @@ const Trade = (props) => {
       }
     })
     refresh();
-    update();
   }
 
   function handleUnStarPost (userId, post) {
@@ -56,24 +55,18 @@ const Trade = (props) => {
       }
     })
     refresh();
-    update();
   }
 
   const {enqueueSnackbar}  = useSnackbar();
   const navigate = useNavigate();
   const [page, setPage] = useState("display"); 
   const [refreshCount, setRefreshCount] = useState(0);
-  const [updateCount, setUpdateCount] = useState(0);
   const [user, setUser] = useState("");
   const [buyPosts, setBuyPosts] = useState([]);
   const [sellPosts, setSellPosts] = useState([]); 
 
   const refresh = () => {
     setTimeout(() => {setRefreshCount(refreshCount+1);}, 1000);
-  }
-
-  const update = () => {
-    setTimeout(() => {setUpdateCount(updateCount+1);}, 1000);
   }
 
   useEffect(() => {
@@ -108,9 +101,9 @@ const Trade = (props) => {
     <>
     {
     props.fn === "buy" ?
-    <Buy user={user} refresh={refresh} update={update} page={page} setPage={setPage} posts={buyPosts} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/> 
+    <Buy user={user} refresh={refresh} page={page} setPage={setPage} posts={buyPosts} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/> 
     :
-    <Sell user={user} refresh={refresh} update={update} page={page} setPage={setPage} posts={sellPosts} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/>
+    <Sell user={user} refresh={refresh} page={page} setPage={setPage} posts={sellPosts} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/>
     }
     </>
   );
