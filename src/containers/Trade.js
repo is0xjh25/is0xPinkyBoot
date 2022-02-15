@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { updatePost, deletePost, savePost, removePost } from '../Utilities/APIs';
 import { checkAuthorized } from '../Utilities/Utilities';
+import { getBuyPosts, getSellPosts } from '../Utilities/APIs';
 import Buy from '../components/Buy';
 import Sell from '../components/Sell';
 
@@ -42,6 +43,7 @@ const Trade = (props) => {
       }
     })
     refresh();
+    update();
   }
 
   function handleUnStarPost (userId, post) {
@@ -54,16 +56,24 @@ const Trade = (props) => {
       }
     })
     refresh();
+    update();
   }
 
   const {enqueueSnackbar}  = useSnackbar();
   const navigate = useNavigate();
   const [page, setPage] = useState("display"); 
   const [refreshCount, setRefreshCount] = useState(0);
+  const [updateCount, setUpdateCount] = useState(0);
   const [user, setUser] = useState("");
+  const [buyPosts, setBuyPosts] = useState([]);
+  const [sellPosts, setSellPosts] = useState([]); 
 
   const refresh = () => {
     setTimeout(() => {setRefreshCount(refreshCount+1);}, 1000);
+  }
+
+  const update = () => {
+    setTimeout(() => {setUpdateCount(updateCount+1);}, 1000);
   }
 
   useEffect(() => {
@@ -74,6 +84,12 @@ const Trade = (props) => {
       navigate("/account");
       enqueueSnackbar("Please login first.",{variant:'warning'});
     } else {
+      getBuyPosts().then(res => {
+        setBuyPosts(res);
+      })
+      getSellPosts().then(res => {
+        setSellPosts(res);
+      })
       setUser(user);
       props.setSearchBar("true");
     }
@@ -87,15 +103,16 @@ const Trade = (props) => {
     }
   }, [refreshCount]);
 
+
   return (
-      <>
-		{
-		  props.fn === "buy" ?
-		  <Buy user={user} refresh={refresh} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/> 
-		  :
-		  <Sell user={user} refresh={refresh} page={page} setPage={setPage} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/>
-  		}
-      </>
+    <>
+    {
+    props.fn === "buy" ?
+    <Buy user={user} refresh={refresh} update={update} page={page} setPage={setPage} posts={buyPosts} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/> 
+    :
+    <Sell user={user} refresh={refresh} update={update} page={page} setPage={setPage} posts={sellPosts} handleUpdatePost={handleUpdatePost} handleDeletePost={handleDeletePost} handleStarPost={handleStarPost} handleUnStarPost={handleUnStarPost}/>
+    }
+    </>
   );
 };
 

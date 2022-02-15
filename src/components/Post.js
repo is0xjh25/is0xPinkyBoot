@@ -165,13 +165,13 @@ function Edit(props) {
   };
 
 	function handleSubmit(e) {
-    e.preventDefault();
+		e.preventDefault();
 		if (isEdited()) {
 			handleUpdatePost(stat);
 		} else {
 			enqueueSnackbar("You have not edited yet.",{variant:'warning'});
 		}
-  }
+  	}
 
 	useEffect(() => {
 		setStat(post);
@@ -276,7 +276,7 @@ function Edit(props) {
 
 const Post = (props) => {
 	
-	const {post, user, page, setPage, handleUpdatePost, handleDeletePost, handleStarPost, handleUnStarPost, refresh} = props;
+	const {post, user, page, setPage, handleUpdatePost, handleDeletePost, handleStarPost, handleUnStarPost, refresh, update} = props;
 	const [poster, setPoster] = useState({});
 	const [authority, setAuthority] = useState(1);
 	const [belonging, setBelonging] = useState("");
@@ -304,7 +304,7 @@ const Post = (props) => {
 			setAuthority(1);
 			setBelonging("");
 		}
-	},[refresh]);
+	},[update]);
 
 	return (
 		<>
