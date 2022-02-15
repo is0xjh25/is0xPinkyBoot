@@ -6,6 +6,7 @@
 * [About the Application](#about-the-application)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
+* [Demo](#demo)
 * [Developed by](#developed-by)
 
 ## About the Application
@@ -37,6 +38,53 @@ This is a mock application for shoes trading and it has selling and buying pages
   - **Delete**
   - **Star**
   - **Unstar**
+  
+## Demo  
+- **Home**
+<p align="center">
+  <img alt="Home Page" src="demo/home.png" width="500">
+</p>
+<p align="center">
+  <img alt="Home Page 2" src="demo/home.gif" width="500">
+</p>
+
+- **Account**
+<p align="center">
+  <img alt="Account" src="demo/account.png" width="500">
+</p>
+<p align="center">
+  <img alt="Account" src="demo/account.gif" width="500">
+</p>
+
+- **Post**
+<p align="center">
+  <img alt="Posts" src="demo/posts.png" width="500">
+</p>
+
+  - Create a Post
+  <p align="center">
+    <img alt="Create a Post" src="demo/post.gif" width="500">
+  </p>
+
+  - Update a Post
+  <p align="center">
+    <img alt="Update a Post" src="demo/update.gif" width="500">
+  </p>
+
+  - Delete a Post
+  <p align="center">
+    <img alt="Delete a Post" src="demo/delete.gif" width="500">
+  </p>
+
+- Star a Post
+<p align="center">
+  <img alt="Star a Post" src="demo/starred.gif" width="500">
+</p>
+
+- **Authority Level**
+<p align="center">
+  <img alt="Authority Level" src="demo/authority-level.gif" width="500">
+</p>
 
 ## Developed by
 **is0xjh25 (Yun-Chi Hsiao)**
