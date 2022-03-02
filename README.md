@@ -84,7 +84,7 @@ This is a mock application for shoes trading and it has selling and buying pages
 </p>
 
 ## Developed by
-- The application is developed by _[is0xjh25 (Yun-Chi Hsiao)](https://is0xjh25.github.io)_. 
+- The application is developed by _[is0xjh25 (Yun-Chi Hsiao)](https://is0xjh25.github.io)_ 
 <br/>
 <p align="left">
   <img alt="Favicon" src="./favicon_io.png" width="250" >
