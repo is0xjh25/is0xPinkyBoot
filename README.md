@@ -7,7 +7,7 @@
 * [Getting Started](#getting-started)
 * [Usage](#usage)
 * [Demo](#demo)
-* [Developed by](#developed-by)
+* [Developed By](#developed-by)
 
 ## About the Application
 This is a mock application for shoes trading and it has selling and buying pages. The users can add, edit and delete thier own posts, and leave their contact details for further trading. It will be hosted on server and be published for the public in the future.   
@@ -28,18 +28,18 @@ This is a mock application for shoes trading and it has selling and buying pages
   
 ## Usage
 - **Pages**
-  - **Home**
-  - **Account**
-  - **Buy**
-  - **Sell**
-  - **Add Post**
+  - ***Home***
+  - ***Account***
+  - ***Buy***
+  - ***Sell***
+  - ***Add Post***
 - **Functionalities**
-  - **Switch user**
-  - **New post**
-  - **Edit**
-  - **Delete**
-  - **Star**
-  - **Unstar**
+  - ***Switch user***
+  - ***New post***
+  - ***Edit***
+  - ***Delete***
+  - ***Star***
+  - ***Unstar***
   
 ## Demo  
 - **Home**
@@ -85,7 +85,7 @@ This is a mock application for shoes trading and it has selling and buying pages
   <img alt="Authority Level" src="demo/authority-level.gif" width="500">
 </p>
 
-## Developed by
+## Developed By
 - The application is developed by _[is0xjh25 (Yun-Chi Hsiao)](https://is0xjh25.github.io)_ 
 <br/>
 <p align="left">
