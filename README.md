@@ -1,8 +1,8 @@
-# PinkyBoot
+# is0xPinkyBoot
 <p align="left">
   <img alt="Logo" src="./src/favicon_io/android-chrome-512x512.png" width="50" >
 
-## Table of Content
+## Table of Contents
 * [About the Application](#about-the-application)
 * [Getting Started](#getting-started)
 * [Usage](#usage)
